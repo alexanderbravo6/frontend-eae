@@ -12,7 +12,7 @@ const EvaluacionContext = createContext();
 export function useEvaluacion() {
     const context = useContext(EvaluacionContext);
     if (!context) {
-        throw new Error('usePlazas debe estar dentro del proveedor PlazaContext');
+        throw new Error('use Evaluación debe estar dentro del proveedor');
     }
     return context;
 }

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React from 'react'
 
 
-function Layout({ children }) {
+function ValidacionLayout({ children }) {
     return (
         <>
 
@@ -37,4 +37,4 @@ function Layout({ children }) {
     )
 }
 
-export default Layout
+export default ValidacionLayout
