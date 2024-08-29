@@ -31,6 +31,7 @@ export default function EvaluacionPage() {
         <div className="lg:w-2/5 lg:flex h-full hidden  overflow-hidden">
           <img src="/main-eae.png" className="object-fill w-full h-full" alt="Hero eae" />
         </div>
+
       </div>
 
 

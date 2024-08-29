@@ -94,7 +94,7 @@ function Test({ token, data, info }) {
 
             <div className="mt-14 float-end ">
               {
-                info?.ultimaPregunta === 30 ? (
+                info?.ultimaPregunta === info?.totalPreguntas ? (
                   <Button
                     onPress={() => {
                       handleCerrarEvaluacion(token, data[0]?.id)
