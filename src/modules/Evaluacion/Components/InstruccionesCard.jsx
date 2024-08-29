@@ -1,11 +1,8 @@
 'use client'
-import useClienteAxios from '@/shared/Hooks/useClienteAxios';
 import React, { useState } from 'react'
-import useSWR from 'swr';
 import Link from 'next/link'
 import { Button } from '@nextui-org/react'
 import 'quill/dist/quill.snow.css';
-
 import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -16,7 +13,6 @@ import { useEvaluacionService } from '../Hooks/useEvaluacionService';
 function InstruccionesCard() {
     const router = useRouter();
     const [submit, setSubmit] = useState(false);
-    const ClienteAxios = useClienteAxios();
     const { iniciarEvaluacion } = useEvaluacionService();
     const { instrucciones, pruebaSelected, setEstudianteEncontrado, matriculaSelected } = useEvaluacion();
 
