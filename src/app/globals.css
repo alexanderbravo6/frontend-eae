@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~sweetalert2/dist/sweetalert2.min.css';
+
+body {
+    background: #FFFFFF;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    height: 100vh;
+}
+
+.ql-editor ol,
+.ql-editor ul {
+    padding: 0px !important;
+}
+
+/* SIDEBAR DESKTOP*/
+#app {
+    display: grid;
+    height: 100vh;
+    grid-template-areas:
+        "aside header"
+        "aside main"
+        "aside footer";
+    gap: 10px;
+    grid-template-columns: 211px 1fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+/*SLIDEBAR MOBILE*/
+@media (max-width: 768px) {
+    #app {
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+}
+
+tbody {
+    text-transform: uppercase;
+}
+
+th {
+    border: 1px solid #cbd5e1;
+
+}
+
+td {
+    border: 1px solid #cbd5e1;
+
+}
+
+.active {
+    background: #338EF7;
+}
+
+.modal {
+    background: #80808059;
+}
+
+.btn-search {
+    width: 122.42px;
+}
+
+.info-basica tr td {
+    height: 35px;
+    @apply border-0;
+}
