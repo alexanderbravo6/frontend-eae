@@ -13,6 +13,8 @@ const itemBreadcrumbs = [
     }
 ]
 function GestionEnunciadosPage() {
+
+
     return (
         <>
             <div className='mb-4 w-full px-6 h-10 flex justify-between items-center bg-[#338EF7] rounded-md '>

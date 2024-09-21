@@ -8,10 +8,15 @@ import {
     DropdownSection,
 } from "@nextui-org/react";
 
-import { PeriodoAcademicoSelect } from '@/shared/Components/Form/Selects';
+import { ChangeInstitucionesRegionSelect, ChangeInstitucionesSelect, PeriodoAcademicoSelect } from '@/shared/Components/Form/Selects';
+import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import { actionsLinks } from '@/shared/Constants/GlobalConstants';
+
+
+
 function DesktopNavbar() {
     const { data: session } = useSession();
+    const { handleClickCerrarSesion } = useGlobal();
     return (
         <>
             <nav className='flex items-center gap-3'>
@@ -65,10 +70,10 @@ function DesktopNavbar() {
                                         >
                                             <div className="flex flex-col  gap-1">
                                                 <div className="text-xs font-medium text-gray-700 flex justify-between gap-2 items-center ">
-                                                    {`Especialista DIFOID`}
+                                                    {session?.user.descripcionRol}
                                                 </div>
                                                 <div className='font-extralight text-xs text-gray-500 flex justify-between gap-2 items-center ' >
-                                                    Oficina MINEDU
+                                                    {session?.user.sede}
                                                 </div>
                                             </div>
                                         </DropdownItem>
@@ -87,6 +92,7 @@ function DesktopNavbar() {
                                     </DropdownSection>
                                     <DropdownItem
                                         key="delete"
+                                        onClick={handleClickCerrarSesion}
                                         className="text-danger"
                                         color="danger"
                                     >

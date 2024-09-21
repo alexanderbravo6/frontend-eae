@@ -9,6 +9,7 @@ function LoginForm() {
     const [customError, setCustomError] = useState(null);
 
     const ValidarUsuario = handleSubmit(async (data) => {
+  
         const res = await signIn('credentials', {
             redirect: false,
             usuario: data.usuario,

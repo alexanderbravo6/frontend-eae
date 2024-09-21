@@ -37,7 +37,7 @@ function RegistrarPreguntaGrupalForm({ onClose }) {
                             </select>
                         </div>
                         <div className='col-span-2'>
-                            <label htmlhtmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pregunta</label>
+                            <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pregunta</label>
                             <ReactQuill value={content} onChange={handleChange} modules={toolbarSetting} />
                         </div>
                         <div className='col-span-1'>

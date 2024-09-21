@@ -2,20 +2,25 @@
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { NextUIProvider } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { redirect, useRouter } from "next/navigation";
+
+import { GlobalProvider } from "@/shared/Providers/GlobalProvider";
 import Sidebar from "@/modules/Layout/Components/Sidebar/Sidebar";
 import Footer from "@/modules/Layout/Components/Footer/Footer";
+import LoadingScreenMinedu from "@/shared/Components/LoadingScreenMinedu";
 import Navbar from "@/modules/Layout/Components/Navbar/Navbar";
-import AuthProvider from "@/shared/Providers/AuthProvider";
 
 
 function PrincipalLayout({ children }) {
     const router = useRouter();
+    const { status } = useSession({ required: true });
+    if (status === "loading") return <LoadingScreenMinedu />
 
     return (
         <>
             <NextUIProvider navigate={router.push}>
-                <AuthProvider>
+                <GlobalProvider>
                     <div id="app" >
                         <aside id="logo-sidebar" className={` [grid-area:aside]   md:flex hidden   flex-col lg:w-[211px]  overflow-y-auto `}>
                             <Sidebar />
@@ -29,7 +34,7 @@ function PrincipalLayout({ children }) {
                         </div>
                         <Footer />
                     </div>
-                </AuthProvider>
+                </GlobalProvider>
             </NextUIProvider>
 
         </>

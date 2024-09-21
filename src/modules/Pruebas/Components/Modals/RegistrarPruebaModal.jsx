@@ -4,6 +4,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import RegistrarEnunciadoForm from '@/modules/Enunciados/Components/Forms/RegistrarEnunciadoForm';
+import RegistrarPruebaForm from '../Forms/Prueba/RegistrarPruebaForm';
 
 
 function RegistrarPruebaModal() {
@@ -29,7 +30,7 @@ function RegistrarPruebaModal() {
                             <ModalHeader className="flex flex-col  gap-1">
                                 <h1 className=" text-blue-400 ">NUEVA PRUEBA</h1>
                             </ModalHeader>
-                            <RegistrarEnunciadoForm onClose={onClose} />
+                            <RegistrarPruebaForm onClose={onClose} />
                         </>
 
                     )}

@@ -34,7 +34,7 @@ export default function page() {
           <p className="mb-3 font-normal text-gray-500 ">Módulo para realizar el registro de pruebas y la asignación de las preguntas y opciones correspondientes.. </p>
           <div className="flex gap-3">
 
-            <Link href="/administracion/gestion-pruebas" className="inline-flex items-center text-blue-600 hover:underline">
+            <Link href="/gestion/pruebas" className="inline-flex items-center text-blue-600 hover:underline">
               Ir al módulo
               <svg className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
@@ -48,15 +48,10 @@ export default function page() {
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 21a9 9 0 1 1 3-17.5m-8 6 4 4L19.3 5M17 14v6m-3-3h6" />
           </svg>
           <h5 className="my-2 text-2xl font-semibold tracking-tight text-gray-900 ">Gestión de Enunciados</h5>
-          <p className="mb-3 font-normal text-gray-500 ">En este modulo se realiza el mantenimiento de inhtmlFormación de docentes nombrados.</p>
+          <p className="mb-3 font-normal text-gray-500 ">En este modulo realizará el registro, actualización y eliminación de los enunciados que podrían ser usados en los registros de las preguntas de las pruebas..</p>
           <div className="flex gap-3">
-            <Link href="#" className="inline-flex items-center text-blue-600 hover:underline">
-              Ver manual de usuario
-              <svg className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
-              </svg>
-            </Link>
-            <Link href="/distribucion" className="inline-flex items-center text-blue-600 hover:underline">
+       
+            <Link href="/gestion/enunciados" className="inline-flex items-center text-blue-600 hover:underline">
               Ir al módulo
               <svg className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />
@@ -74,7 +69,7 @@ export default function page() {
           <p className="mb-3 font-normal text-gray-500 ">En este modulo podrá realizar la carga de matriculas de estudiantes que podrán realizar la evaluación.</p>
           <div className="flex gap-3">
 
-            <Link href="/distribucion" className="inline-flex items-center text-blue-600 hover:underline">
+            <Link href="/gestion/matriculas" className="inline-flex items-center text-blue-600 hover:underline">
               Ir al módulo
               <svg className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778" />

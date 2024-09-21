@@ -18,7 +18,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                 <ModalBody>
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div className='md:col-span-2  '>
-                            <label htmlhtmlFor="prueba" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de Prueba</label>
+                            <label htmlFor="prueba" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de Prueba</label>
                             <input
                                 {...register('nombrePrueba', {
                                     required: {
@@ -34,7 +34,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='md:col-span-2'>
-                            <label htmlhtmlFor="programaEstudio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Programa de Estudios</label>
+                            <label htmlFor="programaEstudio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Programa de Estudios</label>
                             <select id="programaEstudio"
                                 {...register('idPrograma', {
                                     required: {
@@ -55,7 +55,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="ciclo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciclo</label>
+                            <label htmlFor="ciclo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciclo</label>
                             <select id="ciclo"
                                 {...register('idCiclo', {
                                     required: {
@@ -77,7 +77,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="periodoAcademico" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Periodo Académico</label>
+                            <label htmlFor="periodoAcademico" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Periodo Académico</label>
                             <select id="periodoAcademico"
                                 {...register('idPeriodoAcademico', {
                                     required: {
@@ -100,7 +100,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                         </div>
 
                         <div className='col-span-1' >
-                            <label htmlhtmlFor="horaInicio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Inicio</label>
+                            <label htmlFor="horaInicio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Inicio</label>
                             <div className="relative">
 
                                 <input type="time"
@@ -121,7 +121,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                         </div>
                         <div className='col-span-1' >
 
-                            <label htmlhtmlFor="horaFin" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Fin</label>
+                            <label htmlFor="horaFin" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Fin</label>
                             <div className="relative">
                                 <input type="time" id="horaFin"
                                     {...register('horaFin', {
@@ -140,7 +140,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="fecha" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
+                            <label htmlFor="fecha" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
                             <input
                                 {...register('fecha', {
                                     required: {
@@ -157,7 +157,7 @@ function ActualizarPruebaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1  '>
-                            <label htmlhtmlFor="duracion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duración de prueba en horas</label>
+                            <label htmlFor="duracion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duración de prueba en horas</label>
                             <input
                                 {...register('duracion', {
                                     required: {

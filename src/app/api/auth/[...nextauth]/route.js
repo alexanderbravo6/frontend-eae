@@ -10,7 +10,7 @@ export const authOptions = {
             async authorize(credentials) {
                 try {
                     // Aquí se debe realizar la petición a la API para validar las credenciales
-                    const request = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/login', {
+                    const request = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/v1/auth/iniciar-sesion', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
@@ -18,12 +18,16 @@ export const authOptions = {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            name: credentials?.name,
-                            password: credentials?.password
+                            usuario: credentials?.usuario,
+                            clave: credentials?.clave
                         })
                     });
                     const response = await request.json();
-                    if (response?.access === true) {
+
+                    if (response?.success === true) {
+
+                        //guardar le menu en localstorage
+
                         const user = {
                             // Datos de sesión configurables
                             'idPersonaRol': response?.data?.acceso.idPersonRol,
@@ -39,13 +43,12 @@ export const authOptions = {
                             'nombreCompleto': response?.data?.usuario.nombres + " " + response?.data?.usuario.apellidoPaterno,
                             'token': response?.data?.usuario.token,
                             'tipoToken': response?.data?.usuario.tipoToken,
-                            'ultimaSesion': response?.data?.usuario.ultimaSesion,
                             'estadoProceso': response?.data?.usuario.estadoProceso,
                         }
 
                         return user;
                     } else {
-                        throw new Error(response?.message || 'Error al iniciar sesión');
+                        throw new Error(response?.messages || 'Error al iniciar sesión');
                     }
                 } catch (e) {
                     throw new Error(e.message || 'Error al iniciar sesión');
@@ -54,21 +57,23 @@ export const authOptions = {
         }),
     ],
     pages: {
-        signIn: '/login',
-        signOut: '/login',
-        error: '/login',
+        signIn: '/auth/iniciar-sesion',
+        signOut: '/auth/iniciar-sesion',
+        error: '/auth/iniciar-sesion',
         verifyRequest: '/',
         newUser: null
     },
     session: {
         strategy: "jwt",
-        maxAge: 30 * 60, // Set appropriate session duration (e.g., 30 minutes)
+        maxAge: 30 * 60 * 6, // Set appropriate session duration (e.g., 30 minutes)
         updateAge: 24 * 60 * 60, // Refresh tokens regularly (e.g., every day)
-
     },
     callbacks: {
         async jwt({ token, user, trigger, session, request }) {
-            if (user) token.user = user;
+            if (user) {
+                token.user = user;
+                token.accessToken = user.token;
+            }
 
             // Verifica si la solicitud proviene de un trigger 'update'
             if (trigger === 'update') {

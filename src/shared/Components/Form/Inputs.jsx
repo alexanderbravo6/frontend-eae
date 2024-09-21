@@ -9,7 +9,7 @@ export const ProgramasInput = ({ value, setValue }) => {
 
     return (
         <>
-            <label htmlhtmlFor="programas" className="block mb-2 text-xs font-medium text-gray-900 ">PROGRAMAS</label>
+            <label htmlFor="programas" className="block mb-2 text-xs font-medium text-gray-900 ">PROGRAMAS</label>
             <select id="programas" defaultValue={value}
                 onChange={(e) => setValue(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg block w-full p-2.5  ">
                 {programas && programas.isLoading ? (
@@ -60,7 +60,7 @@ export const PassworInput = ({ value, register }) => {
 export const CargosInput = ({ value, setValue }) => {
     return (
         <>
-            <label htmlhtmlFor="ciclos" className="block mb-2 text-xs font-medium text-gray-900 ">CICLO</label>
+            <label htmlFor="ciclos" className="block mb-2 text-xs font-medium text-gray-900 ">CICLO</label>
             <select id="ciclos" defaultValue={value}
                 onChange={(e) => setValue(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg block w-full p-2.5  ">
                 <option value="0">Seleccionar</option>

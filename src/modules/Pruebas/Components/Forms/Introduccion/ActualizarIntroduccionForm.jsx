@@ -29,7 +29,7 @@ function ActualizarIntroduccionForm({ onClose }) {
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
 
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenido de Introducción</label>
+                            <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenido de Introducción</label>
                             <ReactQuill value={content} onChange={handleChange} modules={toolbarSetting} />
                         </div>
                     </div>

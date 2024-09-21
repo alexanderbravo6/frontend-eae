@@ -4,18 +4,19 @@ import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import { parseDate } from "@internationalized/date";
+import { useMatricula } from '../../Providers/MatriculaProvider';
 function ActualizarMatriculaForm({ row, onClose }) {
 
 
     const { register, handleSubmit, getValues, setValue, reset, formState: { errors, isSubmitting } } = useForm();
-
-    const RegistrarDocente = handleSubmit(async (data) => {
+    const { utils } = useMatricula()
+    const form = handleSubmit(async (data) => {
 
     })
-    console.log(row)
+
     return (
         <section>
-            <form onSubmit={RegistrarDocente}>
+            <form onSubmit={form}>
                 <ModalBody>
                     <div className="grid gap-6 mb-6 grid-cols-1 md:grid-cols-3">
                         <div className='col-span-1'>
@@ -34,7 +35,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-2'>
-                            <label htmlhtmlFor="numeroDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Documento </label>
+                            <label htmlFor="numeroDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Documento </label>
                             <input
                                 {...register('numeroDocumento', {
                                     required: {
@@ -51,7 +52,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="primerApellido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Paterno </label>
+                            <label htmlFor="primerApellido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Paterno </label>
                             <input
                                 {...register('primerApellido', {
                                     required: {
@@ -68,7 +69,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="apellidoMaterno" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Materno </label>
+                            <label htmlFor="apellidoMaterno" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido Materno </label>
                             <input
                                 {...register('segundoApellido', {
                                     required: {
@@ -85,7 +86,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="nombres" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres</label>
+                            <label htmlFor="nombres" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombres</label>
                             <input
                                 {...register('nombres', {
                                     required: {
@@ -102,7 +103,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlhtmlFor="fechaNacimiento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de Nacimiento</label>
+                            <label htmlFor="fechaNacimiento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de Nacimiento</label>
                             <input
                                 {...register('fechaNacimiento', {
                                     required: {
@@ -118,48 +119,148 @@ function ActualizarMatriculaForm({ row, onClose }) {
                                 )
                             }
                         </div>
-                        <div className='col-span-1'>
-                            <label htmlFor="institucion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institución</label>
-                            <select id="institucion"
+                        <div className='col-span-2'>
+                            <label htmlFor="formInstitucion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Institución</label>
+                            <select id="formInstitucion"
+                                {...register('idInstitucion', {
+                                    required: {
+                                        value: true,
+                                        message: 'El campo institución es requerido'
+                                    },
+                                })}
                                 defaultValue={row.idInstitucion}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">MONTESSORI</option>
-                                <option value="2">LAMAS</option>
+                                {utils && utils.isLoading ? (
+                                    <option value="">Cargando...</option>
+                                ) : (
+                                    <>
+                                        <option value="">Seleccionar</option>
+                                        {
+                                            utils?.data?.data?.instituciones.map((item, i) => (
+                                                <option key={i} value={item.id}>{item.region} - {item.nombre}</option>
+                                            ))
+                                        }
+                                    </>
+                                )
+                                }
                             </select>
                             {
-                                errors.numeroDocumento && (
-                                    <span className="text-red-500 text-xs">{errors.numeroDocumento.message}</span>
+                                errors.idInstitucion && (
+                                    <span className="text-red-500 text-xs">{errors.idInstitucion.message}</span>
                                 )
                             }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="especialidad" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidad</label>
-                            <select id="especialidad"
+                            <label htmlFor="formEspecialidad" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidad</label>
+                            <select id="formEspecialidad"
+                                {...register('idEspecialidad', {
+                                    required: {
+                                        value: true,
+                                        message: 'El campo especialidad es requerido'
+                                    },
+                                })}
                                 defaultValue={row.idEspecialidad}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">EDUCACIÓN INICIAL</option>
+                                {utils && utils.isLoading ? (
+                                    <option value="">Cargando...</option>
+                                ) : (
+                                    <>
+                                        <option value="">Seleccionar</option>
+                                        {
+                                            utils?.data?.data?.especialidades.map((item, i) => (
+                                                <option key={i} value={item.id}> {item.descripcion}</option>
+                                            ))
+                                        }
+                                    </>
+                                )
+                                }
                             </select>
                             {
-                                errors.numeroDocumento && (
-                                    <span className="text-red-500 text-xs">{errors.numeroDocumento.message}</span>
+                                errors.idEspecialidad && (
+                                    <span className="text-red-500 text-xs">{errors.idEspecialidad.message}</span>
+                                )
+                            }
+                        </div>
+                        <div className='col-span-1'>
+                            <label htmlFor="formPeriodoAcademico" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Periodo Académico</label>
+                            <select id="formPeriodoAcademico"
+                                {...register('idPeriodoAcademico', {
+                                    required: {
+                                        value: true,
+                                        message: 'El campo periodo académico es requerido'
+                                    },
+                                })}
+                                defaultValue={row.idPeriodoAcademico}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                {utils && utils.isLoading ? (
+                                    <option value="">Cargando...</option>
+                                ) : (
+                                    <>
+                                        <option value="">Seleccionar</option>
+                                        {
+                                            utils?.data?.data?.periodosAcademicos.map((item, i) => (
+                                                <option key={i} value={item.id}> {item.descripcion}</option>
+                                            ))
+                                        }
+                                    </>
+                                )
+                                }
+                            </select>
+                            {
+                                errors.idPeriodoAcademico && (
+                                    <span className="text-red-500 text-xs">{errors.idPeriodoAcademico.message}</span>
                                 )
                             }
                         </div>
                         <div className='col-span-1'>
                             <label htmlFor="idCiclo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciclo</label>
                             <select id="idCiclo"
+                                {...register('idCiclo', {
+                                    required: {
+                                        value: true,
+                                        message: 'El campo ciclo es requerido'
+                                    },
+                                })}
                                 defaultValue={row.idCiclo}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">PRIMER CICLO</option>
-                                <option value="2">SEXTO CICLO</option>
-                                <option value="3">DÉCIMO CICLO</option>
+                                {utils && utils.isLoading ? (
+                                    <option value="">Cargando...</option>
+                                ) : (
+                                    <>
+                                        <option value="">Seleccionar</option>
+                                        {
+                                            utils?.data?.data?.ciclos.map((item, i) => (
+                                                <option key={i} value={item.id}> {item.descripcion}</option>
+                                            ))
+                                        }
+                                    </>
+                                )
+                                }
                             </select>
                             {
-                                errors.numeroDocumento && (
-                                    <span className="text-red-500 text-xs">{errors.numeroDocumento.message}</span>
+                                errors.idCiclo && (
+                                    <span className="text-red-500 text-xs">{errors.idCiclo.message}</span>
+                                )
+                            }
+                        </div>
+                        <div className='col-span-1'>
+                            <label htmlFor="sexo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sexo</label>
+                            <select id="sexo"
+                                {...register('sexo', {
+                                    required: {
+                                        value: true,
+                                        message: 'El campo sexo es requerido'
+                                    },
+                                })}
+                                defaultValue={row.sexo}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="">SELECCIONAR</option>
+                                <option value="1">MASCULINO</option>
+                                <option value="2">FEMENINO</option>
+                            </select>
+                            {
+                                errors.sexo && (
+                                    <span className="text-red-500 text-xs">{errors.sexo.message}</span>
                                 )
                             }
                         </div>

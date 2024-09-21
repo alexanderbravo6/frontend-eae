@@ -1,7 +1,7 @@
 import EliminarMatriculaButton from "../Components/Buttons/EliminarMatriculaButton";
 import ActualizarMatriculaModal from "../Components/Modals/ActualizarMatriculaModal";
 
-export const MatriculaConstants = [
+export const matriculaColumns = [
 
     {
         header: 'REGIÓN',
@@ -11,7 +11,12 @@ export const MatriculaConstants = [
     {
         header: 'INSTITUCIÓN',
         accessorKey: 'institucion',
-        size: 100
+        size: 200
+    },
+    {
+        header: 'N° DOCUMENTO',
+        accessorKey: 'numeroDocumento',
+        size: 20
     },
     {
         header: 'APELLIDO PATERNO',
@@ -36,7 +41,7 @@ export const MatriculaConstants = [
     {
         header: 'ESPECIALIDAD',
         accessorKey: 'especialidad',
-        size: 100
+        size: 300
     },
     {
         header: 'ACCIONES',

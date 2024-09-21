@@ -1,5 +1,6 @@
-
+'use client'
 import MatriculaIndex from '@/modules/Matriculas/Components/MatriculaIndex';
+import { useMatricula } from '@/modules/Matriculas/Providers/MatriculaProvider';
 import Breadcrumb from '@/shared/Components/Breadcrumb'
 import React from 'react'
 
@@ -9,12 +10,9 @@ const itemBreadcrumbs = [
         name: 'Gestión de Matriculas'
     }
 ]
-export const metadata = {
-    title: "Gestión de Matriculas",
-    description: "Gestión de matriculas de los estudiantes",
 
-};
-function GestionMatriculasPage() {
+function MatriculaPage() {
+
     return (
         <>
             <div className='mb-4 w-full px-6 h-10 flex justify-between items-center bg-[#338EF7] rounded-md '>
@@ -27,4 +25,4 @@ function GestionMatriculasPage() {
     )
 }
 
-export default GestionMatriculasPage
+export default MatriculaPage

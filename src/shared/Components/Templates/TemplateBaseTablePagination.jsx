@@ -159,4 +159,4 @@ function TemplateBaseTablePagination({ datos, columns, total, pagination, setPag
     )
 }
 
-export default BaseTablePagination
+export default TemplateBaseTablePagination

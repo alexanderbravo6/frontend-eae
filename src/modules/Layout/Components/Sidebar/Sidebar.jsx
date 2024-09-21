@@ -28,14 +28,14 @@ function Sidebar() {
                 <div className='p-4  flex justify-between flex-col flex-1' >
                     <ul>
                         <li>
-                            <Link shallow={true} className={` ${pathname === "/administracion" ? "active" : ""} flex gap-2 max-md:text-sm items-center p-2 my-2  text-white rounded-lg dark:text-white hover:bg-[#338EF7] dark:hover:bg-[#338EF7] group`} href="/administracion">
+                            <Link shallow={true} className={` ${pathname === "/gestion" ? "active" : ""} flex gap-2 max-md:text-sm items-center p-2 my-2  text-white rounded-lg dark:text-white hover:bg-[#338EF7] dark:hover:bg-[#338EF7] group`} href="/administracion">
                                 <IconsSidebar name="home" />
                                 <span >Inicio</span>
                             </Link>
                         </li>
-                        <LinkSimple key={1} icono={"person"} nombre={"Matriculas"} ruta={`/administracion/gestion-matriculas`} />
-                        <LinkSimple key={2} icono={"checklist"} nombre={"Pruebas"} ruta={`/administracion/gestion-pruebas`} />
-                        <LinkSimple key={3} icono={"directions"} nombre={"Enunciados"} ruta={`/administracion/gestion-enunciados`} />
+                        <LinkSimple key={1} icono={"person"} nombre={"Matriculas"} ruta={`/gestion/matricula`} />
+                        <LinkSimple key={2} icono={"checklist"} nombre={"Pruebas"} ruta={`/gestion/prueba`} />
+                        <LinkSimple key={3} icono={"directions"} nombre={"Enunciados"} ruta={`/gestion/enunciado`} />
 
                     </ul>
                     <button
