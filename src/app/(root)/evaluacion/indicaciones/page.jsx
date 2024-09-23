@@ -1,11 +1,17 @@
-
+'use client'
 import Image from 'next/image'
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'quill/dist/quill.snow.css';
 import InstruccionesCard from '@/modules/Evaluacion/Components/InstruccionesCard';
+import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
 
 
 function IntruccionesPage() {
+    const { setValidationLoading } = useEvaluacion();
+
+    useEffect(() => {
+        setValidationLoading(false)
+    }, [])
     return (
         <div className='lg:w-full w-[90%] flex items-center  h-full relative lg:my-0 lg:mx-0 mx-[5%] my-[5%] '>
             <div className='lg:w-[791px] min-h-[550px] m-auto  '>

@@ -7,9 +7,10 @@ import useSWR, { useSWRConfig } from 'swr';
 import { useEvaluacion } from '../../Context/useEvaluacion';
 import { useEvaluacionService } from '../../Hooks/useEvaluacionService';
 import { toast } from 'react-toastify';
+import TestLoading from '../Test/TestLoading';
 
 function PreguntaSeguridadForm() {
-    const { preguntasSeguridad, matriculaSelected, setInstrucciones, setEstudianteEncontrado, setErrorValidation, handleLimpiarValidacion, pruebaSelected } = useEvaluacion();
+    const { preguntasSeguridad, validationLoading, setValidationLoading, matriculaSelected, setInstrucciones, setEstudianteEncontrado, setErrorValidation, handleLimpiarValidacion, pruebaSelected } = useEvaluacion();
 
     const [primerPregunta, setPrimeraPregunta] = useState('');
     const [segundaPregunta, setSegundaPregunta] = useState('');
@@ -17,13 +18,13 @@ function PreguntaSeguridadForm() {
     const { validarPreguntasSeguridad } = useEvaluacionService();
     const { mutate } = useSWRConfig();
     const router = useRouter();
-    const [isLoading, setIsLoading] = useState(false);
+
 
 
     const validarRespuestas = async (event) => {
 
         event.preventDefault();
-        setIsLoading(true)
+        setValidationLoading(true)
         const request = {
             idMatricula: matriculaSelected,
             idPrueba: pruebaSelected,
@@ -37,9 +38,9 @@ function PreguntaSeguridadForm() {
             if (response.success === true) {
 
                 toast.success('Validación exitosa')
-                setIsLoading(false)
                 setInstrucciones(response.data)
-                router.push(`/evaluacion/instrucciones`)
+                handleLimpiarValidacion()
+                router.push(`/evaluacion/indicaciones`)
             } else {
                 if (response.errors) {
                     setEstudianteEncontrado(false)
@@ -51,11 +52,11 @@ function PreguntaSeguridadForm() {
                     const nuevosErrores = Object.values(response.validations).flat();
                     setErrorValidation(nuevosErrores)
                 }
-                setIsLoading(false)
+                setValidationLoading(false)
             }
         } catch (error) {
             setEstudianteEncontrado(false)
-            setIsLoading(false)
+            setValidationLoading(false)
             console.log(error)
         }
 
@@ -109,10 +110,10 @@ function PreguntaSeguridadForm() {
 
                     <button
 
-                        disabled={isLoading}
+                        disabled={validationLoading}
                         className='z-0 group relative h-[40px] inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 min-w-unit-20 h-unit-10 text-small gap-unit-2 rounded-medium [&>svg]:max-w-[theme(spacing.unit-8)] data-[pressed=true]:scale-[0.97] transition-transform-colors-opacity motion-reduce:transition-none text-primary-foreground data-[hover=true]:opacity-hover bg-[#04C8C8] disabled:opacity-75 px-8' color="primary">
                         {
-                            isLoading ?
+                            validationLoading ?
 
                                 (
                                     <>

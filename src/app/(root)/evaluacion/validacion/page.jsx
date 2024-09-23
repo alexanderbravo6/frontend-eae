@@ -1,5 +1,6 @@
 'use client'
 
+import TestLoading from '@/modules/Evaluacion/Components/Test/TestLoading';
 import PreguntaSeguridadForm from '@/modules/Evaluacion/Components/Validacion/PreguntasSeguridadForm';
 import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
 import { useEvaluacionService } from '@/modules/Evaluacion/Hooks/useEvaluacionService';
@@ -10,7 +11,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 function ValidacionPage() {
-  const { pruebaSelected, setMatriculaSelected, errorValidation, setErrorValidation, setPreguntasSeguridad, estudianteEncontrado, setEstudianteEncontrado } = useEvaluacion();
+  const { pruebaSelected, validationLoading, setMatriculaSelected, errorValidation, setErrorValidation, setPreguntasSeguridad, estudianteEncontrado, setEstudianteEncontrado } = useEvaluacion();
   const { validarMatricula } = useEvaluacionService();
   const { register, handleSubmit, setValue, reset, formState: { errors, isSubmitting } } = useForm();
   const router = useRouter();
@@ -45,6 +46,8 @@ function ValidacionPage() {
     }
 
   })
+
+  if (validationLoading) return <TestLoading message="Validación de Identidad" />
 
   if (!pruebaSelected || pruebaSelected == null) {
     redirect('/evaluacion')

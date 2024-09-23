@@ -2,14 +2,62 @@
 
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
-import { useState } from "react";
-import { Spinner } from "@nextui-org/react";
+import { useEffect, useRef, useState } from "react";
+import { Button, Spinner } from "@nextui-org/react";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "@/shared/Components/Icons";
 function LoginForm() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
     const [customError, setCustomError] = useState(null);
+    const [showPassword, setShowPassword] = useState(false)
+    const [captchaText, setCaptchaText] = useState('')
+    const [userCaptchaInput, setUserCaptchaInput] = useState('')
+    const [isCaptchaValid, setIsCaptchaValid] = useState(false)
+    const canvasRef = useRef(null)
+    useEffect(() => {
+        generateCaptcha()
+    }, [])
 
+    const generateCaptcha = () => {
+        const canvas = canvasRef.current
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.font = 'italic 24px Arial'
+            ctx.fillStyle = '#333'
+            ctx.textBaseline = 'middle'
+            ctx.textAlign = 'center'
+            const newCaptcha = Math.random().toString(36).substring(2, 8)
+            setCaptchaText(newCaptcha)
+
+            // Add some noise
+            for (let i = 0; i < 50; i++) {
+                ctx.fillStyle = `rgba(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255},0.5)`
+                ctx.fillRect(Math.random() * canvas.width, Math.random() * canvas.height, 2, 2)
+            }
+
+            // Draw the text with a slight rotation for each character
+            newCaptcha.split('').forEach((char, index) => {
+                ctx.save()
+                ctx.translate(20 + index * 20, canvas.height / 2)
+                ctx.rotate((Math.random() - 0.5) * 0.4)
+                ctx.fillStyle = `hsl(${Math.random() * 360}, 70%, 50%)`
+                ctx.fillText(char, 0, 0)
+                ctx.restore()
+            })
+        }
+    }
+
+    const validateCaptcha = () => {
+        if (userCaptchaInput.toLowerCase() === captchaText.toLowerCase()) {
+            setIsCaptchaValid(true)
+        } else {
+            setIsCaptchaValid(false)
+            generateCaptcha()
+            setUserCaptchaInput('')
+        }
+    }
     const ValidarUsuario = handleSubmit(async (data) => {
-  
+
         const res = await signIn('credentials', {
             redirect: false,
             usuario: data.usuario,
@@ -80,7 +128,7 @@ function LoginForm() {
 
                         </span>
                         <input
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             {...register('clave', {
                                 required: {
                                     value: true,
@@ -91,6 +139,18 @@ function LoginForm() {
                             className="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 "
                             placeholder="Contraseña"
                         />
+                        <Button
+                            type="button"
+                            isIconOnly
+                            variant="light"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? (
+                                <EyeSlashFilledIcon className="h-2 w-2 text-gray-200" />
+                            ) : (
+                                <EyeFilledIcon className="h-2 w-2 text-gray-200" />
+                            )}
+                        </Button>
 
                     </div>
                     {
@@ -99,19 +159,57 @@ function LoginForm() {
                         )
                     }
                 </div>
+                <div className="flex gap-4">
+                    <label htmlFor="captcha" className="sr-only">CAPTCHA</label>
+                    <div className="flex items-center space-x-2">
+                        <canvas ref={canvasRef} width={150} height={50} className="border border-gray-300 rounded-md" />
+                        <button type="button" onClick={generateCaptcha} variant="outline" size="icon" className="flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+                                <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+                            </svg>
+                            <span className="sr-only">Actualizar CAPTCHA</span>
+                        </button>
+                    </div>
+                    <div className="flex items-center justify-center">
+                        <input
+                            id="captcha"
+                            type="text"
+                            placeholder="Ingresa el CAPTCHA"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            value={userCaptchaInput}
+                            onChange={(e) => setUserCaptchaInput(e.target.value)}
+
+                        />
+                        <Button
+                            type="button"
+                            onClick={validateCaptcha}
+                            variant="secondary"
+                            size="sm"
+                          
+                        >
+                            Validar
+                        </Button>
+                    </div>
+                </div>
+
                 {
 
-                    isSubmitting ?
-                        <button
+                    isSubmitting || !isCaptchaValid ?
+                        <span
                             disabled={isSubmitting}
-                            className="w-full disabled:opacity-75  text-white border border-[#006FEE] bg-[#006FEE]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
+                            className="w-full disabled:bg-[#338EF7]  cursor-no-drop text-white border border-[#006FEE] bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
                         >
-                            <Spinner color="default" size="sm" />
-                        </button>
+                            {
+                                !isSubmitting ? 'Iniciando Sesión' : <Spinner color="default" size="sm" />
+                            }
+
+                        </span>
                         :
                         <button
                             disabled={isSubmitting}
-                            className="w-full   text-white hover:text-white border border-[#006FEE] bg-[#006FEE] hover:bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
+                            className="w-full disabled:bg-[#338EF7]  text-white hover:text-white border border-[#006FEE] bg-[#006FEE] hover:bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
                         >
                             Iniciar Sesión
                         </button>

@@ -11,8 +11,7 @@ import { useUtils } from '@/shared/Hooks/useUtils';
 function RegistrarMatriculaModal() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const { ValidarPermisos } = useUtils()
-
-    if (!ValidarPermisos('GESMAT','AGR')) return null
+    if (!ValidarPermisos('GESMAT', 'AGR')) return null
     return (
         <>
             <Button onPress={onOpen} className='mb-4' size='md' color="primary">
