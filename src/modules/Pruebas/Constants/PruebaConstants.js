@@ -8,8 +8,8 @@ import IntroduccionModal from "../Components/Modals/Introduccion/IntroduccionMod
 export const pruebaConstants = [
 
     {
-        header: 'Nombre de la Prueba',
-        accessorKey: 'nombrePrueba',
+        header: 'Nombre',
+        accessorKey: 'nombre',
         size: 300
     },
     {

@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { InstitucionesRegionSelect, InstitucionesSelect, PeriodoAcademicoSelect } from '@/shared/Components/Form/Selects';
+import { AnioSelect } from '@/shared/Components/Form/Selects';
 import { actionsLinks } from '@/shared/Constants/GlobalConstants';
 import Sidebar from '../Sidebar/Sidebar';
 
@@ -22,7 +22,7 @@ function MobileNavbar() {
         <section className='w-full  flex justify-between items-center ' >
             <div className='flex max-w-44 justify-between flex-wrap items-center gap-3'>
                 <div className='w-full '>
-                    <PeriodoAcademicoSelect />
+                    <AnioSelect />
                 </div>
             </div>
             <div className='flex items-center gap-4'>

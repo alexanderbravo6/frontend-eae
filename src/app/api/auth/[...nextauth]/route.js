@@ -36,7 +36,7 @@ export const authOptions = {
                             'idPersonaRol': response?.data?.defecto.idPersonRol,
                             'idRol': response?.data?.defecto.idRol,
                             'idSede': response?.data?.defecto.idSede,
-                            'idPeriodoAcademico': response?.data?.defecto.idPeriodoAcademico,
+                            'anio': response?.data?.defecto.anio,
                             'sede': response?.data?.defecto.sede,
                             'descripcionRol': response?.data?.defecto.descripcionRol,
                             'idInstitucionActiva': response?.data?.defecto.idRol == 2 ? response?.data?.defecto.idSede : 0,
@@ -81,7 +81,7 @@ export const authOptions = {
             // Verifica si la solicitud proviene de un trigger 'update'
             if (trigger === 'update') {
 
-                token.user.idPeriodoAcademico = session.user.idPeriodoAcademico;
+                token.user.anio = session.user.anio;
                 token.user.idInstitucionActiva = session.user.idInstitucionActiva;
                 token.user.idSede = session.user.idSede;
                 token.user.descripcionRol = session.user.descripcionRol;

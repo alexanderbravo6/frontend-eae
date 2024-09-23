@@ -8,7 +8,7 @@ import {
     DropdownSection,
 } from "@nextui-org/react";
 
-import { ChangeInstitucionesRegionSelect, ChangeInstitucionesSelect, PeriodoAcademicoSelect } from '@/shared/Components/Form/Selects';
+import { AnioSelect } from '@/shared/Components/Form/Selects';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import { actionsLinks } from '@/shared/Constants/GlobalConstants';
 
@@ -21,7 +21,7 @@ function DesktopNavbar() {
         <>
             <nav className='flex items-center gap-3'>
                 <div className='w-40 '>
-                    <PeriodoAcademicoSelect />
+                    <AnioSelect />
                 </div>
 
             </nav>

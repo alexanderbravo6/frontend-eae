@@ -2,7 +2,7 @@
 import { useSession } from 'next-auth/react';
 import React from 'react'
 
-export const PeriodoAcademicoSelect = () => {
+export const AnioSelect = () => {
     const { data: session, update } = useSession();
 
 
@@ -13,14 +13,14 @@ export const PeriodoAcademicoSelect = () => {
                 ...session,
                 user: {
                     ...session.user,
-                    idPeriodoAcademico: e.target.value,
+                    anio: e.target.value,
                 },
             });
-        }} defaultValue={session?.user.idPeriodoAcademico} id='periodo_select_global' className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 ">
+        }} defaultValue={session?.user.anio} id='periodo_select_global' className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 ">
             <option value="0">Periodo</option>
-            <option value="1">2021</option>
-            <option value="2">2023</option>
-            <option value="3">2024</option>
+            <option value="2021">2021</option>
+            <option value="2023">2023</option>
+            <option value="2024">2024</option>
         </select>
     )
 }
