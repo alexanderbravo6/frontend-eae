@@ -5,11 +5,16 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import LinkSimple from './LinkSimple';
 import IconsSidebar from './IconsSidebar';
+import { useGlobal } from '@/shared/Providers/GlobalProvider';
+import LinkAccordion from './LinkAccordion';
 
 
 function Sidebar() {
+    const { handleClickCerrarSesion, accesoActual } = useGlobal();
     const { data: session } = useSession();
     const pathname = usePathname()
+
+    const menusPadre = accesoActual[0]?.menus.filter((menu) => menu.idMenuPadre === 0)
 
 
     return (
@@ -18,8 +23,8 @@ function Sidebar() {
             <nav className='flex bg-[#111827] dark:bg-[#111827]   flex-col flex-1 ' >
                 <div className='  px-6 pt-10 pb-6 ' >
                     <div className="flex flex-col gap-1 items-start">
-                        <span className="text-xs text-white">Bryan Alexander Moscol</span>
-                        <span className="text-[10px] text-foreground-400 ">Especialista DIFOID</span>
+                        <span className="text-xs text-white">{session?.user.nombreCompleto}</span>
+                        <span className="text-[10px] text-foreground-400 ">{session?.user.descripcionRol}</span>
                     </div>
 
                     <Divider className=" text-white" />
@@ -28,17 +33,44 @@ function Sidebar() {
                 <div className='p-4  flex justify-between flex-col flex-1' >
                     <ul>
                         <li>
-                            <Link shallow={true} className={` ${pathname === "/gestion" ? "active" : ""} flex gap-2 max-md:text-sm items-center p-2 my-2  text-white rounded-lg dark:text-white hover:bg-[#338EF7] dark:hover:bg-[#338EF7] group`} href="/administracion">
+                            <Link shallow={true} className={` ${pathname === "/gestion" ? "active" : ""} flex gap-2 max-md:text-sm items-center p-2 my-2  text-white rounded-lg dark:text-white hover:bg-[#338EF7] dark:hover:bg-[#338EF7] group`} href="/gestion">
                                 <IconsSidebar name="home" />
                                 <span >Inicio</span>
                             </Link>
                         </li>
-                        <LinkSimple key={1} icono={"person"} nombre={"Matriculas"} ruta={`/gestion/matricula`} />
-                        <LinkSimple key={2} icono={"checklist"} nombre={"Pruebas"} ruta={`/gestion/prueba`} />
-                        <LinkSimple key={3} icono={"directions"} nombre={"Enunciados"} ruta={`/gestion/enunciado`} />
+                        {
+                            menusPadre?.map((menu, index) => {
+                                // Si el tipo de enlace es 'simple'
+                                if (menu.esPadre === false) {
+                                    return (
+                                        <LinkSimple
+                                            key={index}
+                                            icono={menu.icono}
+                                            nombre={menu.nombre}
+                                            ruta={`/${menu.ruta}`}
+                                        />
+                                    );
+                                } else {
+                                    // Si el tipo de enlace es 'accordion', filtrar submódulos
+                                    const subModulos = accesoActual[0]?.menus.filter(
+                                        (subMenu) => subMenu.idMenuPadre === menu.idMenu
+                                    );
 
+                                    return (
+                                        <LinkAccordion
+                                            key={index}
+                                            icono={menu.icono}
+                                            nombre={menu.nombre}
+                                            ruta={`/${menu.ruta}`}
+                                            subModulos={subModulos}
+                                        />
+                                    );
+                                }
+                            })
+                        }
                     </ul>
                     <button
+                        onClick={handleClickCerrarSesion}
                         className=" last:pt-2 flex items-center w-full p-2 text-white rounded-lg dark:text-white hover:bg-[#338EF7] dark:hover:bg-[#338EF7] group"
                     >
                         <svg

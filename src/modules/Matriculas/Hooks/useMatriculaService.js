@@ -32,6 +32,19 @@ export const useMatriculaService = () => {
             return error.response.data;
         }
     };
+    const cargaMasiva = async (data) => {
+
+        try {
+            const response = await axios.post('/v1/matriculas/carga-masiva', data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            return error.response.data;
+        }
+    };
     const FetchUtilsMatricula = () => {
 
         const fetcher = () => axios.get("/v1/matriculas/utils").then(response => response.data);
@@ -45,7 +58,7 @@ export const useMatriculaService = () => {
         return { data, error, isLoading, mutate }
     }
 
-    return { actualizarMatricula, FetchUtilsMatricula, eliminarMatricula, registrarMatricula, FecthMatriculas };
+    return { actualizarMatricula, cargaMasiva, FetchUtilsMatricula, eliminarMatricula, registrarMatricula, FecthMatriculas };
 
 
 }

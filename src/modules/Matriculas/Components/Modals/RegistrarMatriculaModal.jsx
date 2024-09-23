@@ -4,12 +4,15 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import RegistrarMatriculaForm from '../Forms/RegistrarMatriculaForm';
+import { useGlobal } from '@/shared/Providers/GlobalProvider';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 
 function RegistrarMatriculaModal() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { ValidarPermisos } = useUtils()
 
-
+    if (!ValidarPermisos('GESMAT','AGR')) return null
     return (
         <>
             <Button onPress={onOpen} className='mb-4' size='md' color="primary">

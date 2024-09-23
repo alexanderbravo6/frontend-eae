@@ -4,10 +4,10 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import { IconUpload } from '@/shared/Components/Icons';
-import MatriculaMasivaForm from '../Forms/MatriculaMasivaForm';
+import MatriculaMasivaForm from '../Forms/CargaMasivaMatriculaForm';
 
 
-function MatriculaMasivaModal() {
+function CargaMasivaMatriculaModal() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 
@@ -38,4 +38,4 @@ function MatriculaMasivaModal() {
     )
 }
 
-export default MatriculaMasivaModal
+export default CargaMasivaMatriculaModal

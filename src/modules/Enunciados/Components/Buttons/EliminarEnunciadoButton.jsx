@@ -5,11 +5,14 @@ import { useSWRConfig } from 'swr';
 import { Button } from '@nextui-org/react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function EliminarEnunciadoButton({ id }) {
     const { mutate } = useSWRConfig();
     const [isLoading, setIsLoading] = useState(false)
     const { eliminarEnunciado } = useEnunciadoService()
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESENU', 'ELI')) return null
 
 
     const handleEliminar = () => {

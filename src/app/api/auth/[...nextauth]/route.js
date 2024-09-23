@@ -26,20 +26,23 @@ export const authOptions = {
 
                     if (response?.success === true) {
 
-                        //guardar le menu en localstorage
+                        //guardar le accesos en localstorage
+
 
                         const user = {
+
+
                             // Datos de sesión configurables
-                            'idPersonaRol': response?.data?.acceso.idPersonRol,
-                            'idRol': response?.data?.acceso.idRol,
-                            'idSede': response?.data?.acceso.idSede,
-                            'idPeriodoAcademico': response?.data?.acceso.idPeriodoAcademico,
-                            'sede': response?.data?.acceso.sede,
-                            'descripcionRol': response?.data?.acceso.descripcionRol,
-                            'idInstitucionActiva': response?.data?.acceso.idRol == 2 ? response?.data?.acceso.idSede : 0,
+                            'idPersonaRol': response?.data?.defecto.idPersonRol,
+                            'idRol': response?.data?.defecto.idRol,
+                            'idSede': response?.data?.defecto.idSede,
+                            'idPeriodoAcademico': response?.data?.defecto.idPeriodoAcademico,
+                            'sede': response?.data?.defecto.sede,
+                            'descripcionRol': response?.data?.defecto.descripcionRol,
+                            'idInstitucionActiva': response?.data?.defecto.idRol == 2 ? response?.data?.defecto.idSede : 0,
                             // Datos no configurables
-                            'idPersona': response?.data?.acceso.idPersona,
-                            'idUsuario': response?.data?.acceso.idUsuario,
+                            'idPersona': response?.data?.usuario.idPersona,
+                            'idUsuario': response?.data?.usuario.id,
                             'nombreCompleto': response?.data?.usuario.nombres + " " + response?.data?.usuario.apellidoPaterno,
                             'token': response?.data?.usuario.token,
                             'tipoToken': response?.data?.usuario.tipoToken,

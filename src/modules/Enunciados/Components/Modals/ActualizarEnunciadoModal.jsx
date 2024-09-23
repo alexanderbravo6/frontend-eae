@@ -4,10 +4,12 @@ import { ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import { IconEdit } from '@/shared/Components/Icons';
 import ActualizarEnunciadoForm from '../Forms/ActualizarEnunciadoForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function ActualizarEnunciadoModal({ row }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESENU', 'MOD')) return null
 
     return (
         <>

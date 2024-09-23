@@ -1,10 +1,17 @@
 import useSWR from "swr";
 import useClienteAxios from "./useClienteAxios";
 import { configSWR } from "../Constants/GlobalConstants";
+import { useGlobal } from "../Providers/GlobalProvider";
 
 
 export const useUtils = () => {
     const axios = useClienteAxios();
+    const ValidarPermisos = (codigoMenu, codigoAccion) => {
+        const { accesoActual } = useGlobal();
+        const accesoPermitido = accesoActual[0]?.menus.filter(permiso => permiso?.codigo === codigoMenu);
+        const validarAcceso = accesoPermitido[0]?.acciones?.filter(accion => accion?.codigo === codigoAccion).length > 0;
+        return validarAcceso
+    }
     const FetchAllRoles = () => {
         const fetcher = () => axios.get("/v1/rol-funcional").then(data => data.data);
         const { data, error, isLoading, mutate } = useSWR("roles_funcionales", fetcher, configSWR);
@@ -62,5 +69,5 @@ export const useUtils = () => {
         const { data, error, isLoading, mutate } = useSWR("programa_institucion_" + id, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
-    return { FetchInstitucionesByRegion, FetchAllInstituciones, FetchProgramasByInstitucion, FetchAllEspecialidades, FetchCursosByPlanEstudio, FetchAllRegiones, FetchAllRoles, FetchAllSedes, FetchAllTipoSedes }
+    return { FetchInstitucionesByRegion, ValidarPermisos, FetchAllInstituciones, FetchProgramasByInstitucion, FetchAllEspecialidades, FetchCursosByPlanEstudio, FetchAllRegiones, FetchAllRoles, FetchAllSedes, FetchAllTipoSedes }
 }

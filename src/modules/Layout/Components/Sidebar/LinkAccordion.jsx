@@ -24,7 +24,7 @@ function LinkAccordion({
             </button>
             {isOpen && (
                 subModulos.map((subModulo, index) => (
-                    <LinkSubmenu key={index} nombre={subModulo.nombre} ruta={`/${subModulo.rutaRelativa}`} />
+                    <LinkSubmenu key={index} nombre={subModulo.nombre} ruta={`/${subModulo.ruta}`} />
                 ))
 
             )}

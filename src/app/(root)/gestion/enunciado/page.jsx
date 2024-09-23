@@ -1,11 +1,10 @@
+'use client'
 import EnunciadoIndex from '@/modules/Enunciados/Components/EnunciadoIndex'
 import Breadcrumb from '@/shared/Components/Breadcrumb'
+import PermissionDeniedScreeen from '@/shared/Components/PermissionDeniedScreeen';
+import { useUtils } from '@/shared/Hooks/useUtils';
 import React from 'react'
-export const metadata = {
-    title: "Gestión de Enunciados",
-    description: "Gestión de enunciados de la evaluación de aprendizaje de los estudiantes",
 
-};
 const itemBreadcrumbs = [
     {
         href: '/administracion/gestion-enunciados',
@@ -13,6 +12,9 @@ const itemBreadcrumbs = [
     }
 ]
 function GestionEnunciadosPage() {
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESENU', 'ACC')) { return <PermissionDeniedScreeen /> }
+
 
 
     return (

@@ -4,10 +4,12 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import RegistrarEnunciadoForm from '../Forms/RegistrarEnunciadoForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function RegistrarEnunciadoModal() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESENU', 'AGR')) return null
 
     return (
         <>

@@ -303,7 +303,7 @@ function RegistrarMatriculaForm({ onClose }) {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <ButtonSubmit label="Registrar" />
+                    <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
                     <Button color="danger" variant="flat" onPress={onClose}   >
                         Cerrar
                     </Button>
