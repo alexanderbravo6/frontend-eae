@@ -8,22 +8,62 @@ import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
+import { usePreguntaService } from '@/modules/Pruebas/Hooks/usePreguntaService';
+import { useSWRConfig } from 'swr';
+import { toast } from 'react-toastify';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 
-function RegistrarPreguntaForm({ onClose }) {
+function RegistrarPreguntaForm({ onClose, idPrueba }) {
 
     const [enunciado, setEnunciado] = useState('');
     const [pregunta, setPregunta] = useState('');
     const { register, handleSubmit, getValues, setValue, reset, formState: { errors, isSubmitting } } = useForm();
+    const { registrarPregunta } = usePreguntaService()
+    const [errorValidation, setErrorValidation] = useState('');
+    const { mutate } = useSWRConfig()
+    const form = handleSubmit(async (data) => {
+        const request = {
+            ...data,
+            idPrueba: idPrueba,
+            enunciado: enunciado,
+            pregunta: pregunta
+        }
 
-    const RegistrarDocente = handleSubmit(async (data) => {
-        console.log(enunciado, pregunta)
+        try {
+            const response = await registrarPregunta(request)
+
+            if (response.success === true) {
+                setErrorValidation([])
+                mutate(`pruebas_preguntas_${idPrueba}`,
+                    // Aquí se actualiza la data
+                    (res) => {
+
+                        return { ...res, data: [...res.data, response.data] }
+                    }
+                    , false
+                )
+                onClose()
+                toast.success(response.messages[0])
+            } else {
+
+                if (response.errors) {
+                    const nuevosErrores = Object.values(response.errors).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+                if (response.validations) {
+                    const nuevosErrores = Object.values(response.validations).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
     })
     return (
         <section>
-            <form onSubmit={RegistrarDocente}>
+            <form onSubmit={form}>
                 <ModalBody>
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
                         <div className='col-span-2'>
@@ -37,17 +77,29 @@ function RegistrarPreguntaForm({ onClose }) {
 
                         <div className='col-span-1'>
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
-                            <select id="estado" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <select id="estado"
+                                {...register('estado', {
+                                    required: {
+                                        value: true,
+                                        message: 'El campo estado es requerido'
+                                    },
+                                })}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="">SELECCIONAR</option>
                                 <option value="1">ACTIVO</option>
-                                <option value="2">INACTIVO</option>
+                                <option value="0">INACTIVO</option>
 
                             </select>
+                            {
+                                errors.estado && (
+                                    <span className="text-red-500 text-xs">{errors.estado.message}</span>
+                                )
+                            }
                         </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <ButtonSubmit label="Registrar" />
+                    <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
                     <Button color="danger" variant="flat" onPress={onClose}   >
                         Cerrar
                     </Button>

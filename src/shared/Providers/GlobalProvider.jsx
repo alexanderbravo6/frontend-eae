@@ -27,7 +27,7 @@ const GlobalProvider = ({ children }) => {
         }
     }
     const { data: accesos, error, isLoading } = useSWR("accesos_" + session?.user?.idPersona, fetchPermisos, configSWR);
-
+    
 
     const handleClickCerrarSesion = () => {
 

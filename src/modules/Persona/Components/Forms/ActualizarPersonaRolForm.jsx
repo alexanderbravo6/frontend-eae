@@ -56,21 +56,21 @@ function ActualizarPersonaRolForm({ onClose, data }) {
                         <label htmlFor="rolFuncional" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Rol Funcional
                         </label>
-                        <input type="text" disabled defaultValue={data.rol} id="rolFuncionalForm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <input type="text" disabled defaultValue={data.rol} id="rolFuncionalForm" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
                     </div>
                     <div className="col-span-3">
                         <label htmlFor="tipoSede" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Tipo de Sede
                         </label>
-                        <input type="text" disabled defaultValue={data.sede.descripcionTipoSede} id="rolFuncionalForm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <input type="text" disabled defaultValue={data.sede.descripcionTipoSede} id="rolFuncionalForm" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
                     </div>
                     <div className="col-span-3">
                         <label htmlFor="sede" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                             Sede
                         </label>
-                        <input type="text" disabled defaultValue={data.sede.descripcionSede} id="rolFuncionalForm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        <input type="text" disabled defaultValue={data.sede.descripcionSede} id="rolFuncionalForm" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     </div>
                     <div className="col-span-3">
                         <label htmlFor="porDefecto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

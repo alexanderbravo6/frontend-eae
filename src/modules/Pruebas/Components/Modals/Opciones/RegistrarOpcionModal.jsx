@@ -6,7 +6,10 @@ import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import RegistrarOpcionForm from '../../Forms/Opcion/RegistrarOpcionForm';
 
 
-function RegistrarOpcionModal() {
+function RegistrarOpcionModal({ 
+    
+    
+    idPregunta }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 
@@ -27,9 +30,9 @@ function RegistrarOpcionModal() {
                     {(onClose) => (
                         <>
                             <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVA PRUEBA</h1>
+                                <h1 className=" text-blue-400 ">NUEVA OPCIÓN</h1>
                             </ModalHeader>
-                            <RegistrarOpcionForm onClose={onClose} />
+                            <RegistrarOpcionForm idPregunta={idPregunta} onClose={onClose} />
                         </>
 
                     )}

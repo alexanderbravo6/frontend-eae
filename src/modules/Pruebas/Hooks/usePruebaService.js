@@ -7,32 +7,37 @@ import { configSWR } from "@/shared/Constants/GlobalConstants";
 export const usePruebaService = () => {
     const axios = useClienteAxios();
 
-    const eliminarMatricula = async (idMatricula) => {
+    const eliminarPrueba = async (id) => {
         try {
-            const response = await axios.delete("/v1/matriculas/" + idMatricula);
+            const response = await axios.delete("/v1/pruebas/" + id);
             return response.data;
         } catch (error) {
             return error.response.data;
         }
     };
 
-    const actualizarMatricula = async (idPersona, data) => {
+    const actualizarPrueba = async (id, data) => {
         try {
-            const response = await axios.put('/v1/matriculas/' + idPersona, data);
+            const response = await axios.put('/v1/pruebas/' + id, data);
             return response.data;
         } catch (error) {
             return error.response.data;
         }
     };
-    const registrarMatricula = async (data) => {
+    const registrarPrueba = async (data) => {
         try {
-            const response = await axios.post('/v1/matriculas', data);
+            const response = await axios.post('/v1/pruebas', data);
             return response.data;
         } catch (error) {
             return error.response.data;
         }
     };
+    const FetchUtilsPruebas = () => {
 
+        const fetcher = () => axios.get("/v1/pruebas/utils").then(response => response.data);
+        const { data, error, isLoading, mutate } = useSWR(`prueba_utils`, fetcher, configSWR);
+        return { data, error, isLoading, mutate }
+    }
 
     const FetchPruebas = (anio) => {
 
@@ -43,7 +48,7 @@ export const usePruebaService = () => {
         return { data, error, isLoading, mutate }
     }
 
-    return { actualizarMatricula, eliminarMatricula, registrarMatricula, FetchPruebas };
+    return { FetchUtilsPruebas, actualizarPrueba, eliminarPrueba, registrarPrueba, FetchPruebas };
 
 
 }

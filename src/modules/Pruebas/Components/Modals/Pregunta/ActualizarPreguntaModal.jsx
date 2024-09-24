@@ -15,9 +15,7 @@ function ActualizarPreguntaModal({ data }) {
     return (
         <>
             <Button onPress={onOpen} size='sm' color="primary">
-                <span className='w-5 h-5' >
-                    <IconEdit />
-                </span>
+                <IconEdit />
                 Actualizar
             </Button>
             <TemplateBaseModal
@@ -31,7 +29,7 @@ function ActualizarPreguntaModal({ data }) {
                             <ModalHeader className="flex flex-col  gap-1">
                                 <h1 className=" text-blue-400 ">ACTUALIZAR PREGUNTA </h1>
                             </ModalHeader>
-                            <ActualizarPreguntaForm onClose={onClose} data={data} />
+                            <ActualizarPreguntaForm onClose={onClose} row={data} />
                         </>
 
                     )}

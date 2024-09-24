@@ -4,10 +4,13 @@ import { ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import { IconEdit } from '@/shared/Components/Icons';
 import RegistrarPruebaForm from '../Forms/Prueba/RegistrarPruebaForm';
+import ActualizarPruebaForm from '../Forms/Prueba/ActualizarPruebaForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function ActualizarPruebaModal({ row }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPRU', 'MOD')) return null
 
     return (
         <>
@@ -25,7 +28,7 @@ function ActualizarPruebaModal({ row }) {
                             <ModalHeader className="flex flex-col  gap-1">
                                 <h1 className=" text-blue-400 ">ACTUALIZAR PRUEBA</h1>
                             </ModalHeader>
-                            <RegistrarPruebaForm onClose={onClose} row={row} />
+                            <ActualizarPruebaForm onClose={onClose} row={row} />
                         </>
 
                     )}

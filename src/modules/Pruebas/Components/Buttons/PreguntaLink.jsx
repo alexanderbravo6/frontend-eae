@@ -2,10 +2,10 @@ import { IconTest } from '@/shared/Components/Icons'
 import Link from 'next/link'
 import React from 'react'
 
-function PreguntaLink() {
+function PreguntaLink({ id }) {
     return (
         <>
-            <Link href={`/administracion/configurar-preguntas`} title='Configurar Preguntas' className='text-sky-800'>
+            <Link href={`/gestion/prueba/configurar-preguntas/${id}`} title='Configurar Preguntas' className='text-sky-800'>
                 <IconTest />
             </Link>
         </>

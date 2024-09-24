@@ -2,7 +2,6 @@
 import EliminarPruebaButton from "../Components/Buttons/EliminarPruebaButton";
 import PreguntaLink from "../Components/Buttons/PreguntaLink";
 import ActualizarPruebaModal from "../Components/Modals/ActualizarPruebaModal";
-import IntroduccionModal from "../Components/Modals/Introduccion/IntroduccionModal";
 
 
 export const pruebaConstants = [
@@ -19,7 +18,7 @@ export const pruebaConstants = [
     },
     {
         header: 'Fecha de Evaluación',
-        accessorKey: 'fecha',
+        accessorKey: 'fechaPrueba',
         size: 30
     },
     {
@@ -39,10 +38,9 @@ export const pruebaConstants = [
             <>
                 <div className='flex gap-2  items-center '>
 
-                    <IntroduccionModal row={row.original} />
-                    <PreguntaLink row={row.original} />
+                    <PreguntaLink id={row.original.id} />
                     <ActualizarPruebaModal row={row.original} />
-                    <EliminarPruebaButton row={row.original} />
+                    <EliminarPruebaButton id={row.original.id} />
                 </div>
             </>
         ),

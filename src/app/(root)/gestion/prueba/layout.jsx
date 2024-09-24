@@ -5,6 +5,7 @@ export const metadata = {
 
 };
 
+import { PruebaProvider } from '@/modules/Pruebas/Providers/PruebaProvider';
 import React from 'react'
 
 
@@ -13,7 +14,10 @@ function PruebaLayout({ children }) {
 
     return (
         <>
-            {children}
+            <PruebaProvider >
+                {children}
+            </PruebaProvider>
+
         </>
     )
 }

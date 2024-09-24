@@ -9,6 +9,7 @@ import ActualizarPreguntaModal from "./Modals/Pregunta/ActualizarPreguntaModal";
 import EliminarPreguntaButton from "./Buttons/EliminarPreguntaButton";
 import OpcionesItem from "./OpcionesItem";
 import OpcionesList from "./OpcionesList";
+import { usePreguntaService } from "../Hooks/usePreguntaService";
 
 const preguntas = {
 
@@ -41,8 +42,10 @@ const itemClasses = {
     subtitle: "text-xs text-gray-500",
 };
 
-export default function PreguntasAccordion() {
+export default function PreguntasAccordion({ idPrueba }) {
 
+    const { FetchPreguntasPorPrueba } = usePreguntaService();
+    const preguntas = FetchPreguntasPorPrueba(idPrueba);
     if (preguntas.error) return <LoadingErrorCard />
     if (preguntas.isLoading) return <Progress />
 
@@ -50,9 +53,9 @@ export default function PreguntasAccordion() {
         <Accordion itemClasses={itemClasses} variant="splitted" isCompact>
 
             {
-                preguntas && preguntas?.data.map((pregunta, index) => (
+                preguntas && preguntas?.data?.data.map((pregunta, index) => (
 
-                    <AccordionItem key={index} aria-label={index} indicator={<IconEyes />} subtitle={pregunta.grupo} title={pregunta.numeroPregunta}>
+                    <AccordionItem key={index} aria-label={index} indicator={<IconEyes />} subtitle={`${pregunta.grupo} -  ${pregunta.descripcionEstado}`} title={pregunta.numeroPregunta}>
                         <section className="p-5" >
                             <section className=" mb-5 gap-4 flex items-center justify-end ">
                                 <ActualizarPreguntaModal data={pregunta} />
@@ -63,8 +66,8 @@ export default function PreguntasAccordion() {
                                 <div dangerouslySetInnerHTML={{ __html: pregunta.pregunta }} />
                             </div>
                         </section>
-                        <div className="mt-5" >
-                            <OpcionesList id={pregunta.id} />
+                        <div className="p-5" >
+                            <OpcionesList idPregunta={pregunta.id} />
                         </div>
                     </AccordionItem>
 

@@ -14,7 +14,8 @@ export const metadata = {
     description: "Gestión de pruebas de la evaluación de aprendizaje de los estudiantes",
 
 };
-function ConfiguraPreguntasPage() {
+function ConfiguraPreguntasPage({ params }) {
+
     return (
         <>
             <div className='mb-4 w-full px-6 h-10 flex justify-between items-center bg-[#338EF7] rounded-md '>
@@ -22,7 +23,7 @@ function ConfiguraPreguntasPage() {
                 <h2 className='text-white font-thin md:block hidden text-[1.1rem] '><Breadcrumb items={itemBreadcrumbs} /> </h2>
 
             </div>
-            <PreguntaIndex />
+            <PreguntaIndex idPrueba={params.id} />
         </>
     )
 }

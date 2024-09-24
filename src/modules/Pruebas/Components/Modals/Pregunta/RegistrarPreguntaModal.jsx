@@ -7,7 +7,7 @@ import RegistrarEnunciadoForm from '@/modules/Enunciados/Components/Forms/Regist
 import RegistrarPreguntaForm from '../../Forms/Pregunta/RegistrarPreguntaForm';
 
 
-function RegistrarPreguntaModal() {
+function RegistrarPreguntaModal({ idPrueba }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 
@@ -30,7 +30,7 @@ function RegistrarPreguntaModal() {
                             <ModalHeader className="flex flex-col  gap-1">
                                 <h1 className=" text-blue-400 ">NUEVA PREGUNTA</h1>
                             </ModalHeader>
-                            <RegistrarPreguntaForm onClose={onClose} />
+                            <RegistrarPreguntaForm idPrueba={idPrueba} onClose={onClose} />
                         </>
 
                     )}
