@@ -1,4 +1,4 @@
-'use client'
+
 import { useSession } from 'next-auth/react';
 import {
     Dropdown,
@@ -11,6 +11,7 @@ import {
 import { AnioSelect } from '@/shared/Components/Form/Selects';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import { actionsLinks } from '@/shared/Constants/GlobalConstants';
+import Link from 'next/link';
 
 
 
@@ -30,12 +31,13 @@ function DesktopNavbar() {
                     <div className="flex items-center">
                         <div className="relative inline-block shrink-0">
                             <div className="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-100 rounded-full ">
-                                <span className="font-medium text-gray-600 ">AM</span>
+                            <span className="font-medium text-gray-600 ">{session?.user.iniciales}</span>
                             </div>
                         </div>
                         <div className="ms-3 text-sm font-normal mr-2 gap-3 flex items-center">
 
-                            <Dropdown>
+                 
+                        <Dropdown>
                                 <DropdownTrigger>
                                     <div
 
@@ -79,6 +81,7 @@ function DesktopNavbar() {
                                         </DropdownItem>
                                     </DropdownSection>
                                     <DropdownSection title="Acciones">
+                               
                                         {
                                             actionsLinks &&
                                             actionsLinks.map((action) => (
@@ -100,6 +103,7 @@ function DesktopNavbar() {
                                     </DropdownItem>
                                 </DropdownMenu>
                             </Dropdown>
+
 
                         </div>
 

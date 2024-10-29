@@ -12,7 +12,7 @@ function Breadcrumb({ items }) {
         }}
         underline="hover"
       >
-        <BreadcrumbItem key={1} href={`/administracion`} >Inicio</BreadcrumbItem>
+        <BreadcrumbItem key={1} href={`/gestion`} >Inicio</BreadcrumbItem>
         {
           items.map((item, index) => (
             <BreadcrumbItem key={index} href={item.href} >{item.name} </BreadcrumbItem>

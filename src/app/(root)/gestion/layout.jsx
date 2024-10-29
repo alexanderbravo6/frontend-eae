@@ -3,13 +3,14 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { NextUIProvider } from "@nextui-org/react";
 import { useSession } from "next-auth/react";
-import { redirect, useRouter } from "next/navigation";
+
 
 import { GlobalProvider } from "@/shared/Providers/GlobalProvider";
 import Sidebar from "@/modules/Layout/Components/Sidebar/Sidebar";
 import Footer from "@/modules/Layout/Components/Footer/Footer";
 import LoadingScreenMinedu from "@/shared/Components/LoadingScreenMinedu";
 import Navbar from "@/modules/Layout/Components/Navbar/Navbar";
+import { useRouter } from "next/navigation";
 
 
 function PrincipalLayout({ children }) {

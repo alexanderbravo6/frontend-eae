@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-import { nextui } from "@nextui-org/react";
-const colors = require('tailwindcss/colors')
+const { nextui } = require("@nextui-org/react");
+
 module.exports = {
 
   content: [
@@ -19,13 +19,7 @@ module.exports = {
     nextui()
   ],
   theme: {
-    colors: {
-      ...colors,
-      main: "#3b72e3",
-      secundary: "#3b72e3",
-      title: "#338ef7",
-      success: "#DCF3F3",
-    },
+    extend: {},
   },
 
 };

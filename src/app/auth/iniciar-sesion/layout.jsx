@@ -3,7 +3,7 @@ import LoadingScreenMinedu from "@/shared/Components/LoadingScreenMinedu";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-function LoginLayout({ children }) {
+function IniciarSesionLayout({ children }) {
 
     const { data: session, status } = useSession();
     if (status === "loading") return <LoadingScreenMinedu />
@@ -15,4 +15,4 @@ function LoginLayout({ children }) {
         </>
     )
 }
-export default LoginLayout
+export default IniciarSesionLayout

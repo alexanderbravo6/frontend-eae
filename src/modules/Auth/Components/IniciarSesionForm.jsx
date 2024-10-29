@@ -5,7 +5,8 @@ import { signIn } from "next-auth/react";
 import { useEffect, useRef, useState } from "react";
 import { Button, Spinner } from "@nextui-org/react";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "@/shared/Components/Icons";
-function LoginForm() {
+import Link from "next/link";
+function IniciarSesionForm() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
     const [customError, setCustomError] = useState(null);
     const [showPassword, setShowPassword] = useState(false)
@@ -58,28 +59,71 @@ function LoginForm() {
     }
     const ValidarUsuario = handleSubmit(async (data) => {
 
-        const res = await signIn('credentials', {
-            redirect: false,
-            usuario: data.usuario,
-            clave: data.clave,
-        });
-        if (res.error) {
-            setCustomError(res.error)
+        try {
+
+            const request = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/v1/auth/iniciar-sesion', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    "X-Requested-With": "XMLHttpRequest",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    usuario: data?.usuario,
+                    clave: data?.clave
+                })
+            });
+            const response = await request.json();
+
+            if (response?.success === true) {
+
+
+                const res = await signIn('credentials', {
+                    redirect: false,
+                    idPersonaRol: response?.data?.defecto.idPersonRol,
+                    idRol: response?.data?.defecto.idRol,
+                    idSede: response?.data?.defecto.idSede,
+                    anio: response?.data?.defecto.anio,
+                    sede: response?.data?.defecto.sede,
+                    descripcionRol: response?.data?.defecto.descripcionRol,
+                    idInstitucionActiva: response?.data?.defecto.idRol == 2 ? response?.data?.defecto.idSede : 0,
+                    // Datos no configurables
+                    iniciales: response?.data?.usuario.iniciales,
+                    idPersona: response?.data?.usuario.idPersona,
+                    idUsuario: response?.data?.usuario.id,
+                    nombreCompleto: response?.data?.usuario.nombres + " " + response?.data?.usuario.apellidoPaterno,
+                    token: response?.data?.usuario.token,
+                    tipoToken: response?.data?.usuario.tipoToken,
+                    estadoProceso: response?.data?.usuario.estadoProceso,
+                });
+
+                if (res?.error) {
+                    setCustomError(res?.error)
+                }
+
+            } else {
+
+                setCustomError(response?.messages)
+            }
+        } catch (e) {
+            console.log(e.message || 'Error al iniciar sesión')
         }
+
     })
 
     return (
         <>
-            <form onSubmit={ValidarUsuario} className="max-w-lg mb-[6%]  gap-5 flex flex-col md:mx-auto mx-[10%] h-[80%] md:w-full w-[80%] items-center justify-center">
+            <form onSubmit={ValidarUsuario} className="max-w-lg mb-[6%]  gap-5 flex flex-col md:mx-auto mx-[10%] h-[80%] md:w-full w-[50%] items-center justify-center">
 
                 <div className="mb-6 text-left w-full">
-                    <h1 className=" font-extralight mb-3 text-3xl text-black"><strong className="font-bold">
-                        Sistema de evaluación de los aprendizajes de los estudiantes</strong> de IESP-EESP Públicas
+                    <h1 className=" font-extralight mb-3 text-xl md:text-3xl text-black">
+                        <strong className="font-bold">
+                            Sistema de evaluación de los aprendizajes de los estudiantes
+                        </strong> de IESP-EESP Públicas
                     </h1>
                     <p className="font-extralight text-[#454545] ">
                         Módulo administrativo
                     </p>
-
                 </div>
                 <p className="text-gray-400 text-left w-full">Inicio de sesión</p>
                 {
@@ -193,7 +237,11 @@ function LoginForm() {
                         </Button>
                     </div>
                 </div>
-
+                <section className="w-full">
+                    <Link className="text-[#338ef7] text-sm " href="/auth/registro-estudiante" >
+                        Registrarme como estudiante
+                    </Link>
+                </section>
                 {
 
                     isSubmitting || !isCaptchaValid ?
@@ -235,4 +283,4 @@ function LoginForm() {
     );
 
 }
-export default LoginForm
+export default IniciarSesionForm

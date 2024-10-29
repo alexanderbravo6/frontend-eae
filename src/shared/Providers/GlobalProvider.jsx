@@ -38,6 +38,7 @@ const GlobalProvider = ({ children }) => {
         return <LoadingScreenMinedu />;
     }
     const accesoActual = accesos?.filter((acceso) => acceso.idPersonaRol === session?.user.idPersonaRol)
+
     return (
         <GlobalContext.Provider value={{
             handleClickCerrarSesion,

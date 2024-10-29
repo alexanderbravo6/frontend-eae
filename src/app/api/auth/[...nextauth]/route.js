@@ -9,50 +9,29 @@ export const authOptions = {
             name: "Credentials",
             async authorize(credentials) {
                 try {
-                    // Aquí se debe realizar la petición a la API para validar las credenciales
-                    const request = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/v1/auth/iniciar-sesion', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            "X-Requested-With": "XMLHttpRequest",
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            usuario: credentials?.usuario,
-                            clave: credentials?.clave
-                        })
-                    });
-                    const response = await request.json();
 
-                    if (response?.success === true) {
+                    const user = {
 
-                        //guardar le accesos en localstorage
-
-
-                        const user = {
-
-
-                            // Datos de sesión configurables
-                            'idPersonaRol': response?.data?.defecto.idPersonRol,
-                            'idRol': response?.data?.defecto.idRol,
-                            'idSede': response?.data?.defecto.idSede,
-                            'anio': response?.data?.defecto.anio,
-                            'sede': response?.data?.defecto.sede,
-                            'descripcionRol': response?.data?.defecto.descripcionRol,
-                            'idInstitucionActiva': response?.data?.defecto.idRol == 2 ? response?.data?.defecto.idSede : 0,
-                            // Datos no configurables
-                            'idPersona': response?.data?.usuario.idPersona,
-                            'idUsuario': response?.data?.usuario.id,
-                            'nombreCompleto': response?.data?.usuario.nombres + " " + response?.data?.usuario.apellidoPaterno,
-                            'token': response?.data?.usuario.token,
-                            'tipoToken': response?.data?.usuario.tipoToken,
-                            'estadoProceso': response?.data?.usuario.estadoProceso,
-                        }
-
-                        return user;
-                    } else {
-                        throw new Error(response?.messages || 'Error al iniciar sesión');
+                        idPersonaRol: Number(credentials?.idPersonaRol),
+                        idRol: Number(credentials?.idRol),
+                        idSede: Number(credentials?.idSede),
+                        anio: Number(credentials?.anio),
+                        sede: credentials?.sede,
+                        descripcionRol: credentials?.descripcionRol,
+                        idInstitucionActiva: Number(credentials?.idInstitucionActiva),
+                        // Datos no configurables
+                        idPersona: Number(credentials?.idPersona),
+                        idUsuario: Number(credentials?.idUsuario),
+                        iniciales: credentials?.iniciales,
+                        nombreCompleto: credentials?.nombreCompleto,
+                        token: credentials?.token,
+                        tipoToken: credentials?.tipoToken,
+                        estadoProceso: credentials?.estadoProceso,
                     }
+
+
+                    return user;
+
                 } catch (e) {
                     throw new Error(e.message || 'Error al iniciar sesión');
                 }

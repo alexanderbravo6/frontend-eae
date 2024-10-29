@@ -7,11 +7,18 @@ export const configSWR = {
 };
 
 export const actionsLinks = [
+
     {
         name: 'Mi Perfil',
-        url: '/administracion',
+        url: '/gestion/mi-perfil',
         showDivider: false
+    },
+    {
+        name: 'Cambiar Rol',
+        url: '/gestion/seguridad/cambiar-rol',
+        showDivider: true
     }
+
 ]
 
 export const toolbarSetting = {

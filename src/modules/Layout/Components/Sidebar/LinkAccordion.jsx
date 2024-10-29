@@ -19,7 +19,7 @@ function LinkAccordion({
                 className={`${pathname === ruta || pathname.startsWith(ruta) ? "active" : ""
                     } flex gap-2 items-center w-full p-2 my-2 transition duration-300 max-md:text-sm text-white rounded-lg dark:text-white hover:bg-[#338EF7] dark:hover:bg-[#338EF7] `}
             >
-                <IconsSidebar name={"config"} />
+                <IconsSidebar name={icono} />
                 <span>{nombre}</span>
             </button>
             {isOpen && (
