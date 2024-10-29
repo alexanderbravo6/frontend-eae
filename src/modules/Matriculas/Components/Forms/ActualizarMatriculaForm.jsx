@@ -267,7 +267,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <ButtonSubmit label="Registrar" />
+                    <ButtonSubmit label="Actualizar" isSubmitting={isSubmitting} />
                     <Button color="danger" variant="flat" onPress={onClose}   >
                         Cerrar
                     </Button>

@@ -1,4 +1,6 @@
 
+import { useUtils } from '@/shared/Hooks/useUtils';
+import { Skeleton } from '@nextui-org/react';
 import { useSession } from 'next-auth/react';
 import React from 'react'
 
@@ -26,3 +28,45 @@ export const AnioSelect = () => {
 }
 
 
+export const InstitucionesSelect = ({ ...props }) => {
+    const { FetchAllInstituciones } = useUtils();
+    const instituciones = FetchAllInstituciones();
+    if (instituciones.error) return <Skeleton className="h-10 w-52 rounded-lg" />
+    if (instituciones.isLoading) return <Skeleton className="h-10 w-52 rounded-lg" />
+    return (
+
+        <select
+            {...props}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg block w-full p-2.5  ">
+            <option value="">Seleccionar</option>
+            {
+                instituciones?.data.data.map(institucion => (
+                    <option key={institucion.id} value={institucion.id}>[{institucion.region}] - {institucion.nombre} </option>
+                ))
+            }
+
+        </select>
+
+    )
+}
+export const RegionesSelect = ({ ...props }) => {
+    const { FetchAllRegiones } = useUtils();
+    const regiones = FetchAllRegiones();
+    if (regiones.error) return <Skeleton className="h-10 w-52 rounded-lg" />
+    if (regiones.isLoading) return <Skeleton className="h-10 w-52 rounded-lg" />
+    return (
+
+        <select
+            {...props}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-xs rounded-lg block w-full p-2.5  ">
+            <option value="">Seleccionar</option>
+            {
+                regiones?.data.data.map(institucion => (
+                    <option key={institucion.id} value={institucion.id}>{institucion.nombre} </option>
+                ))
+            }
+
+        </select>
+
+    )
+}

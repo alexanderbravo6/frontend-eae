@@ -61,13 +61,18 @@ export const useUtils = () => {
         const { data, error, isLoading, mutate } = useSWR("especialidades", fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
+    const FetchInstitucionesResultados = (page, query) => {
 
-    const FetchProgramasByInstitucion = (id) => {
-
-        //consulta SWR
-        const fetcher = () => axios.get(`/v1/institucion/${id}/programas`).then(data => data.data);
-        const { data, error, isLoading, mutate } = useSWR("programa_institucion_" + id, fetcher, configSWR);
+        const fetcher = () => axios.get("/v1/institucion/resultados", { params: { page, ...query } }).then(response => response.data);
+        const { data, error, isLoading, mutate } = useSWR(`institucion_${page}_${JSON.stringify(query)}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
-    return { FetchInstitucionesByRegion, ValidarPermisos, FetchAllInstituciones, FetchProgramasByInstitucion, FetchAllEspecialidades, FetchCursosByPlanEstudio, FetchAllRegiones, FetchAllRoles, FetchAllSedes, FetchAllTipoSedes }
+    const FetchRegionesResultados = (page, query) => {
+
+        const fetcher = () => axios.get("/v1/region/resultados", { params: { page, ...query } }).then(response => response.data);
+        const { data, error, isLoading, mutate } = useSWR(`region_${page}_${JSON.stringify(query)}`, fetcher, configSWR);
+        return { data, error, isLoading, mutate }
+    }
+
+    return { FetchInstitucionesByRegion, FetchRegionesResultados, FetchInstitucionesResultados, ValidarPermisos, FetchAllInstituciones, FetchAllEspecialidades, FetchCursosByPlanEstudio, FetchAllRegiones, FetchAllRoles, FetchAllSedes, FetchAllTipoSedes }
 }
