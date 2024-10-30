@@ -15,7 +15,7 @@ const itemBreadcrumbs = [
 
 function ResultadoInstitucionalPage() {
     const { accesoActual } = useGlobal();
-    const accesoPermitido = accesoActual[0]?.menus.filter(permiso => permiso?.codigo === "RESNAC").length > 0;
+    const accesoPermitido = accesoActual[0]?.menus.filter(permiso => permiso?.codigo === "RESINS").length > 0;
     if (!accesoPermitido) { return <PermissionDeniedScreeen /> }
 
     return (

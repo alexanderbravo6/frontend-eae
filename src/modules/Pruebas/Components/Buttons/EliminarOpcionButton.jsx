@@ -73,15 +73,14 @@ function EliminarOpcionButton({ row }) {
                 isLoading ? (
                     <>
 
-                        <Button isLoading size='sm' color="danger">
+                        <Button isLoading size='sm' variant="solid" color="danger">
 
-                     
-
+                 
                         </Button>
                     </>
                 ) : (
                     <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger" onPress={handleEliminar}>
+                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
                             <IconDelete />
                         </Button>
 

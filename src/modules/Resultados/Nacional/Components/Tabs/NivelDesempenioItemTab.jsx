@@ -1,3 +1,5 @@
+import NivelDesempenioCard from '@/modules/Resultados/Shared/Cards/NivelDesempenioCard'
+import { Tab } from '@nextui-org/react'
 import React from 'react'
 
 function NivelDesempenioItemTab() {

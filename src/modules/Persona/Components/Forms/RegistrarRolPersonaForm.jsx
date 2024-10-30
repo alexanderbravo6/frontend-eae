@@ -124,7 +124,7 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                             </option>
                             {
                                 tipoSede?.data?.data
-                                    .filter((item) => selectRolFuncional == 1 || selectRolFuncional == 4 ? item.id == 1 : selectRolFuncional == 2 ? item.id == 2 : selectRolFuncional == 3 ? item.id == 3 : null
+                                    .filter((item) => selectRolFuncional == 1 || selectRolFuncional == 4 ? item.id == 1 : selectRolFuncional == 2 ? item.id == 2 : selectRolFuncional == 3 ? item.id == 2 : selectRolFuncional == 5 ? item.id == 3 : item.id == 3   
                                     )
                                     .map((item) => (
                                         <option key={item.id} value={item.id}>{item.nombre}</option>

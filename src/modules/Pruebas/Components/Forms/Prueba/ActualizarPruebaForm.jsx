@@ -14,26 +14,28 @@ import { useUtils } from '@/shared/Hooks/useUtils';
 function ActualizarPruebaForm({ onClose, row }) {
     const { utils } = usePrueba()
     const { data: session } = useSession()
-    const [showSelects, setShowSelects] = useState("0")
-    const { registrarPrueba } = usePruebaService()
+    const { actualizarPrueba } = usePruebaService()
     const { mutate } = useSWRConfig()
     const [errorValidation, setErrorValidation] = useState('');
-    const [periodoReplica, setPeriodoReplica] = useState('')
+
     const { register, handleSubmit, getValues, setValue, reset, formState: { errors, isSubmitting } } = useForm();
     const form = handleSubmit(async (data) => {
 
 
         try {
-            const response = await registrarPrueba(data)
+            const response = await actualizarPrueba(row.id,data)
 
             if (response.success === true) {
                 setErrorValidation([])
                 mutate(`pruebas_${session?.user.anio}`,
                     // Aquí se actualiza la data
-                    (res) => {
-
-                        return { ...res, data: [...res.data, response.data] }
-                    }
+                    (res) => res
+                        ? {
+                            ...res,
+                            data: res.data.map(item => item.id === row.id ? response.data : item)
+                        }
+                        : res,
+                    false
                     , false
                 )
                 onClose()
@@ -336,7 +338,7 @@ function ActualizarPruebaForm({ onClose, row }) {
 
                 </ModalBody>
                 <ModalFooter>
-                    <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
+                    <ButtonSubmit label="Actualizar" isSubmitting={isSubmitting} />
                     <Button color="danger" variant="flat" onPress={onClose}   >
                         Cerrar
                     </Button>

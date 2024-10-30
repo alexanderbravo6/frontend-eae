@@ -12,7 +12,7 @@ function ActualizarOpcionModal({ row }) {
     return (
         <>
 
-            <Button isIconOnly className='border-none' variant="ghost" size='sm' color="success">
+            <Button isIconOnly className='border-none'  onPress={onOpen} variant="ghost" size='sm' color="success">
 
                 <IconEdit />
 
@@ -26,7 +26,7 @@ function ActualizarOpcionModal({ row }) {
                     {(onClose) => (
                         <>
                             <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">ACTUALIZAR PRUEBA</h1>
+                                <h1 className=" text-blue-400 ">ACTUALIZAR OPCIÓN</h1>
                             </ModalHeader>
                             <ActualizarOpcionForm row={row} onClose={onClose} />
                         </>

@@ -14,13 +14,13 @@ import { useRouter } from "next/navigation";
 
 
 function PrincipalLayout({ children }) {
-    const router = useRouter();
+
     const { status } = useSession({ required: true });
     if (status === "loading") return <LoadingScreenMinedu />
 
     return (
         <>
-            <NextUIProvider navigate={router.push}>
+
                 <GlobalProvider>
                     <div id="app" >
                         <aside id="logo-sidebar" className={` [grid-area:aside]   md:flex hidden   flex-col lg:w-[211px]  overflow-y-auto `}>
@@ -36,7 +36,7 @@ function PrincipalLayout({ children }) {
                         <Footer />
                     </div>
                 </GlobalProvider>
-            </NextUIProvider>
+       
 
         </>
     )

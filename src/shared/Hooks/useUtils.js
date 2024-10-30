@@ -2,6 +2,7 @@ import useSWR from "swr";
 import useClienteAxios from "./useClienteAxios";
 import { configSWR } from "../Constants/GlobalConstants";
 import { useGlobal } from "../Providers/GlobalProvider";
+import { useSession } from "next-auth/react";
 
 
 export const useUtils = () => {
@@ -61,16 +62,42 @@ export const useUtils = () => {
         const { data, error, isLoading, mutate } = useSWR("especialidades", fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
-    const FetchInstitucionesResultados = (page, query) => {
+    const FetchInstitucionesResultados = (page, query = {}) => {
+        const { data: session } = useSession();
+        const idRol = session?.user?.idRol;
 
-        const fetcher = () => axios.get("/v1/institucion/resultados", { params: { page, ...query } }).then(response => response.data);
-        const { data, error, isLoading, mutate } = useSWR(`institucion_${page}_${JSON.stringify(query)}`, fetcher, configSWR);
-        return { data, error, isLoading, mutate }
-    }
+        // Evita mutaciones directas al objeto query
+        const queryParams = { ...query };
+        if (idRol === 3) {
+            queryParams.idInstitucion = session?.user?.idSede;
+        }
+
+        const fetcher = () =>
+            axios
+                .get("/v1/institucion/resultados", { params: { page, ...queryParams } })
+                .then(response => response.data);
+
+        const { data, error, isLoading, mutate } = useSWR(
+            `institucion_${page}_${JSON.stringify(queryParams)}`,
+            fetcher,
+            configSWR
+        );
+
+        return { data, error, isLoading, mutate };
+    };
+
     const FetchRegionesResultados = (page, query) => {
+        const { data: session } = useSession();
+        const idRol = session?.user?.idRol;
 
-        const fetcher = () => axios.get("/v1/region/resultados", { params: { page, ...query } }).then(response => response.data);
-        const { data, error, isLoading, mutate } = useSWR(`region_${page}_${JSON.stringify(query)}`, fetcher, configSWR);
+        // Evita mutaciones directas al objeto query
+        const queryParams = { ...query };
+        if (idRol === 5) {
+            queryParams.idRegion = session?.user?.idSede;
+        }
+
+        const fetcher = () => axios.get("/v1/region/resultados", { params: { page, ...queryParams } }).then(response => response.data);
+        const { data, error, isLoading, mutate } = useSWR(`region_${page}_${JSON.stringify(queryParams)}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
 

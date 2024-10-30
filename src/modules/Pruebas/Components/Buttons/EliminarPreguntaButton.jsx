@@ -74,8 +74,7 @@ function EliminarPreguntaButton({ data }) {
                     <>
 
                         <Button isLoading size='sm' color="danger">
-
-
+                       
                         </Button>
                     </>
                 ) : (

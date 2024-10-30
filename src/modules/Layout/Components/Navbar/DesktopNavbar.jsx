@@ -11,13 +11,18 @@ import {
 import { AnioSelect } from '@/shared/Components/Form/Selects';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import { actionsLinks } from '@/shared/Constants/GlobalConstants';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+
 
 
 
 function DesktopNavbar() {
     const { data: session } = useSession();
+    const router = useRouter();
     const { handleClickCerrarSesion } = useGlobal();
+    const handleRedirect = (url) => {
+        router.push(url)
+    }
     return (
         <>
             <nav className='flex items-center gap-3'>
@@ -31,13 +36,13 @@ function DesktopNavbar() {
                     <div className="flex items-center">
                         <div className="relative inline-block shrink-0">
                             <div className="relative inline-flex items-center justify-center w-9 h-9 overflow-hidden bg-gray-100 rounded-full ">
-                            <span className="font-medium text-gray-600 ">{session?.user.iniciales}</span>
+                                <span className="font-medium text-gray-600 ">{session?.user.iniciales}</span>
                             </div>
                         </div>
                         <div className="ms-3 text-sm font-normal mr-2 gap-3 flex items-center">
 
-                 
-                        <Dropdown>
+
+                            <Dropdown>
                                 <DropdownTrigger>
                                     <div
 
@@ -81,12 +86,16 @@ function DesktopNavbar() {
                                         </DropdownItem>
                                     </DropdownSection>
                                     <DropdownSection title="Acciones">
-                               
+
                                         {
                                             actionsLinks &&
                                             actionsLinks.map((action) => (
 
-                                                <DropdownItem href={action.url} key={action.name}>{action.name}</DropdownItem>
+                                                <DropdownItem onClick={() => {
+                                                    handleRedirect(action.url)
+                                                }} textValue={action.name} key={action.name}>
+                                                    {action.name}
+                                                </DropdownItem>
 
                                             ))
                                         }

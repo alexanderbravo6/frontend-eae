@@ -1,4 +1,5 @@
 'use client'
+import { useSession } from 'next-auth/react';
 import { createContext, useContext, useState } from 'react';
 
 const ResultadoInstitucionalContext = createContext();
@@ -8,6 +9,7 @@ export function useResultadoInstitucional() {
 }
 
 export function ResultadoInstitucionalProvider({ children }) {
+
     const [formValues, setFormValues] = useState({
         idInstitucion: '',
         idRegion: '',
@@ -52,6 +54,7 @@ export function ResultadoInstitucionalProvider({ children }) {
     return (
         <ResultadoInstitucionalContext.Provider value={{
             query,
+            setQuery,
             pagination,
             handleCleanSearch,
             setPagination,
