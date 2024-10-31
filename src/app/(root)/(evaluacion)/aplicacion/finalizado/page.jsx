@@ -20,7 +20,7 @@ function PruebaFinalizadaPage() {
               La dirección de formación inicial docente del Ministerio de Educación agradece tu participación en la EAE.
             </p>
             <div className='w-60 mx-auto'>
-              <Link className='bg-[#04C8C8] justify-center  mt-6  text-white   h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/evaluacion`}>
+              <Link className='bg-[#04C8C8] justify-center  mt-6  text-white   h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/`}>
                 Ir a la página principal
               </Link>
             </div>

@@ -49,7 +49,7 @@ export function EvaluacionProvider({ children }) {
             const response = await cerrarEvaluacion(token, request)
 
             if (response.success === true) {
-                router.push(`/evaluacion/aplicacion/finalizado`)
+                router.push(`/aplicacion/finalizado`)
             } else {
 
                 if (response.errors) {

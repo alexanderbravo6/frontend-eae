@@ -27,7 +27,7 @@ function PruebasLink() {
                     <button onClick={
                         () => {
                             setPruebaSelected(item.id)
-                            router.push(`/evaluacion/validacion`)
+                            router.push(`/validacion`)
                         }} key={index} className="hover:bg-[#97e4e4] text-left  w-full gap-3 mt-4 flex px-5 py-2 items-center bg-[#DCF3F3] rounded-md " >
                         <Image src={`/icon-prueba-${item.tipoPrueba}.svg`} width={40} height={40} alt="libro icon" />
                         <div >

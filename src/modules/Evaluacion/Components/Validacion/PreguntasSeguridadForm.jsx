@@ -40,7 +40,7 @@ function PreguntaSeguridadForm() {
                 toast.success('Validación exitosa')
                 setInstrucciones(response.data)
                 handleLimpiarValidacion()
-                router.push(`/evaluacion/indicaciones`)
+                router.push(`/indicaciones`)
             } else {
                 if (response.errors) {
                     setEstudianteEncontrado(false)

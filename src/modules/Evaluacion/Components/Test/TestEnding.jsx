@@ -18,7 +18,7 @@ function TestEnding() {
                         Se ha identificado que ya ha completado la evaluación previamente, por lo tanto, no es posible volver a realizarla.
                     </p>
                     <div className='w-60 mx-auto'>
-                        <Link className='bg-[#04C8C8] justify-center  mt-6  text-white   h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/evaluacion`}>
+                        <Link className='bg-[#04C8C8] justify-center  mt-6  text-white   h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/`}>
                             Ir a la página principal
                         </Link>
                     </div>

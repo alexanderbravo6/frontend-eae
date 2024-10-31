@@ -30,7 +30,7 @@ function InstruccionesCard() {
             const response = await iniciarEvaluacion(request)
 
             if (response.success === true) {
-                router.push(`/evaluacion/aplicacion/${response.data.tokenEvaluacion}`)
+                router.push(`/aplicacion/${response.data.tokenEvaluacion}`)
             } else {
                 setSubmit(false)
 

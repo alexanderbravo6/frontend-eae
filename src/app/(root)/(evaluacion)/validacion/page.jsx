@@ -50,7 +50,7 @@ function ValidacionPage() {
   if (validationLoading) return <TestLoading message="Validación de Identidad" />
 
   if (!pruebaSelected || pruebaSelected == null) {
-    redirect('/evaluacion')
+    redirect('/')
   }
   return (
     <>
@@ -103,7 +103,7 @@ function ValidacionPage() {
                       reset()
                       setErrorValidation("")
                       setEstudianteEncontrado(false)
-                      router.push(`/evaluacion`)
+                      router.push(`/`)
                     }}
 
                     className='px-8 hover:bg-gray-300 hover:text-black text-white  bg-gray-400 h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/evaluacion`}>
