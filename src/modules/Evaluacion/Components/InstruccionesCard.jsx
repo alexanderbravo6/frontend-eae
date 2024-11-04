@@ -16,7 +16,7 @@ function InstruccionesCard() {
     const { iniciarEvaluacion } = useEvaluacionService();
     const { instrucciones, pruebaSelected, setEstudianteEncontrado, matriculaSelected } = useEvaluacion();
 
-    if (!instrucciones) return redirect('/evaluacion');
+    if (!instrucciones) return redirect('/');
 
     async function handleIniciarEvaluacion() {
 
@@ -116,7 +116,7 @@ function InstruccionesCard() {
                                             submit ? 'Iniciando...' : 'Iniciar Evaluación'
                                         }
                                     </Button>
-                                    <Link className='px-8 hover:bg-gray-300 hover:text-black text-white  bg-gray-400 h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/evaluacion`}>
+                                    <Link className='px-8 hover:bg-gray-300 hover:text-black text-white  bg-gray-400 h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/`}>
                                         Regresar
                                     </Link>
                                 </>
@@ -132,7 +132,7 @@ function InstruccionesCard() {
                                             submit ? 'Cargando...' : 'Continuar con Evaluación'
                                         }
                                     </Button>
-                                    <Link className='px-8 hover:bg-gray-300 hover:text-black text-white  bg-gray-400 h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/evaluacion`}>
+                                    <Link className='px-8 hover:bg-gray-300 hover:text-black text-white  bg-gray-400 h-[40px] text-center font-extralight rounded-xl flex items-center text-sm ' href={`/`}>
                                         Regresar
                                     </Link>
                                 </>

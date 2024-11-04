@@ -26,7 +26,7 @@ function Countdown({ timestamp, token, idPregunta }) {
             setMinutos("00")
             setSegundos("00")
 
-            handleCerrarEvaluacion(token, idPregunta)
+            //handleCerrarEvaluacion(token, idPregunta)
 
         } else {
             const h = Math.floor(diff / HOUR).toString().padStart(2, '0');
