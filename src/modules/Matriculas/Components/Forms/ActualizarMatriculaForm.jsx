@@ -1,23 +1,66 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import { parseDate } from "@internationalized/date";
 import { useMatricula } from '../../Providers/MatriculaProvider';
+import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { useMatriculaService } from '../../Hooks/useMatriculaService';
+import { useSWRConfig } from 'swr';
 function ActualizarMatriculaForm({ row, onClose }) {
-
-
+    const { actualizarMatricula } = useMatriculaService()
+    const [errorValidation, setErrorValidation] = useState('');
+    const { query, pagination,utils } = useMatricula()
     const { register, handleSubmit, getValues, setValue, reset, formState: { errors, isSubmitting } } = useForm();
-    const { utils } = useMatricula()
+    const { mutate } = useSWRConfig()
     const form = handleSubmit(async (data) => {
+       
+        try {
+            const response = await actualizarMatricula(row.id, data)
 
+            if (response.success === true) {
+                setErrorValidation([])
+                mutate(`matriculas_${pagination?.pageIndex + 1}_${JSON.stringify(query)}`,
+
+                    // Aquí se actualiza la data
+                    (res) => res
+                        ? {
+                            ...res,
+                            data: res.data.map(item => item.id === row.id ? response.data : item)
+                        }
+                        : res,
+                    false
+                )
+                onClose()
+                toast.success(response.messages[0])
+            } else {
+
+                if (response.errors) {
+                    const nuevosErrores = Object.values(response.errors).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+                if (response.validations) {
+                    const nuevosErrores = Object.values(response.validations).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
     })
 
     return (
         <section>
             <form onSubmit={form}>
                 <ModalBody>
+                    {
+                        errorValidation.length === 0 ? null : (
+                            <section>
+                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                            </section>
+                        )
+                    }
                     <div className="grid gap-6 mb-6 grid-cols-1 md:grid-cols-3">
                         <div className='col-span-1'>
                             <label htmlFor="tipoDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Documento</label>
