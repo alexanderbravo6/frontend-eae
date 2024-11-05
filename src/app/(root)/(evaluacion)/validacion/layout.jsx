@@ -7,9 +7,7 @@ import React from 'react'
 function ValidacionLayout({ children }) {
     return (
         <>
-
             <div className="flex items-center w-full h-full min-h-[640px]">
-
                 <div className="lg:w-3/5 w-full  h-full flex flex-col justify-between   ">
                     <div className="h-full flex items-center">
                         <div className=" mx-auto p-3 flex-col flex  justify-center  lg:w-[460px] lg:overflow-auto">
