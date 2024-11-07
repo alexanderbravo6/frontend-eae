@@ -8,6 +8,7 @@ import { useMatricula } from '../../Providers/MatriculaProvider';
 import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
 import { useMatriculaService } from '../../Hooks/useMatriculaService';
 import { useSWRConfig } from 'swr';
+import { toast } from 'react-toastify';
 function ActualizarMatriculaForm({ row, onClose }) {
     const { actualizarMatricula } = useMatriculaService()
     const [errorValidation, setErrorValidation] = useState('');
