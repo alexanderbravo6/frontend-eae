@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Button, CircularProgress, Skeleton } from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter, CardHeader, CircularProgress, Divider, Skeleton } from "@nextui-org/react";
 import Link from "next/link";
 
 export function ButtonSkeleton() {
@@ -106,30 +106,30 @@ export function SkeletonInfoSection() {
 
 export function IntroductionSkeleton() {
     return (
-      <>
-        <div className="mt-6">
-          <div className="animate-pulse">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-  
-                <div>
-                  <div className="w-24 h-4 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
-                  <div className="w-16 h-3 bg-gray-200 dark:bg-gray-700 rounded-full mt-1"></div>
+        <>
+            <div className="mt-6">
+                <div className="animate-pulse">
+                    <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center">
+
+                            <div>
+                                <div className="w-24 h-4 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                <div className="w-16 h-3 bg-gray-200 dark:bg-gray-700 rounded-full mt-1"></div>
+                            </div>
+                        </div>
+                        <div className="w-20 h-4 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                    </div>
+                    <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
+                    <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
+                    <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
+                    <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
+                    <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
                 </div>
-              </div>
-              <div className="w-20 h-4 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
             </div>
-            <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
-            <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
-            <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
-            <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
-            <div className="w-full h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-4"></div>
-          </div>
-        </div>
-      </>
+        </>
     )
-  }
-  
+}
+
 
 export function PruebaSkeleton() {
     return (
@@ -152,7 +152,7 @@ export function PruebaSkeleton() {
                     <div className="w-32 h-2 bg-gray-300 rounded-full dark:bg-gray-700"></div>
                 </div>
             </span>
-      
+
         </>
     )
 }
@@ -211,6 +211,158 @@ export function TableSkeleton() {
                 </div>
                 <span className="sr-only">Cargando...</span>
             </div>
+        </>
+    );
+}
+export function NivelDesempenioSkeleton() {
+    return (
+        <>
+            <section className="flex gap-5 flex-row">
+
+                <Card className="w-[280px] p-5">
+                    <CardHeader className="flex gap-3">
+
+
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+
+                    </CardHeader>
+                    <Divider />
+                    <CardBody>
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-32 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardBody>
+                    <Divider />
+                    <CardFooter className="flex flex-col">
+                        <div className="flex w-full justify-between">
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                        </div>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardFooter>
+                </Card>
+                <Card className="w-[280px] p-5">
+                    <CardHeader className="flex gap-3">
+
+
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+
+                    </CardHeader>
+                    <Divider />
+                    <CardBody>
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-32 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardBody>
+                    <Divider />
+                    <CardFooter className="flex flex-col">
+                        <div className="flex w-full justify-between">
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                        </div>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardFooter>
+                </Card>
+                <Card className="w-[280px] p-5">
+                    <CardHeader className="flex gap-3">
+
+
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+
+                    </CardHeader>
+                    <Divider />
+                    <CardBody>
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-32 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardBody>
+                    <Divider />
+                    <CardFooter className="flex flex-col">
+                        <div className="flex w-full justify-between">
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                        </div>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardFooter>
+                </Card>
+                <Card className="w-[280px] p-5">
+                    <CardHeader className="flex gap-3">
+
+
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+
+                    </CardHeader>
+                    <Divider />
+                    <CardBody>
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-32 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardBody>
+                    <Divider />
+                    <CardFooter className="flex flex-col">
+                        <div className="flex w-full justify-between">
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                            <Skeleton className="w-2/5 rounded-lg">
+                                <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
+                            </Skeleton>
+                        </div>
+                        <Divider className="my-4" />
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                        <Divider className="my-4"/>
+                        <Skeleton className="w-full rounded-lg">
+                            <div className="h-3 w-full rounded-lg bg-default-200"></div>
+                        </Skeleton>
+                    </CardFooter>
+                </Card>
+            </section>
+
+
+
         </>
     );
 }

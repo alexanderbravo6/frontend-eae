@@ -4,9 +4,18 @@ import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosur
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import GraficoInstitucionalTab from '../Tabs/GraficoInstitucionalTab';
 import NivelDesempenioCard from '@/modules/Resultados/Shared/Cards/NivelDesempenioCard';
+import { ButtonSkeleton } from '@/shared/Components/Skeletons';
+import { useResultadoNacionalService } from '@/modules/Resultados/Nacional/Hooks/useResultadoNacionalService';
 
-function VerGraficoNacionalModal({ row }) {
+function VerGraficoNacionalModal({ idPrueba }) {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { FetchNivelDesempenioPorPrueba } = useResultadoNacionalService();
+    const resultadoNacional = FetchNivelDesempenioPorPrueba(idPrueba);
+    if (resultadoNacional.isLoading)
+        return <section className='mt-3 flex items-center justify-center w-full'>
+            <ButtonSkeleton />
+        </section>
+    if (resultadoNacional.error) return <div>Error al cargar los datos</div>
 
 
     return (
@@ -24,11 +33,14 @@ function VerGraficoNacionalModal({ row }) {
                     {(onClose) => (
                         <>
                             <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400  font-bold ">RESULTADO NACIONAL </h1>
+                                <h1 className=" text-blue-400  font-bold ">
+                                    RESULTADO NACIONAL </h1>
                             </ModalHeader>
-                            <ModalBody >
-                                <NivelDesempenioCard 
-                                prueba={"PRUEBA DE COMPRENSIÓN LECTORA (PRIMER CICLO)"}
+                            <ModalBody className='flex items-center justify-center' >
+                                <NivelDesempenioCard
+                                    data={
+                                        resultadoNacional.data?.data.pruebas[0]
+                                    }
                                 />
                             </ModalBody>
                             <ModalFooter>

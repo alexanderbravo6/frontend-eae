@@ -2,8 +2,11 @@
 import React, { useRef, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 
-function NivelDesempenioPie() {
+function NivelDesempenioPie({ data }) {
     const chartRef = useRef(null);
+    const labels = data?.map(item => item.nivel);
+    const values = data?.map(item => item.porcentaje);
+    const palette = data?.length > 2 ? ['#ff144f', '#ff6016', '#00b8b8'] : [ '#ff6016', '#00b8b8'];
 
     useEffect(() => {
         // Clean up previous chart if it exists
@@ -15,18 +18,12 @@ function NivelDesempenioPie() {
         const newChart = new Chart(chartRef.current, {
             type: 'doughnut',
             data: {
-                labels: ['En Proceso', 'Satisfactorio'],
+                labels: labels,
                 datasets: [{
                     label: 'Nivel de desempeño',
-                    data: [73.53, 26.47],
-                    backgroundColor: [
-                        '#00b8b8',
-                        '#ff6016'
-                    ],
-                    borderColor: [
-                        '#00b8b8',
-                        '#ff6016'
-                    ],
+                    data: values,
+                    backgroundColor: palette,
+                    borderColor: palette,
                     borderWidth: 1
                 }]
             },
