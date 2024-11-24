@@ -38,6 +38,12 @@ export const usePruebaService = () => {
         const { data, error, isLoading, mutate } = useSWR(`prueba_utils`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
+    const DescargarResultados = (idPrueba) => {
+
+        const fetcher = () => axios.get("/v1/pruebas/resultados", { params: { idPrueba } }, { responseType: "blob" }).then(response => response.data);
+        const { data, error, isLoading, mutate } = useSWR(`prueba_utils`, fetcher, configSWR);
+        return { data, error, isLoading, mutate }
+    }
 
     const FetchPruebas = (anio) => {
 
@@ -48,7 +54,7 @@ export const usePruebaService = () => {
         return { data, error, isLoading, mutate }
     }
 
-    return { FetchUtilsPruebas, actualizarPrueba, eliminarPrueba, registrarPrueba, FetchPruebas };
+    return { FetchUtilsPruebas, DescargarResultados, actualizarPrueba, eliminarPrueba, registrarPrueba, FetchPruebas };
 
 
 }

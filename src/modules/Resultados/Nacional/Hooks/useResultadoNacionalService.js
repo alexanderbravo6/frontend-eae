@@ -14,6 +14,19 @@ export const useResultadoNacionalService = () => {
         const { data, error, isLoading, mutate } = useSWR(`nivel_desempenio_nacional_${anio}_${idCiclo}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     };
+    const FetchPromedioNacional = (idPrueba) => {
+        const fetcher = () => axios.get("/v1/resultados/nacional/promedio", { params: { idPrueba } }
+        ).then(data => data.data);
+        const { data, error, isLoading, mutate } = useSWR(`promedio_nacional_${idPrueba}`,
+            idPrueba ? fetcher : null, configSWR);
+        return { data, error, isLoading, mutate }
+    };
+    const FetchCantidadEvaluadosNacional = (idCiclo, anio) => {
+        const fetcher = () => axios.get("/v1/resultados/nacional/participantes", { params: { idCiclo, anio } }
+        ).then(data => data.data);
+        const { data, error, isLoading, mutate } = useSWR(`cantidad_evaluados_nacional${idCiclo}_${anio}`, fetcher, configSWR);
+        return { data, error, isLoading, mutate }
+    };
 
     const FetchNivelDesempenioPorPrueba = (idPrueba) => {
         const fetcher = () => axios.get("/v1/resultados/nacional/nivel-desempenio", { params: { idPrueba } }
@@ -23,6 +36,7 @@ export const useResultadoNacionalService = () => {
     };
 
     return {
-        FetchNivelDesempenioNacional, FetchNivelDesempenioPorPrueba
+        FetchNivelDesempenioNacional, FetchNivelDesempenioPorPrueba,
+        FetchPromedioNacional, FetchCantidadEvaluadosNacional
     }
 }

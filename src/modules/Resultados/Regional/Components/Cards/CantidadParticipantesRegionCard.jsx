@@ -6,7 +6,7 @@ import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image, Button } 
 import NivelDesempenioPie from "@/modules/Resultados/Shared/Charts/NivelDesempenioPie";
 import NivelDesempenioItemCard from "@/modules/Resultados/Shared/Cards/NivelDesempenioItemCard";
 import VerGraficoNacionalModal from "../Modals/VerGraficoNacionalModal";
-import DistribucionInstitucionalBard from "../Charts/DistribucionInstitucionalBard";
+import DistribucionInstitucionalBard from "../Charts/DistribucionRegionalBard";
 
 export default function CantidadParticipantesRegionCard({ prueba }) {
     return (
@@ -23,24 +23,24 @@ export default function CantidadParticipantesRegionCard({ prueba }) {
                 <Divider />
                 <CardBody>
                     <section>
-                        <div class="fs-6 flex justify-between my-4">
-                            <div class="font-normal">EDUCACION FISICA</div>
-                            <div class="font-medium ">38</div>
+                        <div className="fs-6 flex justify-between my-4">
+                            <div className="font-normal">EDUCACION FISICA</div>
+                            <div className="font-medium ">38</div>
                         </div>
                         <Divider className="decoration-wavy" />
-                        <div class="fs-6 flex justify-between my-4">
-                            <div class="font-normal">EDUCACION INICIAL</div>
-                            <div class="font-medium ">38</div>
+                        <div className="fs-6 flex justify-between my-4">
+                            <div className="font-normal">EDUCACION INICIAL</div>
+                            <div className="font-medium ">38</div>
                         </div>
                         <Divider />
-                        <div class="fs-6 flex justify-between my-4">
-                            <div class="font-normal">EDUCACION MATEMÁTICA</div>
-                            <div class="font-medium ">38</div>
+                        <div className="fs-6 flex justify-between my-4">
+                            <div className="font-normal">EDUCACION MATEMÁTICA</div>
+                            <div className="font-medium ">38</div>
                         </div>
                         <Divider />
-                        <div class="fs-6 flex justify-between my-4">
-                            <div class="font-bold">TOTAL</div>
-                            <div class="font-bold ">38</div>
+                        <div className="fs-6 flex justify-between my-4">
+                            <div className="font-bold">TOTAL</div>
+                            <div className="font-bold ">38</div>
                         </div>
                     </section>
                 </CardBody>

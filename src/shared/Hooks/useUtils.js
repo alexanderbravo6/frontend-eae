@@ -54,7 +54,7 @@ export const useUtils = () => {
         const { data, error, isLoading, mutate } = useSWR(`plan_estudio_cursos_${idCiclo}_${idPlanEstudio}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
-
+   
     const FetchAllEspecialidades = (id) => {
 
         //consulta SWR

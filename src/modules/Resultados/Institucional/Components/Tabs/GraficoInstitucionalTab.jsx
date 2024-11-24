@@ -1,4 +1,4 @@
-import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
+import { Tabs, Tab } from "@nextui-org/react";
 import ResultadoInstitucionalTab from "./ResultadoInstitucionalTab";
 
 export default function GraficoInstitucionalTab({ row }) {
@@ -8,7 +8,7 @@ export default function GraficoInstitucionalTab({ row }) {
                 <Tab key="primer_ciclo" title="PRIMER CICLO">
                     <section className="mt-4 mb-10" >
                         <h2 className="text-xl  font-bold " >RESULTADOS DEL PRIMER CICLO</h2>
-                        <p class="mt-1  text-sm/6 text-gray-500">A continuación, podrá visualizar los resultados a nivel institucional en diferentes gráficos que han rendido pruebas dirigidas a estudiantes del primer ciclo.</p>
+                        <p className="mt-1  text-sm/6 text-gray-500">A continuación, podrá visualizar los resultados a nivel institucional en diferentes gráficos que han rendido pruebas dirigidas a estudiantes del primer ciclo.</p>
                     </section>
                     <section className="w-full">
                         <ResultadoInstitucionalTab
@@ -21,7 +21,7 @@ export default function GraficoInstitucionalTab({ row }) {
                 <Tab key="sexto_ciclo" title="SEXTO CICLO">
                     <section className="mt-4 mb-10" >
                         <h2 className="text-xl  font-bold " >RESULTADOS DEL SEXTO CICLO</h2>
-                        <p class="mt-1  text-sm/6 text-gray-500">A continuación, podrá visualizar los resultados a nivel institucional en diferentes gráficos que han rendido pruebas dirigidas a estudiantes de sexto ciclo.</p>
+                        <p className="mt-1  text-sm/6 text-gray-500">A continuación, podrá visualizar los resultados a nivel institucional en diferentes gráficos que han rendido pruebas dirigidas a estudiantes de sexto ciclo.</p>
                     </section>
                     <ResultadoInstitucionalTab
                         row={row}
@@ -32,7 +32,7 @@ export default function GraficoInstitucionalTab({ row }) {
                 <Tab key="decimo_ciclo" title="DÉCIMO CICLO">
                     <section className="mt-4 mb-10" >
                         <h2 className="text-xl  font-bold " >RESULTADOS DEL DÉCIMO CICLO</h2>
-                        <p class="mt-1  text-sm/6 text-gray-500">A continuación, podrá visualizar los resultados a nivel institucional en diferentes gráficos que han rendido pruebas dirigidas a estudiantes del décimo ciclo.</p>
+                        <p className="mt-1  text-sm/6 text-gray-500">A continuación, podrá visualizar los resultados a nivel institucional en diferentes gráficos que han rendido pruebas dirigidas a estudiantes del décimo ciclo.</p>
                     </section>
                     <ResultadoInstitucionalTab
                         row={row}

@@ -128,7 +128,7 @@ function Sidebar() {
                             className="  flex justify-center items-center  ps-2.5 my-5"
                         >
                             <img
-                                src="/LOGO_MINEDU.png"
+                                src="/hero-logo-minedu.png"
                                 className=" w-full  me-3 sm:h-full"
                                 alt="Ministerio"
                             />

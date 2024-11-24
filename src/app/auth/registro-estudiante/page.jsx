@@ -8,7 +8,7 @@ export default function RegistroEstudiantePage() {
             <div className="flex items-center w-full h-full min-h-[640px] ">
                 <div className="lg:w-3/5 w-full gap-3  h-full flex flex-col justify-between   ">
                     <div >
-                        <img src="/LOGO_MINEDU.png" className=" m-5 w-40 lg:w-52 " alt="Icono Ministerio de Educación" />
+                        <img src="/hero-logo-minedu.png" className=" m-5 w-40 lg:w-52 " alt="Icono Ministerio de Educación" />
                     </div>
                     <RegistroEstudianteForm />
                 </div>

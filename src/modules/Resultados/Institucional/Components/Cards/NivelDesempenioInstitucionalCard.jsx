@@ -5,7 +5,7 @@ import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image, Button } 
 
 import NivelDesempenioPie from "@/modules/Resultados/Shared/Charts/NivelDesempenioPie";
 import NivelDesempenioItemCard from "@/modules/Resultados/Shared/Cards/NivelDesempenioItemCard";
-import VerGraficoNacionalModal from "../Modals/VerGraficoNacionalModal";
+import VerGraficoNacionalModal from "../../../Shared/Modals/VerGraficoNacionalModal";
 
 export default function NivelDesempenioInstitucionalCard({ data }) {
     return (

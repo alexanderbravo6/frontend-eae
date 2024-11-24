@@ -113,7 +113,9 @@ function IniciarSesionForm() {
 
     return (
         <>
-            <form onSubmit={ValidarUsuario} className="max-w-lg mb-[6%]  gap-5 flex flex-col md:mx-auto mx-[10%] h-[80%] md:w-full w-[50%] items-center justify-center">
+
+
+            <form onSubmit={ValidarUsuario} className="max-w-lg mb-[6%]  gap-5 flex flex-col md:mx-auto mx-[10%] h-[80%] md:w-full w-[80%] items-center justify-center">
 
                 <div className="mb-6 text-left w-full">
                     <h1 className=" font-extralight mb-3 text-xl md:text-3xl text-black">
@@ -124,6 +126,7 @@ function IniciarSesionForm() {
                     <p className="font-extralight text-[#454545] ">
                         Módulo administrativo
                     </p>
+
                 </div>
                 <p className="text-gray-400 text-left w-full">Inicio de sesión</p>
                 {
@@ -133,7 +136,7 @@ function IniciarSesionForm() {
                         </div>
                     )
                 }
-                <div className="mb-5 w-full ">
+                <section className="mb-5 w-full ">
                     <div className="flex">
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md ">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -160,9 +163,9 @@ function IniciarSesionForm() {
                             <span className="text-red-500 text-xs">{errors.usuario.message}</span>
                         )
                     }
-                </div>
+                </section>
 
-                <div className="mb-5 w-full ">
+                <section className="mb-5 w-full ">
                     <div className="flex">
 
                         <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md ">
@@ -171,77 +174,84 @@ function IniciarSesionForm() {
                             </svg>
 
                         </span>
-                        <input
-                            type={showPassword ? "text" : "password"}
-                            {...register('clave', {
-                                required: {
-                                    value: true,
-                                    message: 'La Contraseña es requerido'
-                                }
-                            })}
-                            id="clave"
-                            className="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 "
-                            placeholder="Contraseña"
-                        />
-                        <Button
-                            type="button"
-                            isIconOnly
-                            variant="light"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {showPassword ? (
-                                <EyeSlashFilledIcon className="h-2 w-2 text-gray-200" />
-                            ) : (
-                                <EyeFilledIcon className="h-2 w-2 text-gray-200" />
-                            )}
-                        </Button>
-
+                        <div className="relative w-full">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                {...register('clave', {
+                                    required: {
+                                        value: true,
+                                        message: 'La Contraseña es requerido'
+                                    }
+                                })}
+                                id="clave"
+                                className="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 "
+                                placeholder="Contraseña"
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? (
+                                    <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                                    </svg>
+                                ) : (
+                                    <svg className="h-5 w-5 text-gray-400 hover:text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
                     </div>
                     {
                         errors.clave && (
                             <span className="text-red-500 text-xs">{errors.clave.message}</span>
                         )
                     }
-                </div>
-                <div className="flex gap-4">
-                    <label htmlFor="captcha" className="sr-only">CAPTCHA</label>
-                    <div className="flex items-center space-x-2">
-                        <canvas ref={canvasRef} width={150} height={50} className="border border-gray-300 rounded-md" />
-                        <button type="button" onClick={generateCaptcha} variant="outline" size="icon" className="flex-shrink-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-refresh">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                                <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                            </svg>
-                            <span className="sr-only">Actualizar CAPTCHA</span>
-                        </button>
+                </section>
+                <section className="flex  w-full md:flex-nowrap flex-wrap gap-4">
+                    <div >
+                        <label htmlFor="captcha" className="sr-only">CAPTCHA</label>
+                        <div className="flex items-center ">
+                            <canvas ref={canvasRef} width={150} height={50} className="border border-gray-300 rounded-md" />
+                        </div>
                     </div>
 
-                    <div className="flex items-center gap-3 justify-center">
-                        <input
-                            id="captcha"
-                            type="text"
-                            placeholder="Ingresa el CAPTCHA"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value={userCaptchaInput}
-                            onChange={(e) => setUserCaptchaInput(e.target.value)}
-                        />
+                    <div className="flex w-full items-center gap-3 justify-center">
+                        <div className="relative w-full">
+                            <input
+                                id="captcha"
+                                type="text"
+                                placeholder="Ingresa el CAPTCHA"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                value={userCaptchaInput}
+                                onChange={(e) => setUserCaptchaInput(e.target.value)}
+                            />
+                            <button type="button" onClick={generateCaptcha} title="Actualizar Captcha" className="absolute inset-y-0 right-0 pr-3 flex items-center text-blue-400 hover:text-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-rotate-2">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M15 4.55a8 8 0 0 0 -6 14.9m0 -4.45v5h-5" />
+                                    <path d="M18.37 7.16l0 .01" />
+                                    <path d="M13 19.94l0 .01" />
+                                    <path d="M16.84 18.37l0 .01" />
+                                    <path d="M19.37 15.1l0 .01" />
+                                    <path d="M19.94 11l0 .01" />
+                                </svg>
+                            </button>
+                        </div>
                         <Button
                             variant="ghost"
                             onClick={validateCaptcha}
                             color="primary"
-
                             size="md"
                         >
                             Validar
                         </Button>
                     </div>
-                </div>
-                <section className="w-full">
-                    <Link className="text-[#338ef7] text-sm " href="/auth/registro-estudiante" >
-                        Registrarme como estudiante
-                    </Link>
                 </section>
+
                 {
 
                     isSubmitting || !isCaptchaValid ?
@@ -262,7 +272,6 @@ function IniciarSesionForm() {
                             Iniciar Sesión
                         </button>
                 }
-
             </form>
             <footer className="bg-white rounded-lg shadow m-4 h-[10%] md:h-[6%]">
                 <div className="w-full mx-auto max-w-screen-xl p-2 md:flex md:items-center md:justify-between">
@@ -279,6 +288,8 @@ function IniciarSesionForm() {
                     </ul>
                 </div>
             </footer>
+
+        
         </>
     );
 

@@ -1,68 +1,36 @@
 import React from 'react'
 import { Tabs, Tab, Card, CardBody, CardHeader } from "@nextui-org/react";
 
-import NivelDesempenioRegionalBard from '../Charts/NivelDesempenioRegionalBard';
 import CantidadProgramarRegionTable from '../Tables/CantidadProgramarRegionTable';
-import CantidadParticipantesRegionCard from '../Cards/CantidadParticipantesRegionCard';
-import NivelDesempenioRegionalCard from '../Cards/NivelDesempenioRegionalCard';
+import NivelDesempenioRegionalTab from './NivelDesempenioRegionalTab';
+import ParticipantePruebaRegionalTab from './ParticipantePruebaRegionalTab';
+import PromedioInstitucional from '../PromedioInstitucional';
 
-function ResultadoRegionalTab({ ciclo }) {
+function ResultadoRegionalTab({ descripcionCiclo, idCiclo, row }) {
     return (
         <>
             <Tabs color={"primary"} aria-label="Options">
                 <Tab key="nivel_desempenio" title="NIVEL DE DESEMPEÑO">
+                    <div className="px-4 py-5 sm:px-0">
+                        <h3 className="text-base/7 font-semibold text-gray-900">NIVEL DE DESEMPEÑO</h3>
+                        <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el nivel de desempeño de los estudiantes a nivel institucional en las pruebas del  {descripcionCiclo}.</p>
+                    </div>
                     <section className='my-7'>
-                        <Tabs placement={"start"} aria-label="Options">
-                            <Tab key="pie_1" title="COMPRENSIÓN LECTORA">
-                                <section className=' flex flex-wrap gap-5'>
-                                    <NivelDesempenioRegionalCard prueba={"PRUEBA DE COMPRENSIÓN LECTORA (PRIMER CICLO)"} />
-
-                                </section>
-                            </Tab>
-                            <Tab key="pie_2" title="HABILIDADES MATEMÁTICAS">
-                                <section className=' flex flex-wrap gap-5'>
-                                    <NivelDesempenioRegionalCard prueba={"PRUEBA DE HABILIDADES MATEMÁTICAS (PRIMER CICLO)"} />
-
-                                </section>
-                            </Tab>
-                            <Tab key="pie_3" title="CONOCIMIENTOS PEDAGÓGICOS">
-                                <section className=' flex flex-wrap gap-5'>
-                                    <NivelDesempenioRegionalCard prueba={"PRUEBA DE COMPRENSIÓN LECTORA (PRIMER CICLO)"} />
-                                    <NivelDesempenioRegionalCard prueba={"PRUEBA DE COMPRENSIÓN LECTORA (PRIMER CICLO)"} />
-                                    <NivelDesempenioRegionalCard prueba={"PRUEBA DE COMPRENSIÓN LECTORA (PRIMER CICLO)"} />
-                                </section>
-                            </Tab>
-                        </Tabs>
-
+                        <NivelDesempenioRegionalTab idCiclo={idCiclo} row={row} />
                     </section>
                 </Tab>
-                <Tab key="cantidad_participantes" title="CANTIDAD DE PARTICIPANTES">
+                <Tab key="cantidad_participantes" title="PARTICIPANTES POR PRUEBA">
                     <Card>
                         <CardBody className='p-7' >
-                            <div class="px-4 py-5 sm:px-0">
-                                <h3 class="text-base/7 font-semibold text-gray-900">CANTIDAD DE ESTUDIANTES EVALUADOS</h3>
-                                <p class="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {ciclo}.</p>
+                            <div className="px-4 py-5 sm:px-0">
+                                <h3 className="text-base/7 font-semibold text-gray-900">CANTIDAD DE PARTICIPANTES POR PRUEBA</h3>
+                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {descripcionCiclo}.</p>
                             </div>
                             <section className='my-7'>
-                                <Tabs placement={"start"} aria-label="Options">
-                                    <Tab key="pie_1" title="COMPRENSIÓN LECTORA">
-                                        <section className=' flex flex-wrap gap-5'>
-                                            <CantidadParticipantesRegionCard prueba={"PRUEBA DE COMPRENSIÓN LECTORA (PRIMER CICLO)"} />
-
-                                        </section>
-                                    </Tab>
-                                    <Tab key="pie_2" title="HABILIDADES MATEMÁTICAS">
-                                        <section className=' flex flex-wrap gap-5'>
-                                            <CantidadParticipantesRegionCard prueba={"PRUEBA DE HABILIDADES MATEMÁTICAS (PRIMER CICLO)"} />
-
-                                        </section>
-                                    </Tab>
-                                    <Tab key="pie_3" title="CONOCIMIENTOS PEDAGÓGICOS">
-                                        <section className=' flex flex-wrap gap-5'>
-                                            <CantidadParticipantesRegionCard prueba={"PRUEBA DE EDUCACIÓN FÍSICA (PRIMER CICLO)"} />
-                                        </section>
-                                    </Tab>
-                                </Tabs>
+                                <ParticipantePruebaRegionalTab
+                                    idCiclo={idCiclo}
+                                    row={row}
+                                />
 
                             </section>
 
@@ -72,22 +40,25 @@ function ResultadoRegionalTab({ ciclo }) {
                 <Tab key="participantes_programa" title="PARTICIPANTES POR PROGRAMA">
                     <Card>
                         <CardBody className='mx-5'>
-                            <div class="px-4 py-5 sm:px-0">
-                                <h3 class="text-base/7 font-semibold text-gray-900">PARTICIPANTES POR PROGRAMA DE ESTUDIOS</h3>
-                                <p class="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {ciclo}.</p>
+                            <div className="px-4 py-5 sm:px-0">
+                                <h3 className="text-base/7 font-semibold text-gray-900">PARTICIPANTES POR PROGRAMA DE ESTUDIOS</h3>
+                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {descripcionCiclo}.</p>
                             </div>
-                            <CantidadProgramarRegionTable />
+                            <CantidadProgramarRegionTable
+                                idCiclo={idCiclo}
+                                row={row}
+                            />
                         </CardBody>
                     </Card>
                 </Tab>
                 <Tab key="promedio_regional" title="PROMEDIO INSTITUCIONAL">
                     <Card>
                         <CardBody className='mx-5'>
-                            <div class="px-4 py-5 sm:px-0">
-                                <h3 class="text-base/7 font-semibold text-gray-900">PROMEDIOS INSTITUCIONALES</h3>
-                                <p class="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {ciclo}.</p>
+                            <div className="px-4 py-5 sm:px-0">
+                                <h3 className="text-base/7 font-semibold text-gray-900">PROMEDIOS INSTITUCIONALES</h3>
+                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {descripcionCiclo}.</p>
                             </div>
-                            <NivelDesempenioRegionalBard />
+                            <PromedioInstitucional idCiclo={idCiclo} row={row} />
                         </CardBody>
                     </Card>
                 </Tab>

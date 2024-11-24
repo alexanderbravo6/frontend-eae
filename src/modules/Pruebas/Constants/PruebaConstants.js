@@ -1,4 +1,5 @@
 
+import DescargarResultadosButton from "../Components/Buttons/DescargarResultadosButton";
 import EliminarPruebaButton from "../Components/Buttons/EliminarPruebaButton";
 import PreguntaLink from "../Components/Buttons/PreguntaLink";
 import ActualizarPruebaModal from "../Components/Modals/ActualizarPruebaModal";
@@ -37,7 +38,7 @@ export const pruebaConstants = [
         cell: ({ row }) => (
             <>
                 <div className='flex gap-2  items-center '>
-
+                    <DescargarResultadosButton id={row.original.id} />
                     <PreguntaLink id={row.original.id} />
                     <ActualizarPruebaModal row={row.original} />
                     <EliminarPruebaButton id={row.original.id} />

@@ -21,6 +21,51 @@ export function ButtonTableSkeleton() {
         </>
     );
 }
+export function PromedioBarSkeleton() {
+    return (
+        <>
+
+            <div className="regiones gap-3 grid grid-cols-[1fr,3fr,1fr] py-4">
+                <div id="nombre_region" className="text-black">    <Skeleton className="h-8 w-full rounded-lg" /> </div>
+                <div id="bar_nivel" className=" flex">
+                    <Skeleton className="h-8 w-full rounded-lg" />
+
+
+                </div>
+                <div id="promedio" className="font-semibold  pr-[3%] text-center">
+                    <Skeleton className="h-8 w-full rounded-lg" />
+                </div>
+            </div>
+            <div className="regiones gap-3 grid grid-cols-[1fr,3fr,1fr] py-4">
+                <div id="nombre_region" className="text-black">    <Skeleton className="h-8 w-full rounded-lg" /> </div>
+                <div id="bar_nivel" className=" flex">
+                    <Skeleton className="h-8 w-full rounded-lg" />
+
+
+                </div>
+                <div id="promedio" className="font-semibold  pr-[3%] text-center">
+                    <Skeleton className="h-8 w-full rounded-lg" />
+                </div>
+            </div>
+
+            <div className="regiones gap-3 grid grid-cols-[1fr,3fr,1fr] py-4">
+                <div id="nombre_region" className="text-black">    <Skeleton className="h-8 w-full rounded-lg" /> </div>
+                <div id="bar_nivel" className=" flex">
+                    <Skeleton className="h-8 w-full rounded-lg" />
+
+
+                </div>
+                <div id="promedio" className="font-semibold  pr-[3%] text-center">
+                    <Skeleton className="h-8 w-full rounded-lg" />
+                </div>
+            </div>
+
+
+
+
+        </>
+    );
+}
 export function SidebarSkeleton() {
     return (
         <>
@@ -353,7 +398,7 @@ export function NivelDesempenioSkeleton() {
                         <Skeleton className="w-full rounded-lg">
                             <div className="h-3 w-full rounded-lg bg-default-200"></div>
                         </Skeleton>
-                        <Divider className="my-4"/>
+                        <Divider className="my-4" />
                         <Skeleton className="w-full rounded-lg">
                             <div className="h-3 w-full rounded-lg bg-default-200"></div>
                         </Skeleton>

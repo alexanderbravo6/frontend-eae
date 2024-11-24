@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
-import GraficoInstitucionalTab from '../Tabs/GraficoInstitucionalTab';
+import GraficoInstitucionalTab from '../../Institucional/Components/Tabs/GraficoInstitucionalTab';
 import NivelDesempenioCard from '@/modules/Resultados/Shared/Cards/NivelDesempenioCard';
 import { ButtonSkeleton } from '@/shared/Components/Skeletons';
 import { useResultadoNacionalService } from '@/modules/Resultados/Nacional/Hooks/useResultadoNacionalService';

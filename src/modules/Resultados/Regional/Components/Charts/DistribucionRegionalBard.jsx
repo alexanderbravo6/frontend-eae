@@ -1,7 +1,7 @@
 import { Button } from '@nextui-org/react';
 import React, { useState } from 'react'
 
-function DistribucionInstitucionalBard({ data }) {
+function DistribucionRegionalBard({ data }) {
     const [isOpen, SetIsOpen] = useState(false);
     return (
         <>
@@ -83,4 +83,4 @@ function DistribucionInstitucionalBard({ data }) {
     )
 }
 
-export default DistribucionInstitucionalBard
+export default DistribucionRegionalBard
