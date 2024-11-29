@@ -54,7 +54,7 @@ export const useUtils = () => {
         const { data, error, isLoading, mutate } = useSWR(`plan_estudio_cursos_${idCiclo}_${idPlanEstudio}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
-   
+
     const FetchAllEspecialidades = (id) => {
 
         //consulta SWR
@@ -69,7 +69,7 @@ export const useUtils = () => {
         // Evita mutaciones directas al objeto query
         const queryParams = { ...query };
         if (idRol === 3) {
-            queryParams.idInstitucion = session?.user?.idSede;
+            queryParams.idInstitucion = session?.user?.idInstitucionActiva;
         }
 
         const fetcher = () =>

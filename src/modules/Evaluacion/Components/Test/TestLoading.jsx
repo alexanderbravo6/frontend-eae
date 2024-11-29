@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Progress } from '@nextui-org/react'
+import { LoadingSpinner } from '@nextui-org/react'
 
 
 function TestLoading({message}) {
@@ -11,7 +11,7 @@ function TestLoading({message}) {
                 <p>
                     {message}
                 </p>
-                <Progress
+                <LoadingSpinner
                     size="sm"
                     isIndeterminate
                     aria-label="Loading..."

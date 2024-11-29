@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
 import { IconEdit } from "@/shared/Components/Icons";
-import TemplateBaseModal from "@/shared/Components/Templates/TemplateBaseModal";
+import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import ActualizarMenuForm from "../Forms/ActualizarMenuForm";
 
 export default function ActualizarMenuModal({ row }) {
@@ -14,7 +14,7 @@ export default function ActualizarMenuModal({ row }) {
       <button onClick={onOpen} className="font-medium text-blue-500  hover:underline">
         <IconEdit />
       </button>
-      <TemplateBaseModal
+      <TemplateModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         className="max-w-7xl "
@@ -27,7 +27,7 @@ export default function ActualizarMenuModal({ row }) {
             </>
           )}
         </ModalContent>
-      </TemplateBaseModal>
+      </TemplateModal>
     </>
   );
 }

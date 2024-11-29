@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { useSession } from 'next-auth/react';
-import { TableSkeleton } from '@/shared/Components/Skeletons';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useResultadoRegionalService } from '../../Hooks/useResultadoRegionalService';
 
 function CantidadProgramarRegionTable({ idCiclo, row }) {
@@ -10,11 +10,11 @@ function CantidadProgramarRegionTable({ idCiclo, row }) {
     const { FetchParticipantesPorProgramaRegional } = useResultadoRegionalService();
     const evaluados = FetchParticipantesPorProgramaRegional(idCiclo, session?.user?.anio, row.id);
     if (evaluados.isLoading) return <TableSkeleton />
-    if (evaluados.error) return <TemplateBaseAlert type='Attention' message='No se encontraron resultados' />
+    if (evaluados.error) return <TemplateAlert type='Attention' message='No se encontraron resultados' />
 
-    if (evaluados.data?.data?.especialidades.length == 0) return <TemplateBaseAlert type='Attention' message='No se encontraron resultados' />
+    if (evaluados.data?.data?.instituciones.length == 0) return <TemplateAlert type='Attention' message='No se encontraron resultados' />
     const totals = evaluados?.data?.data?.tipoPrueba.map((_, tipoIndex) =>
-        evaluados?.data?.data?.especialidades.reduce((sum, especialidad) => {
+        evaluados?.data?.data?.instituciones.reduce((sum, especialidad) => {
             const participante = especialidad.participantes[tipoIndex];
             return sum + (participante ? participante.cantidad : 0);
         }, 0)
@@ -35,7 +35,7 @@ function CantidadProgramarRegionTable({ idCiclo, row }) {
                 </thead>
                 <tbody>
                     {
-                        evaluados?.data?.data?.especialidades.map((item, index) => (
+                        evaluados?.data?.data?.instituciones.map((item, index) => (
                             <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-blue-50 transition-colors duration-200`}>
                                 <td className="py-3 px-4 border-b">{item.nombre}</td>
                                 {

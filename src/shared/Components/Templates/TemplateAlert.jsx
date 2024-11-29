@@ -1,6 +1,6 @@
 import React from 'react'
 
-function TemplateBaseAlert({ message, type }) {
+function TemplateAlert({ message, type }) {
     return (
         <>
             {
@@ -77,4 +77,4 @@ function TemplateBaseAlert({ message, type }) {
     )
 }
 
-export default TemplateBaseAlert
+export default TemplateAlert

@@ -4,12 +4,12 @@ import { useState } from 'react';
 
 import 'quill/dist/quill.snow.css';
 import { toolbarSetting } from '@/shared/Constants/GlobalConstants';
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import { useSWRConfig } from 'swr';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { toast } from 'react-toastify';
 import { useIndicacionService } from '../../Hooks/useIndicacionService';
 
@@ -69,7 +69,7 @@ function RegistrarIndicacionForm({ onClose }) {
           {
             errorValidation.length === 0 ? null : (
               <section>
-                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                <TemplateAlert message={errorValidation} type={'errorList'} />
               </section>
             )
           }

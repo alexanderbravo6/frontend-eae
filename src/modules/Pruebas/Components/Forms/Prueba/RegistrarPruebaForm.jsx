@@ -1,12 +1,12 @@
 'use client'
 import React, { useState } from 'react'
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import { useForm } from 'react-hook-form';
 import { Button, DatePicker, Divider, ModalBody, ModalFooter, Radio, RadioGroup } from '@nextui-org/react';
 import { usePrueba } from '@/modules/Pruebas/Providers/PruebaProvider';
 import { useSession } from 'next-auth/react';
 import { usePruebaService } from '@/modules/Pruebas/Hooks/usePruebaService';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
 import { useUtils } from '@/shared/Hooks/useUtils';
@@ -61,7 +61,7 @@ function RegistrarPruebaForm({ onClose }) {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

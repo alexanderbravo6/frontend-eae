@@ -1,10 +1,10 @@
 'use client'
 import React, { use, useState } from 'react'
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react'
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert'
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert'
 import { useSession } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons'
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit'
 import { toast } from 'react-toastify'
 import { PassworInput } from '@/shared/Components/Form/Inputs'
 import { usePerfilService } from '@/modules/Perfil/Hooks/usePerfilService'
@@ -45,7 +45,7 @@ function ActualizarPersonaForm({ row, onClose }) {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

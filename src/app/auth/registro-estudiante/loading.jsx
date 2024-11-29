@@ -1,4 +1,4 @@
-import LoadingScreenMinedu from "@/shared/Components/LoadingScreenMinedu"
+import LoadingScreenMinedu from "@/shared/Components/Loaders/LoadingScreenMinedu"
 
 function loading() {
     return (

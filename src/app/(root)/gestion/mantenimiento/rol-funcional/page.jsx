@@ -1,6 +1,6 @@
 'use client'
 import IndexRolFuncional from '@/modules/RolFuncional/Components/IndexRolFuncional'
-import Breadcrumb from '@/shared/Components/Breadcrumb'
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
 import React from 'react'
 const itemBreadCrumbs = [
   {

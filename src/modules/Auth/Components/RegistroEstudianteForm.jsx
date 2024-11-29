@@ -2,7 +2,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { toast } from 'react-toastify';
 import { useAuthService } from '../Hooks/useAuthService';
 import { Button, Spinner } from '@nextui-org/react';
@@ -85,7 +85,7 @@ function RegistroEstudianteForm() {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

@@ -1,8 +1,8 @@
 'use client'
 
 import ResultadoInstitucionalIndex from '@/modules/Resultados/Institucional/Components/ResultadoInstitucionalIndex';
-import Breadcrumb from '@/shared/Components/Breadcrumb'
-import PermissionDeniedScreeen from '@/shared/Components/PermissionDeniedScreeen';
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import React from 'react'
 
@@ -16,7 +16,7 @@ const itemBreadcrumbs = [
 function ResultadoInstitucionalPage() {
     const { accesoActual } = useGlobal();
     const accesoPermitido = accesoActual[0]?.menus.filter(permiso => permiso?.codigo === "RESINS").length > 0;
-    if (!accesoPermitido) { return <PermissionDeniedScreeen /> }
+    if (!accesoPermitido) { return <TemplateDeniedPermission /> }
 
     return (
         <>

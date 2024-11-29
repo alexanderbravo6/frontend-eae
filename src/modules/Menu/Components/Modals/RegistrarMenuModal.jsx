@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-import TemplateBaseModal from "@/shared/Components/Templates/TemplateBaseModal";
+import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import RegistrarMenuForm from "../Forms/RegistrarMenuForm";
 
 
@@ -19,7 +19,7 @@ export default function RegistrarMenuModal() {
                 </svg>
                 Registrar
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-7xl "
@@ -32,7 +32,7 @@ export default function RegistrarMenuModal() {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal >
+            </TemplateModal >
         </>
     );
 }

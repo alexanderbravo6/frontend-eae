@@ -1,14 +1,14 @@
 'use client'
 import { Accordion, AccordionItem, Button, CheckboxGroup, ModalBody, ModalFooter } from "@nextui-org/react";
 import { useRolFuncionalService } from "../../Hooks/useRolFuncionalService";
-import LoadingErrorCard from "@/shared/Components/LoadingErrorCard";
-import { TableSkeleton } from "@/shared/Components/Skeletons";
+import TemplateErrorData from "@/shared/Components/Templates/TemplateErrorData";
+import { TableSkeleton } from "@/shared/Components/Skeletons/Skeletons";
 import AsignarPermisoForm from "./AsignarPermisoForm";
 
 export default function PermisosAccordion({ onClose, row }) {
     const { FetchPermisos } = useRolFuncionalService();
     const permisos = FetchPermisos(row.id);
-    if (permisos.error) return <LoadingErrorCard />
+    if (permisos.error) return <TemplateErrorData />
     if (permisos.isLoading) return <TableSkeleton />
 
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CheckboxGroup, Checkbox, Button } from "@nextui-org/react";
 import { useRolFuncionalService } from "../../Hooks/useRolFuncionalService";
-import TemplateBaseAlert from "@/shared/Components/Templates/TemplateBaseAlert";
+import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import { toast } from "react-toastify";
 
 export default function AsignarPermisoForm({ menu, rolFuncional }) {
@@ -46,7 +46,7 @@ export default function AsignarPermisoForm({ menu, rolFuncional }) {
       {
         errorValidation.length === 0 ? null : (
           <section>
-            <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+            <TemplateAlert message={errorValidation} type={'errorList'} />
           </section>
         )
       }

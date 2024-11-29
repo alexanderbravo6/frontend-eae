@@ -1,7 +1,7 @@
 import React from 'react'
 import OpcionesItem from './OpcionesItem'
 import { Skeleton } from '@nextui-org/react'
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard'
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData'
 import RegistrarOpcionModal from './Modals/Opciones/RegistrarOpcionModal'
 import { useOpcionService } from '../Hooks/useOpcionService'
 
@@ -9,7 +9,7 @@ import { useOpcionService } from '../Hooks/useOpcionService'
 function OpcionesList({ idPregunta }) {
     const { FetchOpciones } = useOpcionService()
     const opciones = FetchOpciones(idPregunta)
-    if (opciones.error) return <LoadingErrorCard />
+    if (opciones.error) return <TemplateErrorData />
     if (opciones.isLoading) return <Skeleton className="h-3 w-3/5 rounded-lg" />
 
     return (

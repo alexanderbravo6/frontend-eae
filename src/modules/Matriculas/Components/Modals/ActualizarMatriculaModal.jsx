@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import { IconEdit } from '@/shared/Components/Icons';
 import ActualizarMatriculaForm from '../Forms/ActualizarMatriculaForm';
 
@@ -14,7 +14,7 @@ function ActualizarMatriculaModal({ row }) {
             <button className='text-emerald-500 w-6 h-6' onClick={onOpen} >
                 <IconEdit />
             </button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
@@ -29,7 +29,7 @@ function ActualizarMatriculaModal({ row }) {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

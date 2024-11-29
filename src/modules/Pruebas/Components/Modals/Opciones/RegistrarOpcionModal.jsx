@@ -2,7 +2,7 @@
 import React from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarOpcionForm from '../../Forms/Opcion/RegistrarOpcionForm';
 
 
@@ -21,7 +21,7 @@ function RegistrarOpcionModal({
                 </svg>
                 Agregar Opciones
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
@@ -37,7 +37,7 @@ function RegistrarOpcionModal({
 
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

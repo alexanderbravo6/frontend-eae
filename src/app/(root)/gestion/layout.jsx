@@ -8,7 +8,7 @@ import { useSession } from "next-auth/react";
 import { GlobalProvider } from "@/shared/Providers/GlobalProvider";
 import Sidebar from "@/modules/Layout/Components/Sidebar/Sidebar";
 import Footer from "@/modules/Layout/Components/Footer/Footer";
-import LoadingScreenMinedu from "@/shared/Components/LoadingScreenMinedu";
+import LoadingScreenMinedu from "@/shared/Components/Loaders/LoadingScreenMinedu";
 import Navbar from "@/modules/Layout/Components/Navbar/Navbar";
 import { useRouter } from "next/navigation";
 

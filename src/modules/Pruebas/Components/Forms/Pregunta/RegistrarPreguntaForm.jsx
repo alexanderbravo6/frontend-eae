@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import 'quill/dist/quill.snow.css';
 import { toolbarSetting } from '@/shared/Constants/GlobalConstants';
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';

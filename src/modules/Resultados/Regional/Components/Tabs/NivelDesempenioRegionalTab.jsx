@@ -3,8 +3,8 @@ import { Tab, Tabs } from '@nextui-org/react'
 import React from 'react'
 
 import { useSession } from 'next-auth/react';
-import { NivelDesempenioSkeleton } from '@/shared/Components/Skeletons';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { NivelDesempenioSkeleton } from '@/shared/Components/Skeletons/Skeletons';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useResultadoRegionalService } from '../../Hooks/useResultadoRegionalService';
 import NivelDesempenioRegionalCard from '../Cards/NivelDesempenioRegionalCard';
 
@@ -29,7 +29,7 @@ function NivelDesempenioRegionalTab({ idCiclo, row }) {
                                     item.pruebas.length > 0 ?
                                         item.pruebas.map((prueba, i) => (
                                             <NivelDesempenioRegionalCard key={i} data={prueba} />
-                                        )) : <TemplateBaseAlert message='No se encontraron resultados dentro de esta prueba' type={"Attention"} />
+                                        )) : <TemplateAlert message='No se encontraron resultados dentro de esta prueba' type={"Attention"} />
                                 }
 
                             </section>

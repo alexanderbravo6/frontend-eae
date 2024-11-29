@@ -1,10 +1,10 @@
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons'
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit'
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react'
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
-import TemplateBaseAlert from "@/shared/Components/Templates/TemplateBaseAlert";
+import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import { useRolFuncionalService } from '../../Hooks/useRolFuncionalService';
 function RegistrarRolFuncionalForm({ onClose }) {
 
@@ -45,7 +45,7 @@ function RegistrarRolFuncionalForm({ onClose }) {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

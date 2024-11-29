@@ -1,8 +1,8 @@
 'use client'
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard'
-import { TableSkeleton } from '@/shared/Components/Skeletons'
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData'
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons'
 import React from 'react'
-import TemplateBaseTablePagination from '@/shared/Components/Templates/TemplateBaseTablePagination'
+import TemplateTablePagination from '@/shared/Components/Templates/TemplateTablePagination'
 import { useResultadoInstitucional } from '../../Providers/ResultadoInstitucionalProvider'
 import { useUtils } from '@/shared/Hooks/useUtils'
 import { institucionResultadoColumns } from '../../Constants/ResultadoInstitucionConstants'
@@ -15,13 +15,13 @@ function InstitucionTable({ query }) {
     const { FetchInstitucionesResultados } = useUtils()
     const instituciones = FetchInstitucionesResultados(pagination?.pageIndex + 1, query)
 
-    if (instituciones?.error) return <LoadingErrorCard />
+    if (instituciones?.error) return <TemplateErrorData />
     if (instituciones?.isLoading) return <TableSkeleton />
 
     return (
         <>
             {instituciones && !instituciones.error && (
-                <TemplateBaseTablePagination
+                <TemplateTablePagination
                     pagination={pagination}
                     setPagination={setPagination}
                     datos={instituciones?.data?.data}

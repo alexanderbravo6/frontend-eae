@@ -2,7 +2,7 @@
 
 
 import IndexPersona from '@/modules/Persona/Components/IndexPersona'
-import Breadcrumb from '@/shared/Components/Breadcrumb'
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
 import React from 'react'
 const itemBreadCrumbs = [
   {

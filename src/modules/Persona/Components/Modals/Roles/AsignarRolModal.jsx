@@ -2,7 +2,7 @@ import { IconKey } from "@/shared/Components/Icons";
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import RegistrarRolPersonaModal from "./RegistrarRolPersonaModal";
 import RolPersonaTable from "../../Tables/RolPersonaTable";
-import TemplateBaseModal from "@/shared/Components/Templates/TemplateBaseModal";
+import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 
 const AsignarRolModal = ({ row }) => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -12,7 +12,7 @@ const AsignarRolModal = ({ row }) => {
             <button onClick={onOpen} className="font-medium text-orange-500  hover:underline">
                 <IconKey />
             </button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-7xl "
@@ -35,7 +35,7 @@ const AsignarRolModal = ({ row }) => {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

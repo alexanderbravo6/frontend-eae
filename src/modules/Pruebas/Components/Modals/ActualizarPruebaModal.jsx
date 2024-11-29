@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { ModalContent, ModalHeader, useDisclosure } from "@nextui-org/react";
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import { IconEdit } from '@/shared/Components/Icons';
 import RegistrarPruebaForm from '../Forms/Prueba/RegistrarPruebaForm';
 import ActualizarPruebaForm from '../Forms/Prueba/ActualizarPruebaForm';
@@ -17,7 +17,7 @@ function ActualizarPruebaModal({ row }) {
             <button className='text-emerald-500 w-6 h-6' onClick={onOpen} >
                 <IconEdit />
             </button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
@@ -33,7 +33,7 @@ function ActualizarPruebaModal({ row }) {
 
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

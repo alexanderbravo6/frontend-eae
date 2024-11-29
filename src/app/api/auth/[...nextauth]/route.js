@@ -60,6 +60,7 @@ export const authOptions = {
             // Verifica si la solicitud proviene de un trigger 'update'
             if (trigger === 'update') {
 
+                token.user.idPersona = session.user.idPersona;
                 token.user.anio = session.user.anio;
                 token.user.idInstitucionActiva = session.user.idInstitucionActiva;
                 token.user.idSede = session.user.idSede;

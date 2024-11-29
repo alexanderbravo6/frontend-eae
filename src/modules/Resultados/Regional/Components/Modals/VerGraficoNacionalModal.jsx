@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoInstitucionalTab from '../Tabs/GraficoRegionalTab';
 import NivelDesempenioCard from '@/modules/Resultados/Shared/Cards/NivelDesempenioCard';
 
@@ -15,7 +15,7 @@ function VerGraficoNacionalModal({ row }) {
                 Ver ResultadoNacional
             </Button>
 
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-xl '}
@@ -40,7 +40,7 @@ function VerGraficoNacionalModal({ row }) {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

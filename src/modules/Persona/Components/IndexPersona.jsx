@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import RegistrarPersonaModal from './Modals/RegistrarPersonaModal'
 import PersonaTabla from './Tables/PersonaTable'
 import { personaColumns } from '../Constants/PersonaConstants'
-import TemplateBaseSearch from '@/shared/Components/Templates/TemplateBaseSearch'
+import TemplateSearch from '@/shared/Components/Templates/TemplateSearch'
 import { usePersona } from '../Providers/PersonaProvider'
 
 const IndexPersona = () => {
@@ -13,7 +13,7 @@ const IndexPersona = () => {
     return (
         <>
             <div className='mb-5'>
-                <TemplateBaseSearch handleSearch={handleSearch} handleCleanSearch={handleCleanSearch} >
+                <TemplateSearch handleSearch={handleSearch} handleCleanSearch={handleCleanSearch} >
                     <section className="grid gap-6 mb-6 mt-3 md:grid-cols-4 grid-cols-2">
                         <div className="col-span-1">
                             <label htmlFor="numeroDocumento" className="block mb-2 text-xs font-medium text-gray-900 dark:text-white">
@@ -64,7 +64,7 @@ const IndexPersona = () => {
                             />
                         </div>
                     </section>
-                </TemplateBaseSearch>
+                </TemplateSearch>
             </div>
             <section>
                 <RegistrarPersonaModal />

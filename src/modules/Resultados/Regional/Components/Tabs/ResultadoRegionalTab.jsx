@@ -41,8 +41,8 @@ function ResultadoRegionalTab({ descripcionCiclo, idCiclo, row }) {
                     <Card>
                         <CardBody className='mx-5'>
                             <div className="px-4 py-5 sm:px-0">
-                                <h3 className="text-base/7 font-semibold text-gray-900">PARTICIPANTES POR PROGRAMA DE ESTUDIOS</h3>
-                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {descripcionCiclo}.</p>
+                                <h3 className="text-base/7 font-semibold text-gray-900">PARTICIPANTES POR INSTITUCIÓN</h3>
+                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la institución en el ciclo {descripcionCiclo}.</p>
                             </div>
                             <CantidadProgramarRegionTable
                                 idCiclo={idCiclo}
@@ -56,7 +56,7 @@ function ResultadoRegionalTab({ descripcionCiclo, idCiclo, row }) {
                         <CardBody className='mx-5'>
                             <div className="px-4 py-5 sm:px-0">
                                 <h3 className="text-base/7 font-semibold text-gray-900">PROMEDIOS INSTITUCIONALES</h3>
-                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el total de estudiantes que han rendido la prueba en el ciclo {descripcionCiclo}.</p>
+                                <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">A continuación, podrá visualizar el promedio de cada institución que ha rendido la prueba en el ciclo {descripcionCiclo}.</p>
                             </div>
                             <PromedioInstitucional idCiclo={idCiclo} row={row} />
                         </CardBody>

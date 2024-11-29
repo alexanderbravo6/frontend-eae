@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
 import { IconEdit, IconKey } from "@/shared/Components/Icons";
-import TemplateBaseModal from "@/shared/Components/Templates/TemplateBaseModal";
+import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 
 import PermisosAccordion from "../Forms/PermisosAccordion";
 
@@ -15,7 +15,7 @@ export default function AsignarPermisosModal({ row }) {
             <Button isIconOnly onClick={onOpen} size="sm" title='Permisos' className='border-none' variant="ghost" color="warning">
                 <IconKey />
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-3xl "
@@ -30,7 +30,7 @@ export default function AsignarPermisosModal({ row }) {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     );
 }

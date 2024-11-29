@@ -1,8 +1,8 @@
 import React from 'react'
 
 export const metadata = {
-    title: "Seguridad | Perfil",
-    description: "Modulo de seguridad y roles",
+    title: "Mi Perfil",
+    description: "Mi perfil",
 
 };
 const PerfilLayout = ({ children }) => {

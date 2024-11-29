@@ -1,7 +1,7 @@
 'use client'
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard'
-import { TableSkeleton } from '@/shared/Components/Skeletons'
-import TemplateBaseTable from '@/shared/Components/Templates/TemplateBaseTable'
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData'
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons'
+import TemplateTable from '@/shared/Components/Templates/TemplateTable'
 import React from 'react'
 import { pruebaConstants } from '../../Constants/PruebaConstants'
 import { usePruebaService } from '../../Hooks/usePruebaService'
@@ -12,11 +12,11 @@ function PruebaTable() {
     const { data: session } = useSession()
     const { FetchPruebas } = usePruebaService()
     const pruebas = FetchPruebas(session?.user.anio)
-    if (pruebas.error) return <LoadingErrorCard />
+    if (pruebas.error) return <TemplateErrorData />
     if (pruebas.isLoading) return <TableSkeleton />
     return (
         <>
-            <TemplateBaseTable datos={pruebas?.data?.data} columns={pruebaConstants} total={pruebas?.data?.data.length} />
+            <TemplateTable datos={pruebas?.data?.data} columns={pruebaConstants} total={pruebas?.data?.data.length} />
         </>
     )
 }

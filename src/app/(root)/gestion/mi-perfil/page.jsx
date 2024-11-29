@@ -1,17 +1,10 @@
 import PerfilForm from '@/modules/Perfil/Components/PerfilForm'
-import Breadcrumb from '@/shared/Components/Breadcrumb'
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
 import React from 'react'
 const itemBreadCrumbs = [
+ 
   {
-    href: '/',
-    name: 'Inicio'
-  },
-  {
-    href: '/',
-    name: 'Seguridad'
-  },
-  {
-    href: '/seguridad/perfil',
+    href: '/mi-perfil',
     name: 'Perfil'
   }
 ]

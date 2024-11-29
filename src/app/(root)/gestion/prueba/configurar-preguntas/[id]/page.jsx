@@ -1,6 +1,6 @@
 
 import PreguntaIndex from '@/modules/Pruebas/Components/PreguntaIndex';
-import Breadcrumb from '@/shared/Components/Breadcrumb'
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
 import React from 'react'
 
 const itemBreadcrumbs = [

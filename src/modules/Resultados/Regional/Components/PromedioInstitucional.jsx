@@ -1,6 +1,6 @@
 import { usePruebaService } from '@/modules/Pruebas/Hooks/usePruebaService'
-import LoadingSpinner from '@/shared/Components/LoadingSpinner';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import LoadingSpinner from '@/shared/Components/Loaders/LoadingSpinner';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useSession } from 'next-auth/react';
 import React, { useState } from 'react'
 import PromedioInstitucionalBar from './Charts/PromedioInstitucionalBar';
@@ -11,9 +11,9 @@ function PromedioInstitucional({ idCiclo, row }) {
     const { FetchPruebas } = usePruebaService();
     const pruebas = FetchPruebas(session?.user.anio);
     if (pruebas?.isLoading) return <LoadingSpinner />
-    if (pruebas?.error) return <TemplateBaseAlert type="error" message="Error al cargar las pruebas" />
+    if (pruebas?.error) return <TemplateAlert type="error" message="Error al cargar las pruebas" />
 
-    if (pruebas?.data?.data?.filter((prueba) => prueba.idCiclo === idCiclo).length == 0) return <TemplateBaseAlert type="Attention" message="No hay pruebas registradas" />
+    if (pruebas?.data?.data?.filter((prueba) => prueba.idCiclo === idCiclo).length == 0) return <TemplateAlert type="Attention" message="No hay pruebas registradas" />
     return (
         <>
             <section>

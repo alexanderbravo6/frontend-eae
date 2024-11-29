@@ -1,12 +1,12 @@
 'use client'
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard'
-import { TableSkeleton } from '@/shared/Components/Skeletons'
-import TemplateBaseTable from '@/shared/Components/Templates/TemplateBaseTable'
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData'
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons'
+import TemplateTable from '@/shared/Components/Templates/TemplateTable'
 import React from 'react'
 import { matriculaColumns, MatriculaConstants } from '../../Constants/MatriculaConstants'
 import { useMatriculaService } from '../../Hooks/useMatriculaService'
 import { useMatricula } from '../../Providers/MatriculaProvider'
-import TemplateBaseTablePagination from '@/shared/Components/Templates/TemplateBaseTablePagination'
+import TemplateTablePagination from '@/shared/Components/Templates/TemplateTablePagination'
 
 
 
@@ -16,13 +16,13 @@ function MatriculaTable({ query }) {
     const { FecthMatriculas } = useMatriculaService()
     const matriculas = FecthMatriculas(pagination?.pageIndex + 1, query)
 
-    if (matriculas.error) return <LoadingErrorCard />
+    if (matriculas.error) return <TemplateErrorData />
     if (matriculas.isLoading) return <TableSkeleton />
     return (
         <>
             {
                 matriculas && !matriculas.error && !matriculas.error && (
-                    <TemplateBaseTablePagination pagination={pagination} setPagination={setPagination} datos={matriculas?.data?.data} columns={matriculaColumns} total={matriculas?.data?.meta.total} />
+                    <TemplateTablePagination pagination={pagination} setPagination={setPagination} datos={matriculas?.data?.data} columns={matriculaColumns} total={matriculas?.data?.meta.total} />
                 )
             }
 

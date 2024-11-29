@@ -2,7 +2,7 @@ import React from 'react'
 import RegistrarMatriculaModal from './Modals/RegistrarMatriculaModal'
 import MatriculaTable from './Tables/MatriculaTable'
 import { useMatricula } from '../Providers/MatriculaProvider'
-import TemplateBaseSearch from '@/shared/Components/Templates/TemplateBaseSearch'
+import TemplateSearch from '@/shared/Components/Templates/TemplateSearch'
 import CargaMasivaMatriculaModal from './Modals/CargaMasivaMatriculaModal'
 
 
@@ -11,7 +11,7 @@ const MatriculaIndex = () => {
     return (
         <>
             <div className='mb-5'>
-                <TemplateBaseSearch handleSearch={handleSearch} handleCleanSearch={handleCleanSearch} >
+                <TemplateSearch handleSearch={handleSearch} handleCleanSearch={handleCleanSearch} >
                     <section className="grid gap-6 mb-6 mt-3 md:grid-cols-3 grid-cols-2">
                         <div className="col-span-1">
                             <label htmlFor="numeroDocumento" className="block mb-2 text-xs font-medium text-gray-900 dark:text-white">
@@ -118,7 +118,7 @@ const MatriculaIndex = () => {
                             </select>
                         </div>
                     </section>
-                </TemplateBaseSearch>
+                </TemplateSearch>
             </div>
             <section>
                 <div className='flex w-full gap-4'>

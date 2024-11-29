@@ -2,14 +2,13 @@
 import React from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
 import RegistrarMatriculaForm from '../Forms/RegistrarMatriculaForm';
-import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import { useUtils } from '@/shared/Hooks/useUtils';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 
 
 function RegistrarMatriculaModal() {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESMAT', 'AGR')) return null
     return (
@@ -20,23 +19,20 @@ function RegistrarMatriculaModal() {
                 </svg>
                 Registrar
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={'Registrar Matricula'}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">Registrar Matricula</h1>
-                            </ModalHeader>
-                            <RegistrarMatriculaForm onClose={onClose} />
-                        </>
+                <>
 
-                    )}
-                </ModalContent>
-            </TemplateBaseModal>
+                    <RegistrarMatriculaForm onClose={onClose} />
+
+                </>
+
+
+            </TemplateModal>
         </>
     )
 }

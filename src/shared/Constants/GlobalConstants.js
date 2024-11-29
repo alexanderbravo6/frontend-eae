@@ -21,6 +21,15 @@ export const actionsLinks = [
 
 ]
 
+export const sexoOptions = [
+    { value: 'M', label: 'MASCULINO' },
+    { value: 'F', label: 'FEMENINO' }
+]
+
+export const tipoDocumentoOptions = [
+    { value: "1", label: "DNI" },
+    { value: "2", label: "CARNET DE EXTRANJERÍA" },
+]
 
 
 export const toolbarSetting = {

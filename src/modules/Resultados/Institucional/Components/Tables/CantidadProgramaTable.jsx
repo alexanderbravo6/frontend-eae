@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { useSession } from 'next-auth/react';
-import { TableSkeleton } from '@/shared/Components/Skeletons';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useResultadoInstitucionalService } from '../../Hooks/useResultadoInstitucionalService';
 
 function CantidadProgramaTable({ idCiclo, row }) {
@@ -10,9 +10,9 @@ function CantidadProgramaTable({ idCiclo, row }) {
     const { FetchParticipantesPorPrograma } = useResultadoInstitucionalService();
     const evaluados = FetchParticipantesPorPrograma(idCiclo, session?.user?.anio, row.id);
     if (evaluados.isLoading) return <TableSkeleton />
-    if (evaluados.error) return <TemplateBaseAlert type='Attention' message='No se encontraron resultados' />
+    if (evaluados.error) return <TemplateAlert type='Attention' message='No se encontraron resultados' />
 
-    if (evaluados.data?.data?.especialidades.length == 0) return <TemplateBaseAlert type='Attention' message='No se encontraron resultados' />
+    if (evaluados.data?.data?.especialidades.length == 0) return <TemplateAlert type='Attention' message='No se encontraron resultados' />
     const totals = evaluados?.data?.data?.tipoPrueba.map((_, tipoIndex) =>
         evaluados?.data?.data?.especialidades.reduce((sum, especialidad) => {
             const participante = especialidad.participantes[tipoIndex];

@@ -2,38 +2,53 @@
 import React, { use, useState } from 'react'
 import { Button } from '@nextui-org/react'
 import Link from 'next/link'
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert'
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert'
 import { useSession } from 'next-auth/react'
-import { useFetchPerfil, usePerfilService } from '../Hooks/usePerfilService'
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard'
-import Progress from '@/shared/Components/Progress'
+import { usePerfilService } from '../Hooks/usePerfilService'
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData'
+import LoadingSpinner from '@/shared/Components/Loaders/LoadingSpinner'
 import { PassworInput } from '@/shared/Components/Form/Inputs'
 import { useForm } from 'react-hook-form'
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons'
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit'
 import { toast } from 'react-toastify'
+import { useSWRConfig } from 'swr'
 
 
 const PerfilForm = () => {
     const { data: session } = useSession()
+    const { mutate } = useSWRConfig()
     const { actualizarPerfil, FetchPerfil } = usePerfilService()
     const [errorValidation, setErrorValidation] = useState([])
     const perfil = FetchPerfil(session?.user?.idPersona)
     const { register, handleSubmit, setValue, reset, formState: { errors, isSubmitting } } = useForm();
-    if (perfil.isLoading) return <Progress />
-    if (perfil.error) return <LoadingErrorCard />
-    const persona = perfil.data
+    if (perfil.isLoading) return <LoadingSpinner />
+    if (perfil.error) return <TemplateErrorData />
+    const persona = perfil.data.data
 
     const perfilSubmit = handleSubmit(async (data) => {
-
+        const request = {
+            ...data,
+            estado: 1
+        }
         try {
-            const response = await actualizarPerfil(data, session?.user?.idPersona)
+            const response = await actualizarPerfil(request, session?.user?.idPersona)
             if (response.success === true) {
                 setErrorValidation([])
+                mutate("informacion_persona_" + session?.user?.idPersona)
                 toast.success('Perfil actualizado correctamente')
+            } else {
+                if (response.errors) {
+                    const nuevosErrores = Object.values(response.errors).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+                if (response.validations) {
+                    const nuevosErrores = Object.values(response.validations).flat();
+                    setErrorValidation(nuevosErrores)
+                }
             }
 
         } catch (error) {
-            setErrorValidation(error.response.data.errors)
+            console.log(error)
         }
     })
 
@@ -43,7 +58,7 @@ const PerfilForm = () => {
             <form onSubmit={perfilSubmit} >
                 <div className="space-y-5">
                     {
-                        errorValidation.length > 0 && <TemplateBaseAlert message={errorValidation} type="errorList" />
+                        errorValidation.length > 0 && <TemplateAlert message={errorValidation} type="errorList" />
                     }
 
 
@@ -85,13 +100,7 @@ const PerfilForm = () => {
                             <div className="sm:col-span-2">
                                 <label htmlFor="tipoDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Documento</label>
                                 <select id="tipoDocumento"
-                                    {...register('tipoDocumento', {
-
-                                        required: {
-                                            value: true,
-                                            message: 'El campo tipo documento es requerido'
-                                        },
-                                    })}
+                                    disabled
                                     defaultValue={persona.tipoDocumento}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     <option value="">Seleccionar una opción</option>
@@ -99,29 +108,15 @@ const PerfilForm = () => {
                                     <option value="2">CARNET DE EXTRANJERIA</option>
 
                                 </select>
-                                {
-                                    errors.tipoDocumento && (
-                                        <span className="text-red-500 text-xs">{errors.tipoDocumento.message}</span>
-                                    )
-                                }
+
                             </div>
                             <div className="sm:col-span-2">
                                 <label htmlFor="nroDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Número de Documento</label>
                                 <input type="text" id="nroDocumento"
-                                    {...register('numeroDocumento', {
-
-                                        required: {
-                                            value: true,
-                                            message: 'El campo numero de documento es requerido'
-                                        },
-                                    })}
+                                    disabled
                                     defaultValue={persona.numeroDocumento}
                                     className="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                {
-                                    errors.numeroDocumento && (
-                                        <span className="text-red-500 text-xs">{errors.numeroDocumento.message}</span>
-                                    )
-                                }
+
                             </div>
                         </div>
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

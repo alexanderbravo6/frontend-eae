@@ -1,10 +1,10 @@
 'use client'
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard'
-import { TableSkeleton } from '@/shared/Components/Skeletons'
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData'
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons'
 import React from 'react'
 import { ResultadoEstudianteConstants } from '../../Constants/ResultadoEstudianteConstants'
 import { useResultadoEstudianteService } from '../../Hooks/useResultadoEstudianteService'
-import TemplateBaseTablePagination from '@/shared/Components/Templates/TemplateBaseTablePagination'
+import TemplateTablePagination from '@/shared/Components/Templates/TemplateTablePagination'
 import { useResultadoEstudiante } from '../../Providers/ResultadoEstudianteProvider'
 import { useSession } from 'next-auth/react'
 
@@ -17,13 +17,13 @@ function ResultadoEstudianteTable({ query }) {
 
     const resultados = FetchResultadosEstudiantes(pagination?.pageIndex + 1, query, session?.user?.anio)
 
-    if (resultados.error) return <LoadingErrorCard />
+    if (resultados.error) return <TemplateErrorData />
     if (resultados.isLoading) return <TableSkeleton />
     return (
         <>
             {
                 resultados && !resultados.error && !resultados.error && (
-                    <TemplateBaseTablePagination pagination={pagination} setPagination={setPagination} datos={resultados?.data?.data} columns={ResultadoEstudianteConstants} total={resultados?.data?.meta.total} />
+                    <TemplateTablePagination pagination={pagination} setPagination={setPagination} datos={resultados?.data?.data} columns={ResultadoEstudianteConstants} total={resultados?.data?.meta.total} />
                 )
             }
 

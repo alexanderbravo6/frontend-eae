@@ -1,7 +1,7 @@
 'use client'
 import IndexMenu from '@/modules/Menu/Components/IndexMenu'
-import Breadcrumb from '@/shared/Components/Breadcrumb'
-import TemplateBaseSearch from '@/shared/Components/Templates/TemplateBaseSearch'
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
+import TemplateSearch from '@/shared/Components/Templates/TemplateSearch'
 import React from 'react'
 const itemBreadCrumbs = [
   {
@@ -27,7 +27,7 @@ function MenuPage() {
       </div>
       <section className='w-full '>
 
-        <TemplateBaseSearch handleSearch={handleSearch} >
+        <TemplateSearch handleSearch={handleSearch} >
           <section className="grid gap-6 mb-6 mt-3  md:grid-cols-2 grid-cols-1 ">
             <div className="col-span-1">
               <label htmlFor="nombre_search" className="block mb-2 text-xs font-medium text-gray-900 dark:text-white">
@@ -43,7 +43,7 @@ function MenuPage() {
 
             </div>
           </section>
-        </TemplateBaseSearch>
+        </TemplateSearch>
 
         <div className='w-full bg-white mt-5 mb-16   h-auto md:overflow-hidden overflow-scroll  rounded-lg  '>
           <IndexMenu />

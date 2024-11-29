@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoInstitucionalTab from '../../Institucional/Components/Tabs/GraficoInstitucionalTab';
 import NivelDesempenioCard from '@/modules/Resultados/Shared/Cards/NivelDesempenioCard';
-import { ButtonSkeleton } from '@/shared/Components/Skeletons';
+import { ButtonSkeleton } from '@/shared/Components/Skeletons/Skeletons';
 import { useResultadoNacionalService } from '@/modules/Resultados/Nacional/Hooks/useResultadoNacionalService';
 
 function VerGraficoNacionalModal({ idPrueba }) {
@@ -24,7 +24,7 @@ function VerGraficoNacionalModal({ idPrueba }) {
                 Ver ResultadoNacional
             </Button>
 
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-xl '}
@@ -52,7 +52,7 @@ function VerGraficoNacionalModal({ idPrueba }) {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

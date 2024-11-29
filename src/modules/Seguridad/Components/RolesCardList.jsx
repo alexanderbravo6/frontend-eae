@@ -1,5 +1,5 @@
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard';
-import Progress from '@/shared/Components/Progress';
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData';
+import LoadingSpinner from '@/shared/Components/Loaders/LoadingSpinner';
 import React from 'react'
 import RolItemCard from './RolItemCard';
 import { useSession } from 'next-auth/react';
@@ -8,8 +8,8 @@ import { useFetchRoles } from '../Hooks/useSeguridad';
 function RolesCardList() {
     const { data: session } = useSession();
     const { data, error, isLoading } = useFetchRoles(session?.user.idPersona)
-    if (error) return <LoadingErrorCard />
-    if (isLoading) return <Progress />
+    if (error) return <TemplateErrorData />
+    if (isLoading) return <LoadingSpinner />
     const roles = data.data;
     return (
         <>

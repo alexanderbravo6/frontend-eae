@@ -1,6 +1,6 @@
 import React from 'react'
-import { TableSkeleton } from '@/shared/Components/Skeletons';
-import LoadingErrorCard from '@/shared/Components/LoadingErrorCard';
+import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons';
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData';
 import { usePersonaService } from '../../Hooks/usePersonaService';
 import EliminarRolAsignadoButton from '../Buttons/EliminarRolAsignadoButton';
 import ActualizarRolPersonaModal from '../Modals/Roles/ActualizarRolPersonaModal';
@@ -16,7 +16,7 @@ const RolPersonaTable = ({ row }) => {
 
             {
                 rolesAsignados &&
-                    rolesAsignados.error ? <LoadingErrorCard /> :
+                    rolesAsignados.error ? <TemplateErrorData /> :
                     rolesAsignados.isLoading ? <TableSkeleton /> :
                         (
                             <table key="table" className="w-full text-sm text-left rtl:text-right text-gray-500">

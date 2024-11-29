@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 import 'quill/dist/quill.snow.css';
 import { toolbarSetting } from '@/shared/Constants/GlobalConstants';
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import { toast } from 'react-toastify';
 import { useSWRConfig } from 'swr';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useOpcionService } from '@/modules/Pruebas/Hooks/useOpcionService';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -65,7 +65,7 @@ function RegistrarOpcionForm({ idPregunta, onClose }) {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

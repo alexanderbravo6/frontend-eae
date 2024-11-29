@@ -1,5 +1,5 @@
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
@@ -46,7 +46,7 @@ function RegistrarPersonaForm({ onClose }) {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

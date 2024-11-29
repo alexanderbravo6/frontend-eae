@@ -4,7 +4,7 @@ import TestLoading from '@/modules/Evaluacion/Components/Test/TestLoading';
 import PreguntaSeguridadForm from '@/modules/Evaluacion/Components/Validacion/PreguntasSeguridadForm';
 import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
 import { useEvaluacionService } from '@/modules/Evaluacion/Hooks/useEvaluacionService';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { redirect, useRouter } from 'next/navigation';
 
 import React, { useState } from 'react'
@@ -61,7 +61,7 @@ function ValidacionPage() {
               {
                 errorValidation.length === 0 ? null : (
                   <section>
-                    <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                    <TemplateAlert message={errorValidation} type={'errorList'} />
                   </section>
                 )
               }

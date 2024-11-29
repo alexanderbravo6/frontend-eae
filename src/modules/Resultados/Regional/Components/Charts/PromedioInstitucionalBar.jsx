@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { PromedioBarSkeleton } from '@/shared/Components/Skeletons';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { PromedioBarSkeleton } from '@/shared/Components/Skeletons/Skeletons';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useResultadoRegionalService } from '../../Hooks/useResultadoRegionalService';
 
 function PromedioInstitucionalBar({ idPrueba, row }) {
     const { FetchPromedioRegional } = useResultadoRegionalService();
     const promedio = FetchPromedioRegional(idPrueba, row.id);
     if (promedio.isLoading) return <PromedioBarSkeleton />
-    if (promedio.error) return <TemplateBaseAlert type="Attention" message="No se encontraron resultados dentro de esta prueba." />
+    if (promedio.error) return <TemplateAlert type="Attention" message="No se encontraron resultados dentro de esta prueba." />
 
 
 

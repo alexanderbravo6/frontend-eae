@@ -2,7 +2,7 @@
 import React from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import { IconUpload } from '@/shared/Components/Icons';
 import MatriculaMasivaForm from '../Forms/CargaMasivaMatriculaForm';
 
@@ -17,7 +17,7 @@ function CargaMasivaMatriculaModal() {
                 <IconUpload />
                 Carga Masiva
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
@@ -33,7 +33,7 @@ function CargaMasivaMatriculaModal() {
 
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

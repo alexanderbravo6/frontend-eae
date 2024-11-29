@@ -19,6 +19,7 @@ function IniciarSesionForm() {
     }, [])
 
     const generateCaptcha = () => {
+
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
         if (ctx) {
@@ -46,6 +47,7 @@ function IniciarSesionForm() {
                 ctx.restore()
             })
         }
+
     }
 
     const validateCaptcha = () => {
@@ -86,7 +88,7 @@ function IniciarSesionForm() {
                     anio: response?.data?.defecto.anio,
                     sede: response?.data?.defecto.sede,
                     descripcionRol: response?.data?.defecto.descripcionRol,
-                    idInstitucionActiva: response?.data?.defecto.idRol == 2 ? response?.data?.defecto.idSede : 0,
+                    idInstitucionActiva: response?.data?.defecto.idRol == 3 ? response?.data?.defecto.idSede : 0,
                     // Datos no configurables
                     iniciales: response?.data?.usuario.iniciales,
                     idPersona: response?.data?.usuario.idPersona,
@@ -211,6 +213,11 @@ function IniciarSesionForm() {
                         )
                     }
                 </section>
+                <section className="w-full">
+                    <Link href={`registro-estudiante`} className="text-[#338ef7] text-left font-bold" >
+                        Registrarme como estudiante
+                    </Link>
+                </section>
                 <section className="flex  w-full md:flex-nowrap flex-wrap gap-4">
                     <div >
                         <label htmlFor="captcha" className="sr-only">CAPTCHA</label>
@@ -229,7 +236,15 @@ function IniciarSesionForm() {
                                 value={userCaptchaInput}
                                 onChange={(e) => setUserCaptchaInput(e.target.value)}
                             />
-                            <button type="button" onClick={generateCaptcha} title="Actualizar Captcha" className="absolute inset-y-0 right-0 pr-3 flex items-center text-blue-400 hover:text-blue-600">
+                            <button type="button" onClick={
+                                () => {
+                                    setIsCaptchaValid(false)
+                                    generateCaptcha()
+                                    setUserCaptchaInput('')
+
+                                }
+
+                            } title="Actualizar Captcha" className="absolute inset-y-0 right-0 pr-3 flex items-center text-blue-400 hover:text-blue-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-rotate-2">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <path d="M15 4.55a8 8 0 0 0 -6 14.9m0 -4.45v5h-5" />
@@ -289,7 +304,7 @@ function IniciarSesionForm() {
                 </div>
             </footer>
 
-        
+
         </>
     );
 

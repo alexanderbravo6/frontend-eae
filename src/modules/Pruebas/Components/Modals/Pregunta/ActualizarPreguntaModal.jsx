@@ -2,7 +2,7 @@
 import React from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarEnunciadoForm from '@/modules/Enunciados/Components/Forms/RegistrarEnunciadoForm';
 import { IconEdit } from '@/shared/Components/Icons';
 import ActualizarPreguntaForm from '../../Forms/Pregunta/ActualizarPreguntaForm';
@@ -18,7 +18,7 @@ function ActualizarPreguntaModal({ data }) {
                 <IconEdit />
                 Actualizar
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
@@ -34,7 +34,7 @@ function ActualizarPreguntaModal({ data }) {
 
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

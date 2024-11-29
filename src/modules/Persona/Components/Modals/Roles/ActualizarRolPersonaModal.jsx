@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { ModalContent, ModalHeader, Button, useDisclosure } from "@nextui-org/react";
-import TemplateBaseModal from "@/shared/Components/Templates/TemplateBaseModal";
+import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import { IconEdit } from "@/shared/Components/Icons";
 import ActualizarPersonaRolForm from "../../Forms/ActualizarPersonaRolForm";
 export default function ActualizarRolPersonaModal({ data }) {
@@ -13,7 +13,7 @@ export default function ActualizarRolPersonaModal({ data }) {
             <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="ghost" color="success" onPress={onOpen}>
                 <IconEdit />
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-7xl "
@@ -27,7 +27,7 @@ export default function ActualizarRolPersonaModal({ data }) {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     );
 }

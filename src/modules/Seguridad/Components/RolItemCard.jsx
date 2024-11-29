@@ -12,7 +12,7 @@ function RolItemCard({ rol }) {
                 ...session.user,
                 idPersonaRol: rol.idPersonaRol,
                 idSede: rol.sede.idSede,
-                idInstitucionActiva: rol.idRol == 2 ? rol.sede.idSede : 0,
+                idInstitucionActiva: rol.idRol == 3 ? rol.sede.idSede : 0,
                 descripcionRol: rol.rol,
                 sede: rol.sede.descripcionSede,
                 idRol: rol.idRol,

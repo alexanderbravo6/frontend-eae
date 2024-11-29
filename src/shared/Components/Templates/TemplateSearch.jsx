@@ -1,7 +1,7 @@
 import { Button } from '@nextui-org/react'
 import React from 'react'
 
-const TemplateBaseSearch = ({ children, handleSearch, handleCleanSearch }) => {
+const TemplateSearch = ({ children, handleSearch, handleCleanSearch }) => {
     return (
         <div className='w-full bg-white h-auto md:overflow-hidden shadow-md rounded-lg p-4 '>
             <h4 className='font-bold' >BÚSQUEDA AVANZADA</h4>
@@ -23,4 +23,4 @@ const TemplateBaseSearch = ({ children, handleSearch, handleCleanSearch }) => {
     )
 }
 
-export default TemplateBaseSearch
+export default TemplateSearch

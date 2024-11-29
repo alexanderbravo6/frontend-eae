@@ -1,11 +1,11 @@
 'use client'
 import React, { useState } from 'react'
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import { parseDate } from "@internationalized/date";
 import { useMatricula } from '../../Providers/MatriculaProvider';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useMatriculaService } from '../../Hooks/useMatriculaService';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
@@ -58,7 +58,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

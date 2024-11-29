@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LoadingErrorCard() {
+function TemplateErrorData() {
     return (
         <section className='w-full  flex items-center justify-center ' >
             <div className='mt-5 rounded-lg shadow-lg p-7 text-center'>
@@ -13,4 +13,4 @@ function LoadingErrorCard() {
     )
 }
 
-export default LoadingErrorCard
+export default TemplateErrorData

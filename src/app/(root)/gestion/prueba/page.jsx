@@ -1,7 +1,7 @@
 'use client'
 import PruebaIndex from '@/modules/Pruebas/Components/PruebaIndex'
-import Breadcrumb from '@/shared/Components/Breadcrumb'
-import PermissionDeniedScreeen from '@/shared/Components/PermissionDeniedScreeen';
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission';
 import { useUtils } from '@/shared/Hooks/useUtils';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import React from 'react'
@@ -15,7 +15,7 @@ const itemBreadcrumbs = [
 
 function GestionPruebasPage() {
     const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('GESPRU', 'ACC')) { return <PermissionDeniedScreeen /> }
+    if (!ValidarPermisos('GESPRU', 'ACC')) { return <TemplateDeniedPermission /> }
 
 
     return (

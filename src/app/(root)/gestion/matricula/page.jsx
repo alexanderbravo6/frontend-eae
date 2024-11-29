@@ -1,8 +1,8 @@
 'use client'
 import MatriculaIndex from '@/modules/Matriculas/Components/MatriculaIndex';
 import { useMatricula } from '@/modules/Matriculas/Providers/MatriculaProvider';
-import Breadcrumb from '@/shared/Components/Breadcrumb'
-import PermissionDeniedScreeen from '@/shared/Components/PermissionDeniedScreeen';
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import React from 'react'
 
@@ -16,7 +16,7 @@ const itemBreadcrumbs = [
 function MatriculaPage() {
     const { accesoActual } = useGlobal();
     const accesoPermitido = accesoActual[0]?.menus.filter(permiso => permiso?.codigo === "GESMAT").length > 0;
-    if (!accesoPermitido) { return <PermissionDeniedScreeen /> }
+    if (!accesoPermitido) { return <TemplateDeniedPermission /> }
 
     return (
         <>

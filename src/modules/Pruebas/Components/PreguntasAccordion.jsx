@@ -2,9 +2,9 @@
 import React from "react";
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { IconEyes } from "@/shared/Components/Icons";
-import LoadingErrorCard from "@/shared/Components/LoadingErrorCard";
-import { TableSkeleton } from "@/shared/Components/Skeletons";
-import Progress from "@/shared/Components/Progress";
+import TemplateErrorData from "@/shared/Components/Templates/TemplateErrorData";
+import { TableSkeleton } from "@/shared/Components/Skeletons/Skeletons";
+import LoadingSpinner from "@/shared/Components/Loaders/LoadingSpinner";
 import ActualizarPreguntaModal from "./Modals/Pregunta/ActualizarPreguntaModal";
 import EliminarPreguntaButton from "./Buttons/EliminarPreguntaButton";
 import OpcionesItem from "./OpcionesItem";
@@ -46,8 +46,8 @@ export default function PreguntasAccordion({ idPrueba }) {
 
     const { FetchPreguntasPorPrueba } = usePreguntaService();
     const preguntas = FetchPreguntasPorPrueba(idPrueba);
-    if (preguntas.error) return <LoadingErrorCard />
-    if (preguntas.isLoading) return <Progress />
+    if (preguntas.error) return <TemplateErrorData />
+    if (preguntas.isLoading) return <LoadingSpinner />
 
     return (
         <Accordion itemClasses={itemClasses} variant="splitted" isCompact>

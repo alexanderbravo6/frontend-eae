@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import SedePorTipoSelect from './SedePorTipoSelect'
 import { useUtils } from '@/shared/Hooks/useUtils'
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { usePersonaService } from '../../Hooks/usePersonaService';
 import { useForm } from 'react-hook-form';
 import { useSWRConfig } from 'swr';
@@ -47,7 +47,7 @@ function ActualizarPersonaRolForm({ onClose, data }) {
                 {
                     errorValidation.length === 0 ? null : (
                         <section>
-                            <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                            <TemplateAlert message={errorValidation} type={'errorList'} />
                         </section>
                     )
                 }

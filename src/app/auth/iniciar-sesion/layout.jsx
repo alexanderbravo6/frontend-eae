@@ -1,5 +1,5 @@
 'use client'
-import LoadingScreenMinedu from "@/shared/Components/LoadingScreenMinedu";
+import LoadingScreenMinedu from "@/shared/Components/Loaders/LoadingScreenMinedu";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 

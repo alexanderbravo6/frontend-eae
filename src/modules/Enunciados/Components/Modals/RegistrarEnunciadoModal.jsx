@@ -2,7 +2,7 @@
 import React from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarEnunciadoForm from '../Forms/RegistrarEnunciadoForm';
 import { useUtils } from '@/shared/Hooks/useUtils';
 
@@ -19,7 +19,7 @@ function RegistrarEnunciadoModal() {
                 </svg>
                 Registrar
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
@@ -35,7 +35,7 @@ function RegistrarEnunciadoModal() {
 
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }

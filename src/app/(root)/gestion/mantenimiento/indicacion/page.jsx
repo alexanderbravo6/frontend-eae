@@ -1,8 +1,8 @@
 'use client'
 
 import IndicacionIndex from '@/modules/Indicacion/components/IndicacionIndex';
-import Breadcrumb from '@/shared/Components/Breadcrumb'
-import PermissionDeniedScreeen from '@/shared/Components/PermissionDeniedScreeen';
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission';
 import { useUtils } from '@/shared/Hooks/useUtils';
 import React from 'react'
 
@@ -14,7 +14,7 @@ const itemBreadcrumbs = [
 ]
 function IndicacionPage() {
     const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('GESENU', 'ACC')) { return <PermissionDeniedScreeen /> }
+    if (!ValidarPermisos('GESENU', 'ACC')) { return <TemplateDeniedPermission /> }
 
 
 

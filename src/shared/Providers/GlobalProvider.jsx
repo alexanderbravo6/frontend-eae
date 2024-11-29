@@ -1,7 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from "react"
 import { signOut, useSession } from 'next-auth/react';
-import LoadingScreenMinedu from "../Components/LoadingScreenMinedu";
+import LoadingScreenMinedu from "../Components/Loaders/LoadingScreenMinedu";
 import useClienteAxios from "../Hooks/useClienteAxios";
 import useSWR from "swr";
 import { configSWR } from "../Constants/GlobalConstants";
@@ -17,6 +17,8 @@ export const useGlobal = () => {
 const GlobalProvider = ({ children }) => {
     const axios = useClienteAxios();
     const { data: session } = useSession();
+    const { status } = useSession({ required: true });
+
 
     const fetchPermisos = async () => {
         const response = await axios.get(session ? `/v1/auth/accesos/${session?.user?.idPersona}` : null);
@@ -27,17 +29,16 @@ const GlobalProvider = ({ children }) => {
         }
     }
     const { data: accesos, error, isLoading } = useSWR("accesos_" + session?.user?.idPersona, fetchPermisos, configSWR);
-    
 
     const handleClickCerrarSesion = () => {
-
         signOut();
     }
-
-    if (!accesos && !error && isLoading) {
-        return <LoadingScreenMinedu />;
-    }
-    const accesoActual = accesos?.filter((acceso) => acceso.idPersonaRol === session?.user.idPersonaRol)
+    if (status === "loading") return <LoadingScreenMinedu />
+    if (error) return <LoadingScreenMinedu />
+    if (isLoading) return <LoadingScreenMinedu />
+    if (!accesos) return <LoadingScreenMinedu />
+   
+    const accesoActual = accesos?.filter((acceso) => acceso?.idPersonaRol === session?.user?.idPersonaRol)
 
     return (
         <GlobalContext.Provider value={{

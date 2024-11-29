@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import RolesCardList from '@/modules/Seguridad/Components/RolesCardList';
-import Breadcrumb from '@/shared/Components/Breadcrumb';
+import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb';
 import { seguridadItemBreadCrumbs } from '@/modules/Seguridad/Constants/SeguridadConstants';
 function SeguridadPage() {
 

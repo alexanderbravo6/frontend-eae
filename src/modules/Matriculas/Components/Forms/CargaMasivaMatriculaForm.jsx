@@ -1,5 +1,5 @@
 
-import TemplateBaseAlert from '@/shared/Components/Templates/TemplateBaseAlert';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useGlobal } from '@/shared/Providers/GlobalProvider';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import React, { useState } from 'react';
@@ -7,7 +7,7 @@ import * as XLSX from 'xlsx';
 import { useMatriculaService } from '../../Hooks/useMatriculaService';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { ButtonSubmit } from '@/shared/Components/Form/Buttons';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import { useSWRConfig } from 'swr';
 
 const CargaMasivaMatriculaForm = ({ onClose }) => {
@@ -85,7 +85,7 @@ const CargaMasivaMatriculaForm = ({ onClose }) => {
                     {
                         errorValidation.length === 0 ? null : (
                             <section>
-                                <TemplateBaseAlert message={errorValidation} type={'errorList'} />
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
                             </section>
                         )
                     }

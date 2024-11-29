@@ -1,10 +1,10 @@
 'use client'
 import React, { useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, DateInput } from "@nextui-org/react";
-import { ButtonSubmit } from "@/shared/Components/Form/Buttons";
-import TemplateBaseAlert from "@/shared/Components/Templates/TemplateBaseAlert";
+import { ButtonSubmit } from "@/shared/Components/Buttons/ButtonSubmit";
+import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import RegistrarPersonaForm from "../Forms/RegistrarPersonaForm";
-import TemplateBaseModal from "@/shared/Components/Templates/TemplateBaseModal";
+import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 export default function RegistrarPersonaModal() {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
@@ -17,7 +17,7 @@ export default function RegistrarPersonaModal() {
                 </svg>
                 Registrar
             </Button>
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-7xl "
@@ -30,7 +30,7 @@ export default function RegistrarPersonaModal() {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     );
 }

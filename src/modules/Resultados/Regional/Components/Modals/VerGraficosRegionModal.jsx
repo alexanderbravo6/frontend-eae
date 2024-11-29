@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
-import TemplateBaseModal from '@/shared/Components/Templates/TemplateBaseModal';
+import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoRegionalTab from '../Tabs/GraficoRegionalTab';
 
 function VerGraficosRegionModal({ row }) {
@@ -27,7 +27,7 @@ function VerGraficosRegionModal({ row }) {
                 </svg>
             </Button>
 
-            <TemplateBaseModal
+            <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-9xl '}
@@ -50,7 +50,7 @@ function VerGraficosRegionModal({ row }) {
                         </>
                     )}
                 </ModalContent>
-            </TemplateBaseModal>
+            </TemplateModal>
         </>
     )
 }
