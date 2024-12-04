@@ -15,17 +15,12 @@ export default function RegistrarRolPersonaModal({ row }) {
             <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                className="max-w-7xl "
+                className="max-w-3xl "
+                title={'ASIGNAR NUEVO ROL'}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">ASIGNAR ROLES</ModalHeader>
-                            <RegistrarRolPersonaForm onClose={onClose} row={row} />
-
-                        </>
-                    )}
-                </ModalContent>
+                <>
+                    <RegistrarRolPersonaForm onClose={onClose} row={row} />
+                </>
             </TemplateModal>
         </>
     );

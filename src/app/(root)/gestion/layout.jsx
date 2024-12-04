@@ -20,7 +20,7 @@ function PrincipalLayout({ children }) {
 
     return (
         <>
-
+            <NextUIProvider >
                 <GlobalProvider>
                     <div id="app" >
                         <aside id="logo-sidebar" className={` [grid-area:aside]   md:flex hidden   flex-col lg:w-[211px]  overflow-y-auto `}>
@@ -36,7 +36,7 @@ function PrincipalLayout({ children }) {
                         <Footer />
                     </div>
                 </GlobalProvider>
-       
+            </NextUIProvider>
 
         </>
     )

@@ -65,13 +65,13 @@ const EliminarPersonaButton = ({ row }) => {
             {
                 isLoading ? (
                     <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger">
+                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
                             <IconDelete />
                         </Button>
                     </>
                 ) : (
                     <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger" onPress={handleEliminar}>
+                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
                             <IconDelete />
                         </Button>
 

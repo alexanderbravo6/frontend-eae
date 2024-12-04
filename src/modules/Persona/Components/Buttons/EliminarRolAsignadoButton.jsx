@@ -1,13 +1,11 @@
-import useClienteAxios from "@/shared/Hooks/useClienteAxios";
-import { usePersona } from "../../Providers/PersonaProvider";
+
 import { useSWRConfig } from "swr";
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
-import { Button } from "@nextui-org/react";
 import { IconDelete } from "@/shared/Components/Icons";
 import { useState } from "react";
 import { usePersonaService } from "../../Hooks/usePersonaService";
 import Swal from "sweetalert2";
+import { Button } from "@nextui-org/react";
 
 
 const EliminarRolAsignadoButton = ({ data }) => {
@@ -65,16 +63,16 @@ const EliminarRolAsignadoButton = ({ data }) => {
             {
                 isLoading ? (
                     <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger">
+                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
                             <IconDelete />
                         </Button>
                     </>
                 ) : (
                     <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger" onPress={handleEliminar}>
+                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
                             <IconDelete />
                         </Button>
-
+               
                     </>
                 )
             }

@@ -9,6 +9,7 @@ import { usePersonaService } from '../../Hooks/usePersonaService';
 import { useForm } from 'react-hook-form';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 function RegistrarRolPersonaForm({ onClose, row }) {
     const { register, handleSubmit, setValue, reset, formState: { errors, isSubmitting } } = useForm();
@@ -57,6 +58,23 @@ function RegistrarRolPersonaForm({ onClose, row }) {
             console.log(error)
         }
     })
+    const filterTipoSede = (data, selectRolFuncional) => {
+        if (!data) return [];
+
+        const rolFuncionalMap = {
+            1: 1,
+            2: 1,
+            3: 2,
+            4: 4,
+            5: 3,
+            6: 1,
+        };
+
+        const defaultId = 3;
+        const targetId = rolFuncionalMap[selectRolFuncional] ?? defaultId;
+
+        return data.filter((item) => item.id === targetId);
+    };
 
     return (
         <form onSubmit={formSubmit} >
@@ -85,7 +103,7 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" >
                                 {
-                                    roles?.loading ? 'Cargando...' : 'Seleccionar'
+                                    roles?.isLoading ? 'Cargando...' : 'Seleccionar'
                                 }
                             </option>
                             {
@@ -119,18 +137,14 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" >
                                 {
-                                    tipoSede?.loading ? 'Cargando...' : 'Seleccionar'
+                                    tipoSede?.isLoading ? 'Cargando...' : 'Seleccionar'
                                 }
                             </option>
-                            {
-                                tipoSede?.data?.data
-                                    .filter((item) => selectRolFuncional == 1 || selectRolFuncional == 4 ? item.id == 1 : selectRolFuncional == 2 ? item.id == 2 : selectRolFuncional == 3 ? item.id == 2 : selectRolFuncional == 5 ? item.id == 3 : item.id == 3   
-                                    )
-                                    .map((item) => (
-                                        <option key={item.id} value={item.id}>{item.nombre}</option>
-                                    ))
-                            }
-
+                            {filterTipoSede(tipoSede?.data?.data, selectRolFuncional).map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    {item.nombre}
+                                </option>
+                            ))}
                         </select>
                         {
                             errors.idTipoSede && (
@@ -183,10 +197,9 @@ function RegistrarRolPersonaForm({ onClose, row }) {
 
             </ModalBody>
             <ModalFooter>
-                <Button color="danger" variant="light" onPress={() => { onClose(), reset() }}>
-                    Cerrar
-                </Button>
-                <ButtonSubmit label={"Registrar"} isSubmitting={isSubmitting} />
+
+                <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
+                <ButtonCloseModal onClose={onClose} />
             </ModalFooter>
         </form>
 
