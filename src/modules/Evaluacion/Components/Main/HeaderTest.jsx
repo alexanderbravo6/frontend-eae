@@ -2,7 +2,9 @@
 import React from 'react'
 import Image from 'next/image'
 import Countdown from '../Countdown'
-import { LoadingSpinner } from "@nextui-org/react";
+
+import { Progress } from '@nextui-org/react'
+
 function HeaderTest({ data, idPregunta, token }) {
     const porcentaje = Math.round((data?.ultimaPregunta / data?.totalPreguntas) * 100)
 
@@ -34,7 +36,7 @@ function HeaderTest({ data, idPregunta, token }) {
                             </div>
                         </div>
                         <div className='mt-2 w-full '>
-                            <LoadingSpinner size="md" radius="sm"
+                            <Progress  size="md" radius="sm"
                                 classNames={{
                                     indicator: "bg-teal-400",
                                 }}

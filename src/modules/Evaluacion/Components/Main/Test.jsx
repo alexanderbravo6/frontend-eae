@@ -15,7 +15,7 @@ import { useEvaluacion } from "../../Context/useEvaluacion";
 function Test({ token, data, info }) {
 
   const { mutate } = useSWRConfig()
-  const { handleCerrarEvaluacion, setTokenEvaluacionActivo, opcionSeleccionada, setPreguntaActual, isLoadingClose, setOpcionSeleccionada } = useEvaluacion()
+  const { handleCerrarEvaluacion, opcionSeleccionada,  isLoadingClose, setOpcionSeleccionada } = useEvaluacion()
   const [isLoading, setIsLoading] = useState(false);
   const { guardarRespuesta } = useEvaluacionService()
 

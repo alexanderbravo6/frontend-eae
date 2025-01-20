@@ -20,20 +20,19 @@ function RegistroEstudianteForm() {
     const { register, handleSubmit, getValues, setValue, reset, formState: { errors, isSubmitting } } = useForm();
     const [validarEstudiante, setValidarEstudiante] = useState(false)
     const estudiante = ValidarEstudiante(numeroDocumento)
-    const handleLimpiarCampos = () => {
+    const clearFields = () => {
         setErrorValidation([])
         setValidarEstudiante(false)
         setNumeroDocumento('')
+ 
         reset()
     }
-    const handleValidarEstudiante = async () => {
+    const validateStudent = async () => {
         //limpiar campos
         setErrorValidation([])
         setValidarEstudiante(true)
         reset()
-
         const dni = document.getElementById('numeroDocumento').value
-
         setNumeroDocumento(dni)
 
     }
@@ -47,7 +46,7 @@ function RegistroEstudianteForm() {
             const response = await registrarEstudiante(request)
             if (response.success === true) {
                 setErrorValidation([])
-                handleLimpiarCampos()
+                clearFields()
                 toast.success("Estudiante registrado correctamente")
                 router.push('/auth/iniciar-sesion')
             } else {
@@ -92,13 +91,13 @@ function RegistroEstudianteForm() {
                     <div className="grid gap-6 mb-6 items-end md:grid-cols-2">
                         <div>
                             <label htmlFor="numeroDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NÚMERO DE DOCUMENTO</label>
-                            <input type="text" disabled={validarEstudiante} id="numeroDocumento" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 disabled:bg-gray-300 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                            <input type="text" disabled={validarEstudiante} id="numeroDocumento" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 disabled:bg-gray-300  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div className='flex gap-3'>
-                            <Button onClick={handleValidarEstudiante} color="primary">
+                            <Button onClick={validateStudent} color="primary">
                                 Validar
                             </Button>
-                            <Button onClick={handleLimpiarCampos} color="danger">
+                            <Button onClick={clearFields} color="danger">
                                 Limpiar
                             </Button>
                         </div>

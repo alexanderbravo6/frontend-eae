@@ -23,7 +23,7 @@ function PruebasLink() {
         <>
             {
                 pruebas &&
-                pruebas?.data.data.map((item, index) => (
+                pruebas?.data?.data?.map((item, index) => (
                     <button onClick={
                         () => {
                             setPruebaSelected(item.id)

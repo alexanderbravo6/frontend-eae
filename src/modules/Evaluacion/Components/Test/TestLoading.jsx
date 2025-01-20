@@ -1,9 +1,12 @@
 
+
+
+import { Progress } from '@nextui-org/react'
 import React from 'react'
-import { LoadingSpinner } from '@nextui-org/react'
 
 
-function TestLoading({message}) {
+
+function TestLoading({ message }) {
     return (
         <div className='w-full flex h-full justify-center items-center ' >
 
@@ -11,7 +14,7 @@ function TestLoading({message}) {
                 <p>
                     {message}
                 </p>
-                <LoadingSpinner
+                <Progress 
                     size="sm"
                     isIndeterminate
                     aria-label="Loading..."

@@ -19,8 +19,6 @@ export function useEvaluacion() {
 
 export function EvaluacionProvider({ children }) {
     const router = useRouter();
-
-
     const [pruebaSelected, setPruebaSelected] = useState(null);
     const [matriculaSelected, setMatriculaSelected] = useState(null);
     const [preguntasSeguridad, setPreguntasSeguridad] = useState([]);
@@ -40,6 +38,7 @@ export function EvaluacionProvider({ children }) {
 
     const handleCerrarEvaluacion = async (token, idPregunta) => {
         setIsLoadingClose(true)
+
         const request = {
             idPregunta: idPregunta,
             respuesta: opcionSeleccionada
@@ -67,6 +66,7 @@ export function EvaluacionProvider({ children }) {
             console.log(error)
         }
     }
+    
     return (
         <EvaluacionContext.Provider value={{
             handleCerrarEvaluacion,

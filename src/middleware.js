@@ -19,5 +19,6 @@ export const config = {
         "/matricula/:path*",
         "/enunciados/:path*",
         "/pruebas/:path*",
+    
     ]
 }

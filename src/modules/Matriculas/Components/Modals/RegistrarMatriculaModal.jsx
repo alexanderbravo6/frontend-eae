@@ -25,13 +25,7 @@ function RegistrarMatriculaModal() {
                 className={'max-w-5xl '}
                 title={'Registrar Matricula'}
             >
-                <>
-
-                    <RegistrarMatriculaForm onClose={onClose} />
-
-                </>
-
-
+                <RegistrarMatriculaForm onClose={onClose} />
             </TemplateModal>
         </>
     )

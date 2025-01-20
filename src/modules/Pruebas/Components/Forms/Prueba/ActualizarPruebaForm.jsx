@@ -10,6 +10,7 @@ import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
 import { useUtils } from '@/shared/Hooks/useUtils';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 function ActualizarPruebaForm({ onClose, row }) {
     const { utils } = usePrueba()
@@ -23,7 +24,7 @@ function ActualizarPruebaForm({ onClose, row }) {
 
 
         try {
-            const response = await actualizarPrueba(row.id,data)
+            const response = await actualizarPrueba(row.id, data)
 
             if (response.success === true) {
                 setErrorValidation([])
@@ -339,9 +340,7 @@ function ActualizarPruebaForm({ onClose, row }) {
                 </ModalBody>
                 <ModalFooter>
                     <ButtonSubmit label="Actualizar" isSubmitting={isSubmitting} />
-                    <Button color="danger" variant="flat" onPress={onClose}   >
-                        Cerrar
-                    </Button>
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </section>

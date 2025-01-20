@@ -8,7 +8,7 @@ import ActualizarPruebaForm from '../Forms/Prueba/ActualizarPruebaForm';
 import { useUtils } from '@/shared/Hooks/useUtils';
 
 function ActualizarPruebaModal({ row }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { onClose, isOpen, onOpen, onOpenChange } = useDisclosure();
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESPRU', 'MOD')) return null
 
@@ -21,18 +21,9 @@ function ActualizarPruebaModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={"Actualizar Prueba"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">ACTUALIZAR PRUEBA</h1>
-                            </ModalHeader>
-                            <ActualizarPruebaForm onClose={onClose} row={row} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <ActualizarPruebaForm onClose={onClose} row={row} />
             </TemplateModal>
         </>
     )
