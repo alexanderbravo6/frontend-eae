@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { useUtils } from '@/shared/Hooks/useUtils';
 import { usePruebaService } from '../../Hooks/usePruebaService';
 import { useSession } from 'next-auth/react';
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
 function EliminarButtonPrueba({ id }) {
     const { mutate } = useSWRConfig();
@@ -50,7 +51,7 @@ function EliminarButtonPrueba({ id }) {
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.messages[0])
+                            toast.error(response.errors[0])
                         }
                     }
                     catch (error) {
@@ -70,22 +71,7 @@ function EliminarButtonPrueba({ id }) {
     }
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                 
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
         </>
     )
 }

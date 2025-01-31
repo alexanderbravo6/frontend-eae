@@ -13,7 +13,8 @@ import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 import SelectField from '@/shared/Components/Form/Fields/SelectField';
 import InputField from '@/shared/Components/Form/Fields/InputField';
 import DateField from '@/shared/Components/Form/Fields/DateField';
-import { sexoOptions } from '@/shared/Constants/GlobalConstants';
+import { sexoOptions, tipoDocumentoOptions } from '@/shared/Constants/GlobalConstants';
+import NumberField from '@/shared/Components/Form/Fields/NumberField';
 function RegistrarMatriculaForm({ onClose }) {
 
 
@@ -62,11 +63,8 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <SelectField
                                 id="tipoDocumento"
-                                label="Tipo de Documento"
-                                options={[
-                                    { value: "1", label: "DNI" },
-                                    { value: "2", label: "CARNET DE EXTRANJERÍA" },
-                                ]}
+                                label="tipo de documento"
+                                options={tipoDocumentoOptions}
                                 setValue={setValue}
                                 isRequired={true}
                                 register={register}
@@ -75,18 +73,21 @@ function RegistrarMatriculaForm({ onClose }) {
 
                         </div>
                         <div className='col-span-2'>
-                            <InputField
+                            <NumberField
                                 id="numeroDocumento"
-                                label="Número de Documento"
+                                label="número de documento"
                                 isRequired={true}
+                                maxLength={8}
+                                minLength={8}
                                 register={register}
                                 error={errors.numeroDocumento}
                             />
+
                         </div>
                         <div className='col-span-1'>
                             <InputField
                                 id="primerApellido"
-                                label="Primer Apellido"
+                                label="primer apellido"
                                 isRequired={true}
                                 register={register}
                                 error={errors.primerApellido}
@@ -95,7 +96,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <InputField
                                 id="segundoApellido"
-                                label="Segundo Apellido"
+                                label="segundo apellido"
                                 isRequired={true}
                                 register={register}
                                 error={errors.segundoApellido}
@@ -104,7 +105,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <InputField
                                 id="nombres"
-                                label="Nombres"
+                                label="nombres"
                                 isRequired={true}
                                 register={register}
                                 error={errors.nombres}
@@ -113,7 +114,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <DateField
                                 id="fechaNacimiento"
-                                label="Fecha de Nacimiento"
+                                label="fecha de nacimiento"
                                 type={"max-date-today"}
                                 isRequired={true}
                                 register={register}
@@ -124,7 +125,7 @@ function RegistrarMatriculaForm({ onClose }) {
 
                             <SelectField
                                 id="idInstitucion"
-                                label="Institución"
+                                label="institución"
                                 options={utils?.data?.data?.instituciones?.map(item => ({
                                     value: item.id,
                                     label: `${item.region} - ${item.nombre}`
@@ -139,7 +140,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-2'>
                             <SelectField
                                 id="idEspecialidad"
-                                label="Especialidad"
+                                label="especialidad"
                                 options={utils?.data?.data?.especialidades?.map(item => ({
                                     value: item.id,
                                     label: ` ${item.descripcion}`
@@ -155,7 +156,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <SelectField
                                 id="idPeriodoAcademico"
-                                label="Periodo Académico"
+                                label="periodo académico"
                                 options={utils?.data?.data?.periodosAcademicos?.map(item => ({
                                     value: item.id,
                                     label: ` ${item.descripcion}`
@@ -171,7 +172,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <SelectField
                                 id="idCiclo"
-                                label="Ciclos"
+                                label="ciclos"
                                 options={utils?.data?.data?.ciclos?.map(item => ({
                                     value: item.id,
                                     label: ` ${item.descripcion}`
@@ -187,7 +188,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <SelectField
                                 id="sexo"
-                                label="Sexo"
+                                label="sexo"
                                 options={sexoOptions}
                                 isLoading={utils?.isLoading}
                                 isRequired={true}

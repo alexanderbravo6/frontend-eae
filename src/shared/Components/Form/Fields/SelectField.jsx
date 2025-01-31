@@ -1,32 +1,50 @@
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import React from "react";
 
-'use client'
-import { Skeleton } from '@nextui-org/react';
-import React, { useState } from 'react';
-import Select from 'react-select'
-const SelectField = ({ id, label, register, isRequired, options = [], error, isLoading = false, setValue }) => {
+const SelectField = ({
+    type = "simple",
+    id,
+    label,
+    options = [],
+    value,
+    isLoading = false,
+    isRequired = false,
+    setValue,
+    isDisabled,
+    register,
+    error,
+}) => {
+    const onSelectionChange = (selectedKey) => {
+        type === "simple" ? setValue(id, selectedKey) : setValue(selectedKey)
+    }
+
 
     return (
-
-        <>
+        <div className="w-full">
             <label htmlFor={id} className="block mb-2 uppercase text-xs font-medium text-gray-900 dark:text-white">
                 {label} {isRequired && <span className="text-red-500">*</span>}
             </label>
-            {
-                isLoading ? <Skeleton height="40px" /> :
-                    <Select
-                        options={options}
-
-                        onChange={(selectedOption) => {
-                            // Actualizamos el valor del formulario con setValue
-                            setValue(id, selectedOption ? selectedOption.value : null, {
-                                shouldValidate: true, // Valida el campo inmediatamente
-                                shouldDirty: true,   // Marca el campo como modificado
-                            });
-                        }}
-                    />
-            }
-
+            <Autocomplete
+                label={""}
+                size="md"
+                variant="bordered"
+                className="w-full uppercase"
+                labelPlacement="outside"
+                isLoading={isLoading}
+                isDisabled={isDisabled}
+                placeholder="SELECCIONAR"
+                defaultSelectedKey={`${value}`}
+                onSelectionChange={onSelectionChange}
+                isRequired
+            >
+                {options.map(({ value, label }) => (
+                    <AutocompleteItem key={value}>
+                        {label}
+                    </AutocompleteItem>
+                ))}
+            </Autocomplete>
             <input type="text" hidden id={id}
+                defaultValue={value}
                 {...register(`${id}`, {
                     required: { value: isRequired, message: `El campo ${label} es requerido` },
                 })} />
@@ -35,8 +53,9 @@ const SelectField = ({ id, label, register, isRequired, options = [], error, isL
                     <span className="text-red-500 text-xs">{error.message}</span>
                 )
             }
-        </>
 
+
+        </div>
     );
 };
 

@@ -8,7 +8,7 @@ import React from 'react'
 
 const itemBreadcrumbs = [
     {
-        href: '/administracion/gestion-pruebas',
+        href: '/gestion/gestion-pruebas',
         name: 'Gestión de Pruebas'
     }
 ]

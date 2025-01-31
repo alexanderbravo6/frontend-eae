@@ -39,7 +39,7 @@ const EliminarRolAsignadoButton = ({ data }) => {
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.messages[0])
+                            toast.error(response.errors[0])
                         }
                     }
                     catch (error) {

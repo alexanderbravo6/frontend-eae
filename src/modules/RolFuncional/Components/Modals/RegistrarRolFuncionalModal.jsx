@@ -4,12 +4,13 @@ import { ModalContent, ModalHeader, Button, useDisclosure } from "@nextui-org/re
 
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import RegistrarRolFuncionalForm from "../Forms/RegistrarRolFuncionalForm";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 
 export default function RegistrarRolFuncionalModal() {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESROL', 'AGR')) return null
     return (
         <>
 

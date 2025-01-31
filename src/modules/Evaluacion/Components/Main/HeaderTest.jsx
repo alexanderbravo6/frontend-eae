@@ -5,7 +5,7 @@ import Countdown from '../Countdown'
 
 import { Progress } from '@nextui-org/react'
 
-function HeaderTest({ data, idPregunta, token }) {
+function HeaderTest({ data, idPregunta }) {
     const porcentaje = Math.round((data?.ultimaPregunta / data?.totalPreguntas) * 100)
 
     return (
@@ -32,11 +32,11 @@ function HeaderTest({ data, idPregunta, token }) {
                             </p>
                             <div className='text-gray-400  text-sm flex gap-1 '>
                                 <Image src="/icon-relog.svg" width={15} height={15} alt="libro icon" />
-                                <Countdown timestamp={data?.timestampend} token={token} idPregunta={idPregunta} />
+                                <Countdown timestamp={data?.timestampend} timeLimit={data?.tieneLimiteTiempo} idPregunta={idPregunta} />
                             </div>
                         </div>
                         <div className='mt-2 w-full '>
-                            <Progress  size="md" radius="sm"
+                            <Progress size="md" radius="sm"
                                 classNames={{
                                     indicator: "bg-teal-400",
                                 }}

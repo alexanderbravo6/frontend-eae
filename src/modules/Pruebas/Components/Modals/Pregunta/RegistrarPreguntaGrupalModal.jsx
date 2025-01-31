@@ -7,7 +7,7 @@ import RegistrarPreguntaGrupalForm from '../../Forms/Pregunta/RegistrarPreguntaG
 
 
 function RegistrarPreguntaGrupalModal() {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
 
 
     return (
@@ -22,18 +22,9 @@ function RegistrarPreguntaGrupalModal() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={`REGISTRAR PREGUNTA GRUPAL`}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVA PREGUNTA GRUPAL</h1>
-                            </ModalHeader>
-                            <RegistrarPreguntaGrupalForm onClose={onClose} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <RegistrarPreguntaGrupalForm onClose={onClose} />
             </TemplateModal>
         </>
     )

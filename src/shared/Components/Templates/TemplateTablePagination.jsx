@@ -63,10 +63,10 @@ function TemplateTablePagination({ datos, columns, total, pagination, setPaginat
                     }
 
                 </thead>
-                <tbody>
+                <tbody >
                     {
                         table.getRowModel().rows.map((row, i) => (
-                            <tr className="odd:bg-white  odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={row.id}>
+                            <tr className="odd:bg-white text-xs  odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={row.id}>
                                 {
                                     <td key={`body_${i}`} className="px-3 py-2">
                                         {i + 1 + table.getState().pagination.pageSize * table.getState().pagination.pageIndex}

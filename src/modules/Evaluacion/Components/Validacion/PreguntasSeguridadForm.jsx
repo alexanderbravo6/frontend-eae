@@ -1,26 +1,17 @@
 'use client'
 import React, { useState } from 'react'
-import { RadioGroup, Radio, Button } from "@nextui-org/react";
-import Link from 'next/link';
+import { RadioGroup, Radio } from "@nextui-org/react";
 import { useRouter } from 'next/navigation';
-import useSWR, { useSWRConfig } from 'swr';
 import { useEvaluacion } from '../../Context/useEvaluacion';
 import { useEvaluacionService } from '../../Hooks/useEvaluacionService';
 import { toast } from 'react-toastify';
-import TestLoading from '../Test/TestLoading';
 
 function PreguntaSeguridadForm() {
     const { preguntasSeguridad, validationLoading, setValidationLoading, matriculaSelected, setInstrucciones, setEstudianteEncontrado, setErrorValidation, handleLimpiarValidacion, pruebaSelected } = useEvaluacion();
-
     const [primerPregunta, setPrimeraPregunta] = useState('');
     const [segundaPregunta, setSegundaPregunta] = useState('');
-    const [isSubmitting, setSubmitting] = useState(false);
     const { validarPreguntasSeguridad } = useEvaluacionService();
-    const { mutate } = useSWRConfig();
     const router = useRouter();
-
-
-
     const validarRespuestas = async (event) => {
 
         event.preventDefault();
@@ -40,7 +31,7 @@ function PreguntaSeguridadForm() {
                 toast.success('Validación exitosa')
                 setInstrucciones(response.data)
                 handleLimpiarValidacion()
-                router.push(`/indicaciones`)
+                router.push(`/indicaciones/${response.data.token}`)
             } else {
                 if (response.errors) {
                     setEstudianteEncontrado(false)

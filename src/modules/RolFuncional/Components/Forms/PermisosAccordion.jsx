@@ -4,6 +4,7 @@ import { useRolFuncionalService } from "../../Hooks/useRolFuncionalService";
 import TemplateErrorData from "@/shared/Components/Templates/TemplateErrorData";
 import { TableSkeleton } from "@/shared/Components/Skeletons/Skeletons";
 import AsignarPermisoForm from "./AsignarPermisoForm";
+import ButtonCloseModal from "@/shared/Components/Buttons/ButtonCloseModal";
 
 export default function PermisosAccordion({ onClose, row }) {
     const { FetchPermisos } = useRolFuncionalService();
@@ -23,14 +24,7 @@ export default function PermisosAccordion({ onClose, row }) {
                 </Accordion>
             </ModalBody>
             <ModalFooter>
-                <Button color="danger" variant="light" onPress={
-                    () => {
-                        onClose()
-                    }}>
-                    Cerrar
-                </Button>
-
-
+                <ButtonCloseModal onClose={onClose} />
             </ModalFooter>
         </>
     );

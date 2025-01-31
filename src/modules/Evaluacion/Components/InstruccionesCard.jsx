@@ -10,12 +10,12 @@ import { useEvaluacion } from '../Context/useEvaluacion';
 import TestEnding from './Test/TestEnding';
 import { useEvaluacionService } from '../Hooks/useEvaluacionService';
 
-function InstruccionesCard() {
+function InstruccionesCard({ token }) {
     const router = useRouter();
     const [submit, setSubmit] = useState(false);
-    const { iniciarEvaluacion } = useEvaluacionService();
-    const { instrucciones, pruebaSelected, setEstudianteEncontrado, matriculaSelected } = useEvaluacion();
 
+    const { instrucciones, pruebaSelected, setEstudianteEncontrado, matriculaSelected } = useEvaluacion();
+    const { iniciarEvaluacion } = useEvaluacionService(token);
     if (!instrucciones) return redirect('/');
 
     async function handleIniciarEvaluacion() {
@@ -30,7 +30,7 @@ function InstruccionesCard() {
             const response = await iniciarEvaluacion(request)
 
             if (response.success === true) {
-                router.push(`/aplicacion/${response.data.tokenEvaluacion}`)
+                router.push(`/aplicacion/${response.data.tokenEvaluacion}/${token}`)
             } else {
                 setSubmit(false)
 

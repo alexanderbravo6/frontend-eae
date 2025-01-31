@@ -1,11 +1,12 @@
-import { IconDelete } from '@/shared/Components/Icons'
-import { Button } from '@nextui-org/react';
+
 import React, { useState } from 'react'
 import { useMatriculaService } from '../../Hooks/useMatriculaService';
 import { useMatricula } from '../../Providers/MatriculaProvider';
 import { useSWRConfig } from 'swr';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { useUtils } from '@/shared/Hooks/useUtils';
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
 function EliminarMatriculaButton({ id }) {
 
@@ -13,7 +14,8 @@ function EliminarMatriculaButton({ id }) {
     const [isLoading, setIsLoading] = useState(false)
     const { eliminarMatricula } = useMatriculaService()
     const { query, pagination } = useMatricula()
-   
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESMAT', 'ELI')) return null
     const handleEliminar = () => {
 
         setIsLoading(true)
@@ -37,7 +39,7 @@ function EliminarMatriculaButton({ id }) {
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.messages[0])
+                            toast.error(response.errors[0])
                         }
                     }
                     catch (error) {
@@ -57,22 +59,7 @@ function EliminarMatriculaButton({ id }) {
     }
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
         </>
     )
 }

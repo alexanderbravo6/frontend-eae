@@ -8,7 +8,7 @@ import React from 'react'
 
 const itemBreadcrumbs = [
     {
-        href: '/administracion/gestion-matriculas',
+        href: '/gestion/gestion-matriculas',
         name: 'Gestión de Matriculas'
     }
 ]

@@ -4,11 +4,13 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import RegistrarMenuForm from "../Forms/RegistrarMenuForm";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 
 export default function RegistrarMenuModal() {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()  
+    if (!ValidarPermisos('GESMEN', 'AGR')) return null
 
     return (
         <>
@@ -23,15 +25,12 @@ export default function RegistrarMenuModal() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-7xl "
+                title="REGISTRAR MENÚ"
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">REGISTRAR MENÚ</ModalHeader>
-                            <RegistrarMenuForm onClose={onClose} />
-                        </>
-                    )}
-                </ModalContent>
+
+                <RegistrarMenuForm onClose={onClose} />
+
+
             </TemplateModal >
         </>
     );

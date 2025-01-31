@@ -7,6 +7,10 @@ import { toast } from 'react-toastify';
 import { useAuthService } from '../Hooks/useAuthService';
 import { Button, Spinner } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
+import NumberField from '@/shared/Components/Form/Fields/NumberField';
+import InputField from '@/shared/Components/Form/Fields/InputField';
+import Link from 'next/link';
+import { ButtonBack } from '@/shared/Components/Buttons/ButtonBack';
 
 
 
@@ -24,15 +28,25 @@ function RegistroEstudianteForm() {
         setErrorValidation([])
         setValidarEstudiante(false)
         setNumeroDocumento('')
- 
+
         reset()
     }
     const validateStudent = async () => {
+        const dni = document.getElementById('numeroDocumento').value
+
+        if (dni === '') {
+            toast.error('Ingrese un número de documento')
+            return
+        }
+        if (dni.length < 8) {
+            toast.error('El número de documento debe tener al menos 8 caracteres')
+            return
+        }
         //limpiar campos
         setErrorValidation([])
         setValidarEstudiante(true)
         reset()
-        const dni = document.getElementById('numeroDocumento').value
+
         setNumeroDocumento(dni)
 
     }
@@ -90,7 +104,7 @@ function RegistroEstudianteForm() {
                     }
                     <div className="grid gap-6 mb-6 items-end md:grid-cols-2">
                         <div>
-                            <label htmlFor="numeroDocumento" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NÚMERO DE DOCUMENTO</label>
+                            <label htmlFor="numeroDocumento" className="block uppercase mb-2 text-xs font-medium text-gray-900 dark:text-white">NÚMERO DE DOCUMENTO</label>
                             <input type="text" disabled={validarEstudiante} id="numeroDocumento" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 disabled:bg-gray-300  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                         </div>
                         <div className='flex gap-3'>
@@ -111,74 +125,56 @@ function RegistroEstudianteForm() {
                                     (
                                         <div className="grid gap-6 mb-6 md:grid-cols-2">
                                             <div>
-                                                <label disabled htmlFor="numeroDocumentoDisabled" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NÚMERO DE DOCUMENTO</label>
-                                                <input type="text" disabled defaultValue={estudiante?.data?.data?.numeroDocumento} id="numeroDocumentoDisabled" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                <label disabled htmlFor="numeroDocumentoDisabled" className="block uppercase mb-2 text-xs font-medium text-gray-900 dark:text-white">NÚMERO DE DOCUMENTO</label>
+                                                <input type="text" disabled defaultValue={estudiante?.data?.data?.numeroDocumento} id="numeroDocumentoDisabled" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 disabled:bg-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
                                             </div>
                                             <div>
-                                                <label htmlFor="apellidoPaterno" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">APELLIDO PATERNO</label>
-                                                <input type="text" defaultValue={estudiante?.data?.data?.apellidoPaterno} disabled id="apellidoPaterno" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                <label htmlFor="apellidoPaterno" className="block uppercase mb-2 text-xs font-medium text-gray-900 dark:text-white">APELLIDO PATERNO</label>
+                                                <input type="text" defaultValue={estudiante?.data?.data?.apellidoPaterno} disabled id="apellidoPaterno" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 disabled:bg-gray-200 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                             </div>
                                             <div>
-                                                <label htmlFor="apellidoMaterno" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">APELLIDO MATERNO</label>
-                                                <input type="text" disabled defaultValue={estudiante?.data?.data?.apellidoMaterno} id="apellidoMaterno" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                <label htmlFor="apellidoMaterno" className="block uppercase mb-2 text-xs font-medium text-gray-900 dark:text-white">APELLIDO MATERNO</label>
+                                                <input type="text" disabled defaultValue={estudiante?.data?.data?.apellidoMaterno} id="apellidoMaterno" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 disabled:bg-gray-200 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                             </div>
                                             <div>
-                                                <label htmlFor="nombres" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NOMBRES</label>
-                                                <input type="text" defaultValue={estudiante?.data?.data?.nombres} disabled id="nombres" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                <label htmlFor="nombres" className="block uppercase mb-2 text-xs font-medium text-gray-900 dark:text-white">NOMBRES</label>
+                                                <input type="text" defaultValue={estudiante?.data?.data?.nombres} disabled id="nombres" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 disabled:bg-gray-200 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                             </div>
                                             <div>
-                                                <label htmlFor="correo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CORREO</label>
-                                                <input type="email"
-                                                    {...register('correo', {
-                                                        required: {
-                                                            value: true,
-                                                            message: 'El campo correo es requerido'
-                                                        },
-                                                    })}
-                                                    id="correo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                {
-                                                    errors.correo && (
-                                                        <span className="text-red-500 text-xs">{errors.correo.message}</span>
-                                                    )
-                                                }
+                                                <InputField
+                                                    type='email'
+                                                    id="correo"
+                                                    label="correo"
+                                                    isRequired={true}
+                                                    uppercase={false}
+                                                    register={register}
+                                                    error={errors.correo}
+                                                />
+
                                             </div>
                                             <div>
-                                                <label htmlFor="celular" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CELULAR</label>
-                                                <input
-                                                    {...register('celular', {
-                                                        required: {
-                                                            value: true,
-                                                            message: 'El campo celular es requerido'
-                                                        },
-                                                        maxLength: {
-                                                            value: 9,
-                                                            message: 'El campo celular debe tener 9 dígitos'
-                                                        }
-                                                    })}
-                                                    type="number" id="celular" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                                {
-                                                    errors.celular && (
-                                                        <span className="text-red-500 text-xs">{errors.celular.message}</span>
-                                                    )
-                                                }
+                                                <NumberField
+                                                    id="celular"
+                                                    label="celular"
+                                                    isRequired={true}
+                                                    maxLength={9}
+                                                    minLength={9}
+                                                    register={register}
+                                                    error={errors.celular}
+                                                />
                                             </div>
                                             <div className='col-span-2' >
-                                                <label htmlFor="clave" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTRASEÑA</label>
-                                                <input type="password"
-                                                    {...register('clave', {
-                                                        required: {
-                                                            value: true,
-                                                            message: 'El campo contraseña es requerido'
-                                                        },
-                                                    })}
-                                                    id="clave" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                                <InputField
+                                                    type='password'
+                                                    id="clave"
+                                                    label="contraseña"
+                                                    isRequired={true}
+                                                    uppercase={false}
+                                                    register={register}
+                                                    error={errors.clave}
+                                                />
 
-                                                {
-                                                    errors.clave && (
-                                                        <span className="text-red-500 text-xs">{errors.clave.message}</span>
-                                                    )
-                                                }
                                                 <br />
                                                 <span className='text-gray-500'>
                                                     La contraseña debe contener como mínimo un caracter especial (@#$%*,-.()/{ }%?¿!), una mayúscula, una minúscula, un número y una longitud entre 8 y 30 caracteres.
@@ -190,31 +186,39 @@ function RegistroEstudianteForm() {
                     }
 
                 </section>
+                <div class="flex gap-3 items-start justify-start w-full
+                ">
 
-                {
+                    {
 
-                    isSubmitting ?
-                        <span
-                            disabled={isSubmitting}
-                            className="w-full disabled:bg-[#338EF7]  cursor-no-drop text-white border border-[#006FEE] bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
-                        >
-                            {
-                                !isSubmitting ? 'Registrarme' : <Spinner color="default" size="sm" />
-                            }
+                        isSubmitting ?
+                            <span
+                                disabled={isSubmitting}
+                                className="w-full disabled:bg-[#338EF7] max-w-32  cursor-no-drop text-white border border-[#006FEE] bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
+                            >
+                                {
+                                    !isSubmitting ? 'Registrarme' : <Spinner color="default" size="sm" />
+                                }
 
-                        </span>
-                        :
-                        <button
-                            disabled={isSubmitting}
-                            className="w-full disabled:bg-[#338EF7]  text-white hover:text-white border border-[#006FEE] bg-[#006FEE] hover:bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
-                        >
-                            Registrarme
-                        </button>
-                }
-
+                            </span>
+                            :
+                            <button
+                                disabled={isSubmitting}
+                                className="w-full disabled:bg-[#338EF7] max-w-32  text-white hover:text-white border border-[#006FEE] bg-[#006FEE] hover:bg-[#338EF7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
+                            >
+                                Registrarme
+                            </button>
+                    }
+                    <a
+                        href='/auth/iniciar-sesion'
+                        className="w-full disabled:bg-[#dddde0] max-w-32  text-black hover:text-black border border-[#dddde0] bg-[#dddde0] hover:bg-[#dddde0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2    "
+                    >
+                        Regresar
+                    </a>
+                </div>
             </form>
             <footer className="bg-white rounded-lg shadow m-4 h-[10%] md:h-[6%]">
-                <div className="w-full mx-auto max-w-screen-xl p-2 md:flex md:items-center md:justify-between">
+                <div className="w-full mx-auto h-full max-w-screen-xl p-2 md:flex md:items-center md:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center ">© {new Date().getFullYear()} <a href="https://www.minedu.gob.pe/superiorpedagogica/" className="hover:underline">DIFOID</a>
                     </span>
                     <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500  sm:mt-0">

@@ -3,6 +3,8 @@
 
 import IndexPersona from '@/modules/Persona/Components/IndexPersona'
 import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission'
+import { useGlobal } from '@/shared/Providers/GlobalProvider'
 import React from 'react'
 const itemBreadCrumbs = [
   {
@@ -15,6 +17,9 @@ const itemBreadCrumbs = [
   }
 ]
 function PersonaPage() {
+  const { accesoActual } = useGlobal();
+  const accesoPermitido = accesoActual[0]?.menus.filter(permiso => permiso?.codigo === "GESPER").length > 0;
+  if (!accesoPermitido) { return <TemplateDeniedPermission /> }
   return (
     <>
       <div className='mb-4 w-full px-6 h-10 flex justify-between items-center bg-[#338EF7] rounded-md '>

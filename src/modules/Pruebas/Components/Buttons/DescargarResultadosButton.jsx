@@ -32,13 +32,13 @@ const DescargarResultadosButton = ({ id }) => {
             {
                 loading ? (
                     <>
-                        <Button isIconOnly isLoading size="sm" title='Descargar Resultados' className='border-none' variant="solid" color="primary">
+                        <Button isIconOnly isLoading size="sm" title='Descargar Resultados' className='border-none' variant="bordered" color="secondary">
 
                         </Button>
                     </>
                 ) : (
                     <>
-                        <Button isIconOnly size="sm" title='Descargar Resultados' className='border-none' variant="solid" color="primary" onPress={handleExport}>
+                        <Button isIconOnly size="sm" title='Descargar Resultados' className='border-none' variant="bordered" color="secondary" onPress={handleExport}>
                             <IconFileDownload />
                         </Button>
 

@@ -9,7 +9,7 @@ import { useUtils } from '@/shared/Hooks/useUtils';
 
 
 function RegistrarPruebaModal() {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESPRU', 'AGR')) return null
@@ -25,18 +25,9 @@ function RegistrarPruebaModal() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={"Nueva Prueba"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVA PRUEBA</h1>
-                            </ModalHeader>
-                            <RegistrarPruebaForm onClose={onClose} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <RegistrarPruebaForm onClose={onClose} />
             </TemplateModal>
         </>
     )

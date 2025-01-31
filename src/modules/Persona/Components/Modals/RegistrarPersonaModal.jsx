@@ -5,9 +5,11 @@ import { ButtonSubmit } from "@/shared/Components/Buttons/ButtonSubmit";
 import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import RegistrarPersonaForm from "../Forms/RegistrarPersonaForm";
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
+import { useUtils } from "@/shared/Hooks/useUtils";
 export default function RegistrarPersonaModal() {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPER', 'AGR')) return null
     return (
         <>
 

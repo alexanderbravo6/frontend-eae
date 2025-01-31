@@ -44,6 +44,16 @@ export const matriculaColumns = [
         size: 300
     },
     {
+        header: 'CICLO',
+        accessorKey: 'descripcionCiclo',
+        size: 100
+    },
+    {
+        header: 'PERIODO ACADÉMICO',
+        accessorKey: 'descripcionPeriodoAcademico',
+        size: 100
+    },
+    {
         header: 'ACCIONES',
         size: 50,
         cell: ({ row }) => (

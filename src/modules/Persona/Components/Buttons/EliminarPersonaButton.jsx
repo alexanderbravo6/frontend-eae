@@ -1,13 +1,13 @@
-import useClienteAxios from "@/shared/Hooks/useClienteAxios";
+
 import { usePersona } from "../../Providers/PersonaProvider";
 import { useSWRConfig } from "swr";
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import { Button } from "@nextui-org/react";
 import { IconDelete } from "@/shared/Components/Icons";
 import { useState } from "react";
 import { usePersonaService } from "../../Hooks/usePersonaService";
 import Swal from "sweetalert2";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 
 const EliminarPersonaButton = ({ row }) => {
@@ -15,8 +15,8 @@ const EliminarPersonaButton = ({ row }) => {
     const { mutate } = useSWRConfig();
     const { eliminarPersona } = usePersonaService();
     const [isLoading, setIsLoading] = useState(false)
-
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPER', 'ELI')) return null
 
     const handleEliminar = async () => {
         setIsLoading(true)
@@ -34,14 +34,14 @@ const EliminarPersonaButton = ({ row }) => {
                 if (result.isConfirmed) {
                     try {
                         const response = await eliminarPersona(row.id)
-                       
+
                         if (response.success === true) {
                             toast.success(response.messages[0])
                             mutate(`personas_${pagination?.pageIndex + 1}_${JSON.stringify(query)}`)
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.messages[0])
+                            toast.error(response.errors[0])
                         }
                     }
                     catch (error) {

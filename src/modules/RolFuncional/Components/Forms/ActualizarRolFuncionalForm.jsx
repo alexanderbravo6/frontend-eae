@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import { useRolFuncionalService } from '../../Hooks/useRolFuncionalService';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 function ActualizarRolFuncionalForm({ onClose, row }) {
 
     const { mutate } = useSWRConfig()
@@ -73,7 +74,7 @@ function ActualizarRolFuncionalForm({ onClose, row }) {
                         </div>
                         <div className="col-span-1">
                             <label htmlFor="estado" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Estado
+                                ESTADO
                             </label>
                             <select id="estado"
                                 {...register('estado', {
@@ -101,15 +102,10 @@ function ActualizarRolFuncionalForm({ onClose, row }) {
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="danger" variant="light" onPress={
-                        () => {
-                            reset()
-                            onClose()
-                        }}>
-                        Cerrar
-                    </Button>
+
 
                     <ButtonSubmit isSubmitting={isSubmitting} label={'Registrar'} />
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </>

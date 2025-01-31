@@ -5,10 +5,12 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { IconEdit } from "@/shared/Components/Icons";
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import ActualizarRolFuncionalForm from "../Forms/ActualizarRolFuncionalForm";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 export default function ActualizarMenuModal({ row }) {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESROL', 'MOD')) return null
     return (
         <>
             <button onClick={onOpen} className="font-medium text-blue-500  hover:underline">
@@ -18,15 +20,9 @@ export default function ActualizarMenuModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-3xl "
+                title={`ACTUALIZAR ROL FUNCIONAL`}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">ACTUALIZAR ROL FUNCIONAL</ModalHeader>
-                            <ActualizarRolFuncionalForm onClose={onClose} row={row} />
-                        </>
-                    )}
-                </ModalContent>
+                <ActualizarRolFuncionalForm onClose={onClose} row={row} />
             </TemplateModal>
         </>
     );

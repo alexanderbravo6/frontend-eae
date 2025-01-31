@@ -11,6 +11,7 @@ import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import { usePreguntaService } from '@/modules/Pruebas/Hooks/usePreguntaService';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -100,9 +101,7 @@ function RegistrarPreguntaForm({ onClose, idPrueba }) {
                 </ModalBody>
                 <ModalFooter>
                     <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
-                    <Button color="danger" variant="flat" onPress={onClose}   >
-                        Cerrar
-                    </Button>
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </section>

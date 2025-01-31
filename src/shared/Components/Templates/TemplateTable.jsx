@@ -15,7 +15,7 @@ function TemplateTable({ datos, columns, total }) {
         <>
 
             <table className=" w-full font-normal ">
-                <thead className=" text-left text-[13px] text-gray-700 uppercase bg-gray-100 ">
+                <thead className=" text-left  text-xs text-gray-700 uppercase bg-gray-100 ">
                     {
                         table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
@@ -54,10 +54,10 @@ function TemplateTable({ datos, columns, total }) {
                     }
 
                 </thead>
-                <tbody>
+                <tbody >
                     {
                         table.getRowModel().rows.map((row, i) => (
-                            <tr className="odd:bg-white text-[13px] odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={row.id}>
+                            <tr className="odd:bg-white  text-xs odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={row.id}>
                                 {
                                     <td key={`body_${i}`} className="p-2">
                                         {i + 1 + table.getState().pagination.pageSize * table.getState().pagination.pageIndex}

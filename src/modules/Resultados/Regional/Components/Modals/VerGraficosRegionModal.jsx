@@ -3,9 +3,10 @@ import React from 'react'
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoRegionalTab from '../Tabs/GraficoRegionalTab';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 function VerGraficosRegionModal({ row }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange,onClose} = useDisclosure();
 
 
     return (
@@ -31,25 +32,16 @@ function VerGraficosRegionModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-9xl '}
+                title={`Gráficos de Resultados de la DRE de ${row.nombre}`}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400  font-bold ">GRÁFICOS DE RESULTADOS DE LA DRE DE  {row.nombre}  </h1>
-                            </ModalHeader>
-                            <ModalBody >
-                                <GraficoRegionalTab row={row} />
-                            </ModalBody>
-                            <ModalFooter>
-
-                                <Button color="danger" variant="flat" onPress={onClose}   >
-                                    Cerrar
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
+                <>
+                    <ModalBody >
+                        <GraficoRegionalTab row={row} />
+                    </ModalBody>
+                    <ModalFooter>
+                        <ButtonCloseModal onClose={onClose} />
+                    </ModalFooter>
+                </>
             </TemplateModal>
         </>
     )

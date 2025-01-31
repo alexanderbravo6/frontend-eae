@@ -5,10 +5,13 @@ import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
 import { useSWRConfig } from 'swr'
 import { useMenuService } from '../../Hooks/useMenuService'
+import { useUtils } from '@/shared/Hooks/useUtils'
 
 const EliminarMenuButton = ({ row }) => {
     const { mutate } = useSWRConfig();
     const { eliminarMenu } = useMenuService();
+    const { ValidarPermisos } = useUtils()
+
     const [isLoading, setIsLoading] = useState(false)
     const handleEliminar = () => {
         try {
@@ -32,7 +35,7 @@ const EliminarMenuButton = ({ row }) => {
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.messages[0])
+                            toast.error(response.errors[0])
                         }
                     }
                     catch (error) {
@@ -50,6 +53,7 @@ const EliminarMenuButton = ({ row }) => {
             setIsLoading(false)
         }
     }
+    if (!ValidarPermisos('GESMEN', 'ELI')) return null
     return (
         <>
             {

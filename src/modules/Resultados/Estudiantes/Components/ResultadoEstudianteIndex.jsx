@@ -5,6 +5,7 @@ import ResultadoEstudianteTable from './Tables/ResultadoEstudianteTable'
 import { useUtils } from '@/shared/Hooks/useUtils'
 
 
+
 const ResultadoEstudianteIndex = () => {
     const { formValues, handleCleanSearch, handleSearch, handleInputChange, query, utils } = useResultadoEstudiante()
     const { ValidarPermisos } = useUtils()
@@ -83,6 +84,7 @@ const ResultadoEstudianteIndex = () => {
                 )
             }
             <section>
+
                 <ResultadoEstudianteTable query={query} />
             </section >
         </>

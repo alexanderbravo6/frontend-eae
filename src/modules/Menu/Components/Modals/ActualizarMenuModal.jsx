@@ -5,10 +5,12 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { IconEdit } from "@/shared/Components/Icons";
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
 import ActualizarMenuForm from "../Forms/ActualizarMenuForm";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 export default function ActualizarMenuModal({ row }) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
+  const { ValidarPermisos } = useUtils()
+  if (!ValidarPermisos('GESMEN', 'MOD')) return null
   return (
     <>
       <button onClick={onOpen} className="font-medium text-blue-500  hover:underline">
@@ -18,15 +20,9 @@ export default function ActualizarMenuModal({ row }) {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         className="max-w-7xl "
+        title={`ACTUALIZAR MENÚ ${row.nombre}`}
       >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">ACTUALIZAR MENÚ</ModalHeader>
-              <ActualizarMenuForm onClose={onClose} row={row} />
-            </>
-          )}
-        </ModalContent>
+        <ActualizarMenuForm onClose={onClose} row={row} />
       </TemplateModal>
     </>
   );

@@ -6,23 +6,25 @@ const SECOND = 1000;
 const MINUTE = SECOND * 60;
 const HOUR = MINUTE * 60;
 
-function Countdown({ timestamp, token, idPregunta }) {
+function Countdown({ timestamp, idPregunta, timeLimit }) {
     const TIMESTAMPEND = timestamp * (timestamp < 10000000000 ? 1000 : 1);  // Si está en segundos, convertir a milisegundos
-    const { handleCerrarEvaluacion } = useEvaluacion();
+    const { handleCerrarEvaluacion, testParams } = useEvaluacion();
     const [isLoading, setIsLoading] = useState(true);
     const [horas, setHoras] = useState("00");
     const [minutos, setMinutos] = useState("00");
     const [segundos, setSegundos] = useState("00");
 
     const calculateTimeLeft = () => {
-        const now = new Date().getTime();
+        const now = Date.now();
         const diff = TIMESTAMPEND - now;
 
         if (diff <= 0) {
             setHoras("00");
             setMinutos("00");
             setSegundos("00");
-            handleCerrarEvaluacion(token, idPregunta);
+            if (timeLimit) {
+                handleCerrarEvaluacion(testParams.idevaluacion, idPregunta);
+            }
         } else {
             const h = Math.floor(diff / HOUR).toString().padStart(2, '0');
             const m = Math.floor((diff % HOUR) / MINUTE).toString().padStart(2, '0');

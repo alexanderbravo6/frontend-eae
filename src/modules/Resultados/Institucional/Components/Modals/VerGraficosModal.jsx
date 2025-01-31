@@ -3,9 +3,10 @@ import React from 'react'
 import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoInstitucionalTab from '../Tabs/GraficoInstitucionalTab';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 function VerGraficosModal({ row }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
 
     return (
@@ -31,25 +32,16 @@ function VerGraficosModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-9xl '}
+                title={`Gráficos de Resultados de la Institución ${row.nombre} de ${row.region}`}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400  font-bold ">GRÁFICOS DE RESULTADOS DE LA INSTITUCIÓN {row.nombre} DE {row.region} </h1>
-                            </ModalHeader>
-                            <ModalBody >
-                                <GraficoInstitucionalTab row={row} />
-                            </ModalBody>
-                            <ModalFooter>
-
-                                <Button color="danger" variant="flat" onPress={onClose}   >
-                                    Cerrar
-                                </Button>
-                            </ModalFooter>
-                        </>
-                    )}
-                </ModalContent>
+                <>
+                    <ModalBody >
+                        <GraficoInstitucionalTab row={row} />
+                    </ModalBody>
+                    <ModalFooter>
+                        <ButtonCloseModal onClose={onClose} />
+                    </ModalFooter>
+                </>
             </TemplateModal>
         </>
     )

@@ -10,6 +10,13 @@ import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
 import { useUtils } from '@/shared/Hooks/useUtils';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import InputField from '@/shared/Components/Form/Fields/InputField';
+import SelectField from '@/shared/Components/Form/Fields/SelectField';
+import DateField from '@/shared/Components/Form/Fields/DateField';
+import TimeField from '@/shared/Components/Form/Fields/TimeField';
+import NumberField from '@/shared/Components/Form/Fields/NumberField';
+import { cierreAutomaticoOptions } from '@/shared/Constants/GlobalConstants';
 
 function RegistrarPruebaForm({ onClose }) {
     const { utils } = usePrueba()
@@ -67,268 +74,156 @@ function RegistrarPruebaForm({ onClose }) {
                     }
                     <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div className='md:col-span-2  '>
-                            <label htmlFor="prueba" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de Prueba</label>
-                            <input
-                                {...register('nombre', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo nombre de prueba es requerido'
-                                    },
-                                })}
-                                type="text" id="prueba" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            {
-                                errors.nombre && (
-                                    <span className="text-red-500 text-xs">{errors.nombre.message}</span>
-                                )
-                            }
+                            <InputField
+                                id="nombre"
+                                label="nombre de prueba"
+                                isRequired={true}
+                                register={register}
+                                error={errors.nombre}
+                            />
+
                         </div>
                         <div className='md:col-span-1'>
-                            <label htmlFor="tipoPrueba" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipo de Prueba</label>
-                            <select id="tipoPrueba"
-                                {...register('idTipoPrueba', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo tipo de prueba es requerido'
-                                    },
-                                })}
+                            <SelectField
+                                id="idTipoPrueba"
+                                label="tipo de prueba"
+                                options={utils?.data?.data?.tiposPrueba?.map(item => ({
+                                    value: item.id,
+                                    label: `${item.descripcion}`
+                                })) || []}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idTipoPrueba}
+                            />
 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {utils && utils.isLoading ? (
-                                    <option value="">Cargando...</option>
-                                ) : (
-                                    <>
-                                        <option value="">Seleccionar</option>
-                                        {
-                                            utils?.data?.data.tiposPrueba.map((item, i) => (
-                                                <option key={i} value={item.id}> {item.descripcion}</option>
-                                            ))
-                                        }
-                                    </>
-                                )
-                                }
-                            </select>
-                            {
-                                errors.idTipoPrueba && (
-                                    <span className="text-red-500 text-xs">{errors.idTipoPrueba.message}</span>
-                                )
-                            }
                         </div>
                         <div className='md:col-span-1'>
-                            <label htmlFor="especialidad" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Especialidades</label>
-                            <select id="especialidad"
-                                {...register('idEspecialidad', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo especialidad es requerido'
-                                    },
-                                })}
+                            <SelectField
+                                id="idEspecialidad"
+                                label="especialidades"
+                                options={[
+                                    { value: 0, label: "TODAS LAS ESPECIALIDADES" },
+                                    ...(utils?.data?.data.especialidades?.map(item => ({
+                                        value: item.id,
+                                        label: `${item.descripcion}`
+                                    })) || [])
+                                ]}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idEspecialidad}
+                            />
 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {utils && utils.isLoading ? (
-                                    <option value="">Cargando...</option>
-                                ) : (
-                                    <>
-                                        <option value="">Seleccionar</option>
-                                        <option value="0">TODAS LAS ESPECIALIDADES</option>
-                                        {
-                                            utils?.data?.data.especialidades.map((item, i) => (
-                                                <option key={i} value={item.id}> {item.descripcion}</option>
-                                            ))
-                                        }
-                                    </>
-                                )
-                                }
-                            </select>
-                            {
-                                errors.idEspecialidad && (
-                                    <span className="text-red-500 text-xs">{errors.idEspecialidad.message}</span>
-                                )
-                            }
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="ciclo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ciclo</label>
-                            <select id="ciclo"
-                                {...register('idCiclo', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo ciclo es requerido'
-                                    },
-                                })}
+                            <SelectField
+                                id="idCiclo"
+                                label="ciclo"
+                                options={utils?.data?.data.ciclos?.map(item => ({
+                                    value: item.id,
+                                    label: `${item.descripcion}`
+                                })) || []}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idCiclo}
+                            />
 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {utils && utils.isLoading ? (
-                                    <option value="">Cargando...</option>
-                                ) : (
-                                    <>
-                                        <option value="">Seleccionar</option>
-                                        {
-                                            utils?.data?.data.ciclos.map((item, i) => (
-                                                <option key={i} value={item.id}> {item.descripcion}</option>
-                                            ))
-                                        }
-                                    </>
-                                )
-                                }
-                            </select>
-                            {
-                                errors.idCiclo && (
-                                    <span className="text-red-500 text-xs">{errors.idCiclo.message}</span>
-                                )
-                            }
+
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="periodoAcademico" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Periodo Académico</label>
-                            <select id="periodoAcademico"
-                                {...register('idPeriodoAcademico', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo periodo académico es requerido'
-                                    },
-                                })}
+                            <SelectField
+                                id="idPeriodoAcademico"
+                                label="periodo académico"
+                                options={utils?.data?.data?.periodosAcademicos?.map(item => ({
+                                    value: item.id,
+                                    label: `${item.descripcion}`
+                                })) || []}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idPeriodoAcademico}
+                            />
 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {utils && utils.isLoading ? (
-                                    <option value="">Cargando...</option>
-                                ) : (
-                                    <>
-                                        <option value="">Seleccionar</option>
-                                        {
-                                            utils?.data?.data.periodosAcademicos.map((item, i) => (
-                                                <option key={i} value={item.id}> {item.descripcion}</option>
-                                            ))
-                                        }
-                                    </>
-                                )
-                                }
-                            </select>
-                            {
-                                errors.idPeriodoAcademico && (
-                                    <span className="text-red-500 text-xs">{errors.idPeriodoAcademico.message}</span>
-                                )
-                            }
+
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="indicacion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Indicaciones</label>
-                            <select id="indicacion"
-                                {...register('idIndicacion', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo indicación es requerido'
-                                    },
-                                })}
+                            <SelectField
+                                id="idIndicacion"
+                                label="Indicaciones"
+                                options={utils?.data?.data?.indicaciones?.map(item => ({
+                                    value: item.id,
+                                    label: `${item.nombre}`
+                                })) || []}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idIndicacion}
+                            />
 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {utils && utils.isLoading ? (
-                                    <option value="">Cargando...</option>
-                                ) : (
-                                    <>
-                                        <option value="">Seleccionar</option>
-                                        {
-                                            utils?.data?.data.indicaciones.map((item, i) => (
-                                                <option key={i} value={item.id}> {item.nombre}</option>
-                                            ))
-                                        }
-                                    </>
-                                )
-                                }
-                            </select>
-                            {
-                                errors.idIndicacion && (
-                                    <span className="text-red-500 text-xs">{errors.idIndicacion.message}</span>
-                                )
-                            }
+
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="fecha" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
-                            <input
-                                {...register('fechaPrueba', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo hora inicio es requerido'
-                                    },
-                                })}
+                            <DateField
+                                id="fechaPrueba"
+                                label="fecha"
+                                isRequired={true}
+                                register={register}
+                                error={errors.fechaPrueba}
+                            />
 
-                                type="date" className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            {
-                                errors.fechaPrueba && (
-                                    <span className="text-red-500 text-xs">{errors.fechaPrueba.message}</span>
-                                )
-                            }
                         </div>
                         <div className='col-span-1' >
-                            <label htmlFor="horaInicio" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Inicio</label>
-                            <div className="relative">
+                            <TimeField
+                                id="horaInicio"
+                                label="hora de inicio"
+                                isRequired={true}
+                                register={register}
+                                error={errors.horaInicio}
+                            />
 
-                                <input type="time"
-                                    {...register('horaInicio', {
-                                        required: {
-                                            value: true,
-                                            message: 'El campo hora inicio es requerido'
-                                        },
-                                    })}
-
-                                    id="horaInicio" className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            </div>
-                            {
-                                errors.horaInicio && (
-                                    <span className="text-red-500 text-xs">{errors.horaInicio.message}</span>
-                                )
-                            }
                         </div>
                         <div className='col-span-1' >
+                            <TimeField
+                                id="horaFin"
+                                label="hora de finalización"
+                                isRequired={true}
+                                register={register}
+                                error={errors.horaFin}
+                            />
 
-                            <label htmlFor="horaFin" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hora de Fin</label>
-                            <div className="relative">
-                                <input type="time" id="horaFin"
-                                    {...register('horaFin', {
-                                        required: {
-                                            value: true,
-                                            message: 'El campo hora inicio es requerido'
-                                        },
-                                    })}
 
-                                    className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            </div>
-                            {
-                                errors.horaFin && (
-                                    <span className="text-red-500 text-xs">{errors.horaFin.message}</span>
-                                )
-                            }
                         </div>
 
                         <div className='col-span-1  '>
-                            <label htmlFor="duracion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duración de prueba en horas</label>
-                            <input
-                                {...register('duracion', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo duración de prueba en horas es requerido'
-                                    },
-                                })}
+                            <NumberField
+                                id="duracion"
+                                label="duración de pruebas en minutos"
+                                isRequired={true}
 
-                                type="text" id="duracion" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            {
-                                errors.duracion && (
-                                    <span className="text-red-500 text-xs">{errors.duracion.message}</span>
-                                )
-                            }
+                                register={register}
+                                error={errors.duracion}
+                            />
+
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="fechaCorteMatricula" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Fecha de corte de Matrícula</label>
-                            <input
-                                {...register('fechaCorteMatricula', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo fecha de corte de matrícula es requerido'
-                                    },
-                                })}
+                            <SelectField
+                                id="cierreAutomatico"
+                                label="¿requiere cierre automático?"
+                                options={cierreAutomaticoOptions}
+                                setValue={setValue}
+                                isRequired={true}
+                                register={register}
+                                error={errors.cierreAutomatico}
+                            />
 
-                                type="date" className="bg-gray-50 border leading-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                            {
-                                errors.fechaCorteMatricula && (
-                                    <span className="text-red-500 text-xs">{errors.fechaCorteMatricula.message}</span>
-                                )
-                            }
+
                         </div>
                     </div>
                     <Divider className="my-4" />
@@ -419,9 +314,7 @@ function RegistrarPruebaForm({ onClose }) {
                 </ModalBody>
                 <ModalFooter>
                     <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
-                    <Button color="danger" variant="flat" onPress={onClose}   >
-                        Cerrar
-                    </Button>
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </section>

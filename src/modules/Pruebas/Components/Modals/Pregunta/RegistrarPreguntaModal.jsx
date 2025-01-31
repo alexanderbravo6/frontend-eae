@@ -8,7 +8,7 @@ import RegistrarPreguntaForm from '../../Forms/Pregunta/RegistrarPreguntaForm';
 
 
 function RegistrarPreguntaModal({ idPrueba }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
 
     return (
@@ -23,18 +23,9 @@ function RegistrarPreguntaModal({ idPrueba }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={`REGISTRAR PREGUNTA INDIVIDUAL`}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVA PREGUNTA</h1>
-                            </ModalHeader>
-                            <RegistrarPreguntaForm idPrueba={idPrueba} onClose={onClose} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <RegistrarPreguntaForm idPrueba={idPrueba} onClose={onClose} />
             </TemplateModal>
         </>
     )

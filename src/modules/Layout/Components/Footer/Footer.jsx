@@ -5,7 +5,7 @@ function Footer() {
         <>
             <footer className=" [grid-area:footer] w-full   ">
                 <div className=" bottom-0  w-100 min-h-[50px]  mx-4  px-6 bg-white border-t border-gray-200 shadow flex items-center justify-between " >
-                    <span className="md:text-xs text-[8px] text-gray-500 sm:text-center ">© {new Date().getFullYear()} <a href="https://www.minedu.gob.pe/superiorpedagogica/" className="hover:underline">DIFOID</a>. Todos los derechos reservados.
+                    <span className="md:text-xs h-full text-[8px] text-gray-500 sm:text-center ">© {new Date().getFullYear()} <a href="https://www.minedu.gob.pe/superiorpedagogica/" className="hover:underline">DIFOID</a>. Todos los derechos reservados.
                     </span>
                     <ul className="flex flex-wrap items-center md:text-xs text-[8px] font-medium text-gray-500  sm:mt-0">
                         <li>

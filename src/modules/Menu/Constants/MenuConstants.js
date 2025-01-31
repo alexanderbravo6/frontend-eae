@@ -12,6 +12,10 @@ export const menuColumns = [
         accessorKey: 'rutaRelativa'
     },
     {
+        header: 'CODIGO',
+        accessorKey: 'codigo'
+    },
+    {
         header: 'ORDEN',
         accessorKey: 'orden'
     },

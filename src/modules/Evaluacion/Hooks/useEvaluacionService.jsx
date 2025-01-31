@@ -2,9 +2,11 @@
 import useSWR from "swr";
 import { configSWR } from "@/shared/Constants/GlobalConstants";
 import useAxiosEvaluacion from "@/shared/Hooks/useAxiosEvaluacion";
+import { useEvaluacion } from "../Context/useEvaluacion";
 
-export const useEvaluacionService = () => {
-    const axios = useAxiosEvaluacion();
+export const useEvaluacionService = (token = null) => {
+
+    const axios = useAxiosEvaluacion(token);
     //consulta SWR
 
     const FetchPruebasActivas = () => {

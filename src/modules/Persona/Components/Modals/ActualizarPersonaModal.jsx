@@ -7,9 +7,11 @@ import RegistrarPersonaForm from "../Forms/RegistrarPersonaForm";
 import { IconEdit } from "@/shared/Components/Icons";
 import ActualizarPersonaForm from "../Forms/ActualizarPersonaForm";
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
+import { useUtils } from "@/shared/Hooks/useUtils";
 export default function ActualizarPersonaModal({ row }) {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
+  const { ValidarPermisos } = useUtils()
+  if (!ValidarPermisos('GESPER', 'MOD')) return null
   return (
     <>
       <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="ghost" color="success" onPress={onOpen}>

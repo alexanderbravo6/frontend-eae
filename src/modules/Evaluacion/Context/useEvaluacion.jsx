@@ -28,7 +28,8 @@ export function EvaluacionProvider({ children }) {
     const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
     const [validationLoading, setValidationLoading] = useState(false);
     const [isLoadingClose, setIsLoadingClose] = useState(false);
-    const { cerrarEvaluacion } = useEvaluacionService();
+    const [testParams, setTestParams] = useState(null);
+    const { cerrarEvaluacion } = useEvaluacionService(testParams?.token);
     const handleLimpiarValidacion = () => {
 
         setEstudianteEncontrado(false);
@@ -66,7 +67,7 @@ export function EvaluacionProvider({ children }) {
             console.log(error)
         }
     }
-    
+
     return (
         <EvaluacionContext.Provider value={{
             handleCerrarEvaluacion,
@@ -87,7 +88,9 @@ export function EvaluacionProvider({ children }) {
             errorValidation,
             setErrorValidation,
             setValidationLoading,
-            validationLoading
+            validationLoading,
+            testParams,
+            setTestParams
         }}>
             {children}
         </EvaluacionContext.Provider>

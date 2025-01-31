@@ -1,10 +1,11 @@
-import { IconDelete } from '@/shared/Components/Icons'
-import { Button } from '@nextui-org/react'
+
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
 import { useSWRConfig } from 'swr'
 import { useRolFuncionalService } from '../../Hooks/useRolFuncionalService'
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete'
+import { useUtils } from '@/shared/Hooks/useUtils'
 
 const EliminarRolFuncionalButton = ({ row }) => {
     const { mutate } = useSWRConfig();
@@ -32,7 +33,7 @@ const EliminarRolFuncionalButton = ({ row }) => {
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.messages[0])
+                            toast.error(response.errors[0])
                         }
                     }
                     catch (error) {
@@ -50,24 +51,11 @@ const EliminarRolFuncionalButton = ({ row }) => {
             setIsLoading(false)
         }
     }
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESROL', 'ELI')) return null
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
 
 
         </>

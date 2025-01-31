@@ -7,7 +7,7 @@ import React from 'react'
 
 const itemBreadcrumbs = [
     {
-        href: '/administracion/gestion-enunciados',
+        href: '/gestion/gestion-enunciados',
         name: 'Gestión de Enunciados'
     }
 ]

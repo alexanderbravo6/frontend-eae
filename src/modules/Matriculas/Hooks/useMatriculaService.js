@@ -52,7 +52,7 @@ export const useMatriculaService = () => {
         return { data, error, isLoading, mutate }
     }
     const FecthMatriculas = (page, query) => {
-
+        
         const fetcher = () => axios.get("/v1/matriculas", { params: { page, ...query } }).then(response => response.data);
         const { data, error, isLoading, mutate } = useSWR(`matriculas_${page}_${JSON.stringify(query)}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }

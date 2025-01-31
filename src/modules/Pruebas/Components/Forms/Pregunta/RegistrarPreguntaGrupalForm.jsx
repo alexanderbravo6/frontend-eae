@@ -8,6 +8,7 @@ import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -68,9 +69,7 @@ function RegistrarPreguntaGrupalForm({ onClose }) {
                 </ModalBody>
                 <ModalFooter>
                     <ButtonSubmit label="Registrar" />
-                    <Button color="danger" variant="flat" onPress={onClose}   >
-                        Cerrar
-                    </Button>
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </section>

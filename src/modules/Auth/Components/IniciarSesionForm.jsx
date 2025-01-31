@@ -6,10 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import { Button, Spinner } from "@nextui-org/react";
 import { EyeFilledIcon, EyeSlashFilledIcon } from "@/shared/Components/Icons";
 import Link from "next/link";
+import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 function IniciarSesionForm() {
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
     const [customError, setCustomError] = useState(null);
     const [showPassword, setShowPassword] = useState(false)
+    const [errorValidation, setErrorValidation] = useState('');
     const [captchaText, setCaptchaText] = useState('')
     const [userCaptchaInput, setUserCaptchaInput] = useState('')
     const [isCaptchaValid, setIsCaptchaValid] = useState(false)
@@ -100,12 +102,20 @@ function IniciarSesionForm() {
                 });
 
                 if (res?.error) {
-                    setCustomError(res?.error)
+                    setErrorValidation(res?.error)
                 }
+
 
             } else {
 
-                setCustomError(response?.messages)
+                if (response.errors) {
+                    const nuevosErrores = Object.values(response.errors).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+                if (response.validations) {
+                    const nuevosErrores = Object.values(response.validations).flat();
+                    setErrorValidation(nuevosErrores)
+                }
             }
         } catch (e) {
             console.log(e.message || 'Error al iniciar sesión')
@@ -120,7 +130,7 @@ function IniciarSesionForm() {
             <form onSubmit={ValidarUsuario} className="max-w-lg mb-[6%]  gap-5 flex flex-col md:mx-auto mx-[10%] h-[80%] md:w-full w-[80%] items-center justify-center">
 
                 <div className="mb-6 text-left w-full">
-                    <h1 className=" font-extralight mb-3 text-xl md:text-3xl text-black">
+                    <h1 className=" font-extralight mb-3 text-xl md:text-3xl  text-black">
                         <strong className="font-bold">
                             Sistema de evaluación de los aprendizajes de los estudiantes
                         </strong> de IESP-EESP Públicas
@@ -132,10 +142,10 @@ function IniciarSesionForm() {
                 </div>
                 <p className="text-gray-400 text-left w-full">Inicio de sesión</p>
                 {
-                    customError && (
-                        <div className="bg-red-500 text-white p-4 text-left text-xs w-full rounded-lg mb-5">
-                            {customError}
-                        </div>
+                    errorValidation.length === 0 ? null : (
+                        <section className="w-full">
+                            <TemplateAlert message={errorValidation} type={'Error'} />
+                        </section>
                     )
                 }
                 <section className="mb-5 w-full ">
@@ -213,9 +223,12 @@ function IniciarSesionForm() {
                         )
                     }
                 </section>
-                <section className="w-full">
+                <section className="w-full justify-between flex flex-row">
                     <Link href={`registro-estudiante`} className="text-[#338ef7] text-left font-bold" >
                         Registrarme como estudiante
+                    </Link>
+                    <Link href={`recuperar-usuario`} className="text-[#338ef7] text-left font-bold" >
+                        ¿Olvidaste tu contraseña?
                     </Link>
                 </section>
                 <section className="flex  w-full md:flex-nowrap flex-wrap gap-4">
@@ -289,7 +302,7 @@ function IniciarSesionForm() {
                 }
             </form>
             <footer className="bg-white rounded-lg shadow m-4 h-[10%] md:h-[6%]">
-                <div className="w-full mx-auto max-w-screen-xl p-2 md:flex md:items-center md:justify-between">
+                <div className="w-full mx-auto h-full max-w-screen-xl p-2 md:flex md:items-center md:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center ">© {new Date().getFullYear()} <a href="https://www.minedu.gob.pe/superiorpedagogica/" className="hover:underline">DIFOID</a>
                     </span>
                     <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500  sm:mt-0">

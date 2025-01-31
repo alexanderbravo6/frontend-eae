@@ -6,7 +6,7 @@ import InstruccionesCard from '@/modules/Evaluacion/Components/InstruccionesCard
 import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
 
 
-function IntruccionesPage() {
+function IntruccionesPage({ params }) {
     const { setValidationLoading } = useEvaluacion();
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function IntruccionesPage() {
                 <div className='flex  items-center justify-center'>
                     <Image src="/icon-minedu.svg" width={180} height={180} alt="Icono Ministerio de Educación" />
                 </div>
-                <InstruccionesCard />
+                <InstruccionesCard token={params.token} />
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 'use client'
 
+
 import ResultadoEstudianteIndex from '@/modules/Resultados/Estudiantes/Components/ResultadoEstudianteIndex';
 import Breadcrumb from '@/shared/Components/Breadcrumbs/Breadcrumb'
 import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission';
@@ -8,7 +9,7 @@ import React from 'react'
 
 const itemBreadcrumbs = [
     {
-        href: '/administracion/gestion-matriculas',
+        href: '/gestion/gestion-matriculas',
         name: 'Resultado de Estudiantes'
     }
 ]
@@ -25,6 +26,7 @@ function ResultadoEstudiantePage() {
                 <h2 className='text-white font-thin md:block hidden text-[1.1rem] '><Breadcrumb items={itemBreadcrumbs} /> </h2>
 
             </div>
+
             <ResultadoEstudianteIndex />
         </>
     )
