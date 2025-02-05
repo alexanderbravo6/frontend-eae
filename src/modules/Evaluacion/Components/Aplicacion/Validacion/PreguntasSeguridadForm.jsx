@@ -2,8 +2,8 @@
 import React, { useState } from 'react'
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { useRouter } from 'next/navigation';
-import { useEvaluacion } from '../../Context/useEvaluacion';
-import { useEvaluacionService } from '../../Hooks/useEvaluacionService';
+import { useEvaluacion } from '../../../Context/EvaluacionProvider';
+import { useEvaluacionService } from '../../../Hooks/useEvaluacionService';
 import { toast } from 'react-toastify';
 
 function PreguntaSeguridadForm() {

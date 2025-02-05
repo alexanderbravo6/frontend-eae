@@ -1,9 +1,10 @@
 
 import React, { useState } from 'react'
 import { TableSkeleton } from '@/shared/Components/Skeletons/Skeletons';
-import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData';
 import { useFetchAllPersonas, usePersonaService } from '../../Hooks/usePersonaService';
 import TemplateTablePagination from '@/shared/Components/Templates/TemplateTablePagination';
+
+import TemplateErrorData from '@/shared/Components/Templates/TemplateErrorData';
 import { usePersona } from '../../Providers/PersonaProvider';
 function PersonaTable({ columns, query }) {
     const { pagination, setPagination } = usePersona()

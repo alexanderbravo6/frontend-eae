@@ -1,4 +1,4 @@
-import IniciarSesionForm from "@/modules/Auth/Components/IniciarSesionForm";
+import IniciarSesionForm from "@/modules/Auth/Components/Forms/IniciarSesionForm";
 
 
 export default function IniciarSesionPage() {

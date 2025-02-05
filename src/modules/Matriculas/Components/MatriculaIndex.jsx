@@ -25,7 +25,7 @@ const MatriculaIndex = () => {
                                 <input
                                     type="text"
                                     id="numeroDocumento"
-                                    defaultValue={formValues.numeroDocumento}
+                                    value={formValues.numeroDocumento}
                                     onChange={handleInputChange}
                                     className="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 />
@@ -37,7 +37,7 @@ const MatriculaIndex = () => {
                                 <input
                                     type="text"
                                     id="primerApellido"
-                                    defaultValue={formValues.primerApellido}
+                                    value={formValues.primerApellido}
                                     onChange={handleInputChange}
                                     className="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 />
@@ -49,7 +49,7 @@ const MatriculaIndex = () => {
                                 <input
                                     type="text"
                                     id="segundoApellido"
-                                    defaultValue={formValues.segundoApellido}
+                                    value={formValues.segundoApellido}
                                     onChange={handleInputChange}
                                     className="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 />

@@ -80,10 +80,10 @@ const CargaMasivaMatriculaForm = ({ onClose }) => {
                         ARCHIVO <span className="text-red-500">*</span>
                     </label>
                     <div className='flex gap-4'>
-                        <a href="/formatos/FORMATO_CARGA_MASIVA_MATRICULA.xlsx" className='text-[#338ef7] hover:text-blue-800' title='Descargar' download="formato_carga_masiva.xlsx">
+                        <a href="/Formatos/FORMATO_CARGA_MASIVA_MATRICULA.xlsx" className='text-[#338ef7] hover:text-blue-800' title='Descargar' download="formato_carga_masiva.xlsx">
                             DESCARGAR PLANTILLA
                         </a>
-                        <a href="/formatos/DICCIONARIO_DATOS_MATRICULA.xlsx" className='text-[#338ef7] hover:text-blue-800' title='Descargar Diccionario' download="diccionario_datos.xlsx">
+                        <a href="/Formatos/DICCIONARIO_DATOS_MATRICULA.xlsx" className='text-[#338ef7] hover:text-blue-800' title='Descargar Diccionario' download="diccionario_datos.xlsx">
                             DIRECCIONARIO DE DATOS
                         </a>
                     </div>

@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import React, { useEffect } from 'react';
 import 'quill/dist/quill.snow.css';
-import InstruccionesCard from '@/modules/Evaluacion/Components/InstruccionesCard';
-import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
+import InstruccionesCard from '@/modules/Evaluacion/Components/Aplicacion/InstruccionesCard';
+import { useEvaluacion } from '@/modules/Evaluacion/Context/EvaluacionProvider';
 
 
 function IntruccionesPage({ params }) {

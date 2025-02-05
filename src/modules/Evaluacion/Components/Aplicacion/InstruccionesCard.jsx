@@ -6,9 +6,9 @@ import 'quill/dist/quill.snow.css';
 import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { useEvaluacion } from '../Context/useEvaluacion';
+import { useEvaluacion } from '../../Context/EvaluacionProvider';
 import TestEnding from './Test/TestEnding';
-import { useEvaluacionService } from '../Hooks/useEvaluacionService';
+import { useEvaluacionService } from '../../Hooks/useEvaluacionService';
 
 function InstruccionesCard({ token }) {
     const router = useRouter();

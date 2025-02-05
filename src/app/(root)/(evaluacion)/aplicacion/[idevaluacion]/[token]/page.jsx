@@ -1,7 +1,7 @@
 'use client'
-import Test from '@/modules/Evaluacion/Components/Main/Test';
-import TestLoading from '@/modules/Evaluacion/Components/Test/TestLoading';
-import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
+import Test from '@/modules/Evaluacion/Components/Aplicacion/Main/Test';
+import TestLoading from '@/modules/Evaluacion/Components/Aplicacion/Test/TestLoading';
+import { useEvaluacion } from '@/modules/Evaluacion/Context/EvaluacionProvider';
 import React, { useEffect, useState } from 'react'
 function EvaluacionPage({ params }) {
   const [isLoading, setIsLoading] = useState(true)

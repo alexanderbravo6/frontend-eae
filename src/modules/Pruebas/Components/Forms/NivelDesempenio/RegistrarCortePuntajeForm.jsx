@@ -2,21 +2,13 @@
 import React, { useState } from 'react'
 import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import { useForm } from 'react-hook-form';
-import { Button, DatePicker, Divider, ModalBody, ModalFooter, Radio, RadioGroup } from '@nextui-org/react';
-import { usePrueba } from '@/modules/Pruebas/Providers/PruebaProvider';
-import { useSession } from 'next-auth/react';
+import {  ModalBody, ModalFooter } from '@nextui-org/react';
 import { usePruebaService } from '@/modules/Pruebas/Hooks/usePruebaService';
 import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
-import { useUtils } from '@/shared/Hooks/useUtils';
 import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
-import InputField from '@/shared/Components/Form/Fields/InputField';
-import SelectField from '@/shared/Components/Form/Fields/SelectField';
-import DateField from '@/shared/Components/Form/Fields/DateField';
-import TimeField from '@/shared/Components/Form/Fields/TimeField';
 import NumberField from '@/shared/Components/Form/Fields/NumberField';
-import { cierreAutomaticoOptions } from '@/shared/Constants/GlobalConstants';
 
 function RegistrarCortePuntajeForm({ onClose, idPrueba }) {
 
@@ -36,14 +28,7 @@ function RegistrarCortePuntajeForm({ onClose, idPrueba }) {
 
             if (response.success === true) {
                 setErrorValidation([])
-                mutate(`listado_cortes_puntajes_${idPrueba}`,
-                    // Aquí se actualiza la data
-                    (res) => {
-
-                        return { ...res, data: [...res.data, response.data] }
-                    }
-                    , false
-                )
+                mutate(`listado_cortes_puntajes_${idPrueba}`)
                 onClose()
                 toast.success(response.messages[0])
             } else {

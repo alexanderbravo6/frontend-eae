@@ -136,7 +136,7 @@ function IniciarSesionForm() {
                         </strong> de IESP-EESP Públicas
                     </h1>
                     <p className="font-extralight text-[#454545] ">
-                        Módulo administrativo
+                        Sección de Gestión
                     </p>
 
                 </div>
@@ -227,7 +227,7 @@ function IniciarSesionForm() {
                     <Link href={`registro-estudiante`} className="text-[#338ef7] text-left font-bold" >
                         Registrarme como estudiante
                     </Link>
-                    <Link href={`recuperar-usuario`} className="text-[#338ef7] text-left font-bold" >
+                    <Link href={`recuperar-clave`} className="text-[#338ef7] text-left font-bold" >
                         ¿Olvidaste tu contraseña?
                     </Link>
                 </section>

@@ -1,13 +1,12 @@
 
-import { usePersona } from "../../Providers/PersonaProvider";
+
 import { useSWRConfig } from "swr";
 import { toast } from "react-toastify";
-import { Button } from "@nextui-org/react";
-import { IconDelete } from "@/shared/Components/Icons";
 import { useState } from "react";
 import { usePersonaService } from "../../Hooks/usePersonaService";
 import Swal from "sweetalert2";
-import { useUtils } from "@/shared/Hooks/useUtils";
+import { usePersona } from "../../Providers/PersonaProvider";
+import ButtonDelete from "@/shared/Components/Buttons/ButtonDelete";
 
 
 const EliminarPersonaButton = ({ row }) => {
@@ -15,9 +14,6 @@ const EliminarPersonaButton = ({ row }) => {
     const { mutate } = useSWRConfig();
     const { eliminarPersona } = usePersonaService();
     const [isLoading, setIsLoading] = useState(false)
-    const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('GESPER', 'ELI')) return null
-
     const handleEliminar = async () => {
         setIsLoading(true)
         try {
@@ -41,7 +37,7 @@ const EliminarPersonaButton = ({ row }) => {
                             setIsLoading(false)
                         } else {
                             setIsLoading(false)
-                            toast.error(response.errors[0])
+                            toast.error(response.messages[0])
                         }
                     }
                     catch (error) {
@@ -62,24 +58,7 @@ const EliminarPersonaButton = ({ row }) => {
 
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
-
-
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
         </>
     )
 }

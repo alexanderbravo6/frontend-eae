@@ -9,7 +9,7 @@ import { usePruebaService } from '../../Hooks/usePruebaService';
 import { useSession } from 'next-auth/react';
 import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
-function EliminarButtonPrueba({ id }) {
+function EliminarButtonPrueba({ id, existeEvaluacion }) {
     const { mutate } = useSWRConfig();
     const { data: session } = useSession()
     const [isLoading, setIsLoading] = useState(false)
@@ -17,7 +17,7 @@ function EliminarButtonPrueba({ id }) {
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESPRU', 'ELI')) return null
 
-
+    console.log()
     const handleEliminar = () => {
 
         setIsLoading(true)
@@ -71,7 +71,10 @@ function EliminarButtonPrueba({ id }) {
     }
     return (
         <>
-            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+            {
+                !existeEvaluacion && <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+            }
+
         </>
     )
 }

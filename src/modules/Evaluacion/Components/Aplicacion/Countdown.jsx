@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import { useEvaluacion } from '../Context/useEvaluacion';
+import { useEvaluacion } from '../../Context/EvaluacionProvider';
 
 const SECOND = 1000;
 const MINUTE = SECOND * 60;

@@ -2,7 +2,7 @@
 import useSWR from "swr";
 import { configSWR } from "@/shared/Constants/GlobalConstants";
 import useAxiosEvaluacion from "@/shared/Hooks/useAxiosEvaluacion";
-import { useEvaluacion } from "../Context/useEvaluacion";
+import { useEvaluacion } from "../Context/EvaluacionProvider";
 
 export const useEvaluacionService = (token = null) => {
 

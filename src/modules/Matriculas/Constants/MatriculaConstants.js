@@ -60,7 +60,7 @@ export const matriculaColumns = [
             <>
                 <div className='flex gap-2  items-center '>
                     <ActualizarMatriculaModal row={row.original} />
-                    <EliminarMatriculaButton id={row.original.id} />
+                    <EliminarMatriculaButton id={row.original.id} existeEvaluacion={row.original.existeEvaluacion} />
                 </div>
             </>
         ),

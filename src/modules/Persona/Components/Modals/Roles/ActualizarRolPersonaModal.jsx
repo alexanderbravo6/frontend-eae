@@ -17,16 +17,13 @@ export default function ActualizarRolPersonaModal({ data }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-7xl "
+                title={"actualizar rol asignado"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">Actualizar Rol Asignado</ModalHeader>
-                            <ActualizarPersonaRolForm onClose={onClose} data={data} />
 
-                        </>
-                    )}
-                </ModalContent>
+
+                <ActualizarPersonaRolForm onClose={onClose} data={data} />
+
+
             </TemplateModal>
         </>
     );

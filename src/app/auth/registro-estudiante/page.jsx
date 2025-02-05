@@ -1,6 +1,4 @@
-
-import RegistroEstudianteForm from "@/modules/Auth/Components/RegistroEstudianteForm";
-
+import RegistroEstudianteForm from "@/modules/Auth/Components/Forms/RegistroEstudianteForm";
 
 export default function RegistroEstudiantePage() {
     return (

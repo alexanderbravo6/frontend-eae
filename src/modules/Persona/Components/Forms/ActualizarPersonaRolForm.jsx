@@ -1,14 +1,13 @@
 
 import React, { useState } from 'react'
-import SedePorTipoSelect from './SedePorTipoSelect'
-import { useUtils } from '@/shared/Hooks/useUtils'
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
-import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
-import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
+
 import { usePersonaService } from '../../Hooks/usePersonaService';
 import { useForm } from 'react-hook-form';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
+import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 
 function ActualizarPersonaRolForm({ onClose, data }) {
     const { register, handleSubmit, setValue, reset, formState: { errors, isSubmitting } } = useForm();

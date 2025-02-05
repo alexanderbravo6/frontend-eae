@@ -38,6 +38,16 @@ export const pruebaConstants = [
         size: 30
     },
     {
+        header: 'Total Evaluados',
+        accessorKey: 'totalEstudianteEvaluados',
+        size: 30
+    },
+    {
+        header: 'Concurrencia Evaluación',
+        accessorKey: 'concurrenciaEvaluacion',
+        size: 50
+    },
+    {
         header: 'ACCIONES',
         size: 50,
         cell: ({ row }) => (
@@ -48,7 +58,7 @@ export const pruebaConstants = [
                     <NivelDesempenioIndex row={row.original} />
                     <PreguntaLink id={row.original.id} />
                     <ActualizarPruebaModal row={row.original} />
-                    <EliminarPruebaButton id={row.original.id} />
+                    <EliminarPruebaButton id={row.original.id} existeEvaluacion={row.original.existeEvaluacion} />
                 </div>
             </>
         ),

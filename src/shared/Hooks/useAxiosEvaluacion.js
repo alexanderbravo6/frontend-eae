@@ -41,8 +41,6 @@ const useAxiosEvaluacion = (token = null) => {
             if (error.response && error.response.status === 401) {
                 // Token expirado o no autorizado
                 console.error("No autorizado o token expirado. Cerrando sesión...");
-
-      
             }
             return Promise.reject(error);
         }

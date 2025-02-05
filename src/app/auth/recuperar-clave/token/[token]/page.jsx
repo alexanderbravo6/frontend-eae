@@ -1,8 +1,14 @@
 
-import RecuperarUsuarioForm from "@/modules/Auth/Components/RecuperarUsuarioForm";
+import CambiarClaveForm from '@/modules/Auth/Components/Forms/CambiarClaveForm';
+import React from 'react'
+export const metadata = {
+    title: "Cambiar Clave",
+    description: "Cambiar clave de sistema de evaluación de aprendizajes de estudiantes de la educación superior pedagógica",
 
+};
 
-export default function RecuperarUsuarioPage() {
+export default function TokenPage({ params }) {
+
     return (
         <>
             <div className="flex items-center w-full h-full min-h-[640px] ">
@@ -10,7 +16,7 @@ export default function RecuperarUsuarioPage() {
                     <div >
                         <img src="/hero-logo-minedu.png" className=" m-5 w-40 lg:w-52 " alt="Icono Ministerio de Educación" />
                     </div>
-                    <RecuperarUsuarioForm />
+                    <CambiarClaveForm token={params.token} />
                 </div>
                 <div className="lg:w-2/5 lg:flex h-full hidden  overflow-hidden">
                     <img

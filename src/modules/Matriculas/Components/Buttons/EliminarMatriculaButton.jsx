@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import { useUtils } from '@/shared/Hooks/useUtils';
 import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
-function EliminarMatriculaButton({ id }) {
+function EliminarMatriculaButton({ id, existeEvaluacion }) {
 
     const { mutate } = useSWRConfig();
     const [isLoading, setIsLoading] = useState(false)
@@ -57,9 +57,12 @@ function EliminarMatriculaButton({ id }) {
             console.log(error)
         }
     }
+
     return (
         <>
-            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+            {
+                !existeEvaluacion && <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+            }
         </>
     )
 }

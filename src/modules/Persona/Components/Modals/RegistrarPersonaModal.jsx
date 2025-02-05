@@ -1,15 +1,11 @@
 'use client'
 import React, { useState } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, DateInput } from "@nextui-org/react";
-import { ButtonSubmit } from "@/shared/Components/Buttons/ButtonSubmit";
-import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
+import { Button, useDisclosure} from "@nextui-org/react";
 import RegistrarPersonaForm from "../Forms/RegistrarPersonaForm";
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
-import { useUtils } from "@/shared/Hooks/useUtils";
 export default function RegistrarPersonaModal() {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-    const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('GESPER', 'AGR')) return null
+
     return (
         <>
 
@@ -22,16 +18,12 @@ export default function RegistrarPersonaModal() {
             <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                className="max-w-7xl "
+                className="max-w-5xl "
+                title={"Registrar Persona"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">REGISTRAR PERSONA</ModalHeader>
-                            <RegistrarPersonaForm onClose={onClose} />
-                        </>
-                    )}
-                </ModalContent>
+
+                <RegistrarPersonaForm onClose={onClose} />
+
             </TemplateModal>
         </>
     );

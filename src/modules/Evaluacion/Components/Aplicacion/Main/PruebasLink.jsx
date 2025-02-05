@@ -2,9 +2,9 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation';
-import { useEvaluacionService } from '../../Hooks/useEvaluacionService';
+import { useEvaluacionService } from '../../../Hooks/useEvaluacionService';
 import { PruebaSkeleton } from '@/shared/Components/Skeletons/Skeletons';
-import { useEvaluacion } from '../../Context/useEvaluacion';
+import { useEvaluacion } from '../../../Context/EvaluacionProvider';
 import { useLocalStorage } from '@/shared/Hooks/useLocalStorage';
 
 // lstrgprb: Información de la prueba en local storage

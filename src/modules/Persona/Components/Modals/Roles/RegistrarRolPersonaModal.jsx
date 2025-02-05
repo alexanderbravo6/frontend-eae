@@ -16,11 +16,10 @@ export default function RegistrarRolPersonaModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-3xl "
-                title={'ASIGNAR NUEVO ROL'}
+                title={"Asignar Roles"}
             >
-                <>
-                    <RegistrarRolPersonaForm onClose={onClose} row={row} />
-                </>
+                <RegistrarRolPersonaForm onClose={onClose} row={row} />
+
             </TemplateModal>
         </>
     );

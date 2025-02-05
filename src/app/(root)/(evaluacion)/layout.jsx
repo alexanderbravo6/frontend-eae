@@ -1,4 +1,4 @@
-import { EvaluacionProvider } from '@/modules/Evaluacion/Context/useEvaluacion'
+import { EvaluacionProvider } from '@/modules/Evaluacion/Context/EvaluacionProvider'
 import React from 'react'
 
 function EvaluacionLayout({ children }) {

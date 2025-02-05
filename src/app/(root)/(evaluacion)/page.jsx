@@ -1,5 +1,5 @@
 
-import PruebasLink from "@/modules/Evaluacion/Components/Main/PruebasLink";
+import PruebasLink from "@/modules/Evaluacion/Components/Aplicacion/Main/PruebasLink";
 import EvaluacionFooter from "@/modules/Layout/Components/Footer/EvaluacionFooter";
 import Image from "next/image";
 

@@ -1,8 +1,8 @@
 'use client'
 
-import TestLoading from '@/modules/Evaluacion/Components/Test/TestLoading';
-import PreguntaSeguridadForm from '@/modules/Evaluacion/Components/Validacion/PreguntasSeguridadForm';
-import { useEvaluacion } from '@/modules/Evaluacion/Context/useEvaluacion';
+import TestLoading from '@/modules/Evaluacion/Components/Aplicacion/Test/TestLoading';
+import PreguntaSeguridadForm from '@/modules/Evaluacion/Components/Aplicacion/Validacion/PreguntasSeguridadForm';
+import { useEvaluacion } from '@/modules/Evaluacion/Context/EvaluacionProvider';
 import { useEvaluacionService } from '@/modules/Evaluacion/Hooks/useEvaluacionService';
 import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { redirect, useRouter } from 'next/navigation';

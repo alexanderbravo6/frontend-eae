@@ -4,17 +4,16 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { toast } from 'react-toastify';
-import { useAuthService } from '../Hooks/useAuthService';
+
 import { Button, Spinner } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import NumberField from '@/shared/Components/Form/Fields/NumberField';
 import InputField from '@/shared/Components/Form/Fields/InputField';
-import Link from 'next/link';
-import { ButtonBack } from '@/shared/Components/Buttons/ButtonBack';
+import { useAuthService } from '../../Hooks/useAuthService';
 
 
 
-function RecuperarUsuarioForm() {
+function RegistroEstudianteForm() {
 
 
     const { registrarEstudiante, ValidarEstudiante } = useAuthService()
@@ -32,11 +31,21 @@ function RecuperarUsuarioForm() {
         reset()
     }
     const validateStudent = async () => {
+        const dni = document.getElementById('numeroDocumento').value
+
+        if (dni === '') {
+            toast.error('Ingrese un número de documento')
+            return
+        }
+        if (dni.length < 8) {
+            toast.error('El número de documento debe tener al menos 8 caracteres')
+            return
+        }
         //limpiar campos
         setErrorValidation([])
         setValidarEstudiante(true)
         reset()
-        const dni = document.getElementById('numeroDocumento').value
+
         setNumeroDocumento(dni)
 
     }
@@ -79,10 +88,10 @@ function RecuperarUsuarioForm() {
                         </strong> de IESP-EESP Públicas
                     </h1>
                     <p className="font-extralight text-[#454545] ">
-                        Módulo administrativo
+                        Sección de Gestión
                     </p>
                 </div>
-                <p className="text-gray-400 text-left w-full">Recuperar Contraseña</p>
+                <p className="text-gray-400 text-left w-full">Formulario de registro</p>
 
                 <section className="mb-5 w-full ">
                     {
@@ -176,7 +185,7 @@ function RecuperarUsuarioForm() {
                     }
 
                 </section>
-                <div class="flex gap-3 items-start justify-start w-full
+                <div className="flex gap-3 items-start justify-start w-full
                 ">
 
                     {
@@ -228,4 +237,4 @@ function RecuperarUsuarioForm() {
 
 }
 
-export default RecuperarUsuarioForm
+export default RegistroEstudianteForm
