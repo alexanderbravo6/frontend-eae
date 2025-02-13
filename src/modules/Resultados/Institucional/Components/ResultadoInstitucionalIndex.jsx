@@ -5,12 +5,15 @@ import { InstitucionesSelect, RegionesSelect } from '@/shared/Components/Form/Se
 import { useResultadoInstitucional } from '../Providers/ResultadoInstitucionalProvider'
 import { useGlobal } from '@/shared/Providers/GlobalProvider'
 import { useUtils } from '@/shared/Hooks/useUtils'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission'
 
 function ResultadoInstitucionalIndex() {
 
     const { formValues, handleCleanSearch, handleSearch, handleInputChange, query } = useResultadoInstitucional()
     const { ValidarPermisos } = useUtils()
 
+
+    if (!ValidarPermisos('RESINS', 'ACC')) return <TemplateDeniedPermission />
     return (
         <>
             {
@@ -20,7 +23,7 @@ function ResultadoInstitucionalIndex() {
                             <section className="grid gap-6 mb-6 mt-3 md:grid-cols-4 grid-cols-2">
                                 <div className="col-span-1">
                                     <label htmlFor="region" className="block mb-2 text-xs font-medium text-gray-900 dark:text-white">
-                                        Región
+                                        REGIÓN
                                     </label>
                                     <RegionesSelect id="idRegion" defaultValue={formValues.idRegion}
                                         onChange={handleInputChange} />

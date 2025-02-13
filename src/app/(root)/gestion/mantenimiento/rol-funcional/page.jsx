@@ -6,10 +6,7 @@ import { useUtils } from '@/shared/Hooks/useUtils'
 import { useGlobal } from '@/shared/Providers/GlobalProvider'
 import React from 'react'
 const itemBreadCrumbs = [
-  {
-    href: '/',
-    name: 'Inicio'
-  },
+
   {
     href: '/mantenimiento/rol-funcional',
     name: 'Rol Funcional'

@@ -1,11 +1,11 @@
-import { IconDelete } from '@/shared/Components/Icons'
-import { Button } from '@nextui-org/react'
+
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
 import Swal from 'sweetalert2'
 import { useSWRConfig } from 'swr'
 import { useMenuService } from '../../Hooks/useMenuService'
 import { useUtils } from '@/shared/Hooks/useUtils'
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete'
 
 const EliminarMenuButton = ({ row }) => {
     const { mutate } = useSWRConfig();
@@ -13,6 +13,7 @@ const EliminarMenuButton = ({ row }) => {
     const { ValidarPermisos } = useUtils()
 
     const [isLoading, setIsLoading] = useState(false)
+
     const handleEliminar = () => {
         try {
 
@@ -56,23 +57,7 @@ const EliminarMenuButton = ({ row }) => {
     if (!ValidarPermisos('GESMEN', 'ELI')) return null
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
-
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
 
         </>
     )

@@ -3,13 +3,17 @@ import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosur
 import RegistrarRolPersonaModal from "./RegistrarRolPersonaModal";
 import RolPersonaTable from "../../Tables/RolPersonaTable";
 import TemplateModal from "@/shared/Components/Templates/TemplateModal";
+import { useUtils } from "@/shared/Hooks/useUtils";
+import ButtonCloseModal from "@/shared/Components/Buttons/ButtonCloseModal";
 
 const AsignarRolModal = ({ row }) => {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPER', 'AGR')) return null
 
     return (
         <>
-            <button onClick={onOpen} className="font-medium text-orange-500  hover:underline">
+            <button onClick={onOpen} title="Roles Asignados" className="font-medium text-orange-500  hover:underline">
                 <IconKey />
             </button>
             <TemplateModal
@@ -26,9 +30,7 @@ const AsignarRolModal = ({ row }) => {
                         <RolPersonaTable row={row} />
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="danger" variant="flat" onPress={onClose}>
-                            Cerrar
-                        </Button>
+                        <ButtonCloseModal onClose={onClose} />
                     </ModalFooter>
                 </>
 

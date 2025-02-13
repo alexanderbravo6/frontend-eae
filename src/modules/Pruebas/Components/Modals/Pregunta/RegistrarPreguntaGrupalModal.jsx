@@ -4,11 +4,13 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarPreguntaGrupalForm from '../../Forms/Pregunta/RegistrarPreguntaGrupalForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 
-function RegistrarPreguntaGrupalModal() {
-    const { isOpen, onOpen, onOpenChange,onClose } = useDisclosure();
-
+function RegistrarPreguntaGrupalModal({idPrueba}) {
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPRU', 'AGR')) return null
 
     return (
         <>
@@ -24,7 +26,7 @@ function RegistrarPreguntaGrupalModal() {
                 className={'max-w-5xl '}
                 title={`REGISTRAR PREGUNTA GRUPAL`}
             >
-                <RegistrarPreguntaGrupalForm onClose={onClose} />
+                <RegistrarPreguntaGrupalForm idPrueba={idPrueba} onClose={onClose} />
             </TemplateModal>
         </>
     )

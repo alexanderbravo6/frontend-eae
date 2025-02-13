@@ -4,10 +4,12 @@ import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosur
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoInstitucionalTab from '../Tabs/GraficoInstitucionalTab';
 import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function VerGraficosModal({ row }) {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('RESINS', 'CON')) return null
 
     return (
         <>

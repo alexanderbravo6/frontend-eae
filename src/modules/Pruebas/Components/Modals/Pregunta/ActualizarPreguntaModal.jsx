@@ -6,12 +6,14 @@ import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarEnunciadoForm from '@/modules/Enunciados/Components/Forms/RegistrarEnunciadoForm';
 import { IconEdit } from '@/shared/Components/Icons';
 import ActualizarPreguntaForm from '../../Forms/Pregunta/ActualizarPreguntaForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 
 function ActualizarPreguntaModal({ data }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPRU', 'AGR')) return null
     return (
         <>
             <Button onPress={onOpen} size='sm' color="primary">
@@ -22,18 +24,9 @@ function ActualizarPreguntaModal({ data }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={"Actualizar Pregunta"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">ACTUALIZAR PREGUNTA </h1>
-                            </ModalHeader>
-                            <ActualizarPreguntaForm onClose={onClose} row={data} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <ActualizarPreguntaForm onClose={onClose} row={data} />
             </TemplateModal>
         </>
     )

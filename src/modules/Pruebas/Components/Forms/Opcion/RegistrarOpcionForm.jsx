@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import { useSWRConfig } from 'swr';
 import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { useOpcionService } from '@/modules/Pruebas/Hooks/useOpcionService';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -71,16 +72,14 @@ function RegistrarOpcionForm({ idPregunta, onClose }) {
                     }
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
                         <div className='col-span-2'>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenido</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTENIDO  <span className="text-red-500">*</span></label>
                             <ReactQuill value={enunciado} onChange={(e) => { setEnunciado(e) }} modules={toolbarSetting} />
                         </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>
                     <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
-                    <Button color="danger" variant="flat" onPress={onClose}   >
-                        Cerrar
-                    </Button>
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </section>

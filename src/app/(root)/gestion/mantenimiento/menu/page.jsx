@@ -6,10 +6,7 @@ import TemplateSearch from '@/shared/Components/Templates/TemplateSearch'
 import { useGlobal } from '@/shared/Providers/GlobalProvider'
 import React from 'react'
 const itemBreadCrumbs = [
-  {
-    href: '/',
-    name: 'Inicio'
-  },
+
   {
     href: '/mantenimiento/menu',
     name: 'Menu'

@@ -21,7 +21,7 @@ function VerGraficoNacionalModal({ idPrueba }) {
     return (
         <>
             <Button onClick={onOpen} size="sm" title='Ver Gráficos' className='mt-3 w-full' variant="shadow" color="primary" >
-                Ver ResultadoNacional
+                Ver resultado nacional
             </Button>
 
             <TemplateModal

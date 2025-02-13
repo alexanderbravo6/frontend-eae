@@ -7,7 +7,7 @@ import ActualizarEnunciadoForm from '../Forms/ActualizarEnunciadoForm';
 import { useUtils } from '@/shared/Hooks/useUtils';
 
 function ActualizarEnunciadoModal({ row }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESENU', 'MOD')) return null
 
@@ -20,18 +20,9 @@ function ActualizarEnunciadoModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={'Actualizar Enunciado'}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">ACTUALIZAR ENUNCIADO</h1>
-                            </ModalHeader>
-                            <ActualizarEnunciadoForm onClose={onClose} row={row} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <ActualizarEnunciadoForm onClose={onClose} row={row} />
             </TemplateModal>
         </>
     )

@@ -4,15 +4,17 @@ import { Button, ModalContent, ModalHeader, useDisclosure } from "@nextui-org/re
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import { IconEdit } from '@/shared/Components/Icons';
 import ActualizarOpcionForm from '../../Forms/Opcion/ActualizarOpcionForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function ActualizarOpcionModal({ row }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPRU', 'AGR')) return null
     return (
         <>
 
-            <Button isIconOnly className='border-none'  onPress={onOpen} variant="ghost" size='sm' color="success">
+            <Button isIconOnly className='border-none' onPress={onOpen} variant="ghost" size='sm' color="success">
 
                 <IconEdit />
 
@@ -21,18 +23,11 @@ function ActualizarOpcionModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={"Actualizar Opción"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">ACTUALIZAR OPCIÓN</h1>
-                            </ModalHeader>
-                            <ActualizarOpcionForm row={row} onClose={onClose} />
-                        </>
 
-                    )}
-                </ModalContent>
+                <ActualizarOpcionForm row={row} onClose={onClose} />
+
             </TemplateModal>
         </>
     )

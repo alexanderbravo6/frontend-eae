@@ -3,72 +3,130 @@ import React from 'react'
 import { useState } from 'react';
 
 import 'quill/dist/quill.snow.css';
-import { toolbarSetting } from '@/shared/Constants/GlobalConstants';
+import { estadoOptions, toolbarSetting } from '@/shared/Constants/GlobalConstants';
 import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { Button, ModalBody, ModalFooter } from '@nextui-org/react';
 import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import SelectField from '@/shared/Components/Form/Fields/SelectField';
+import { usePreguntaService } from '@/modules/Pruebas/Hooks/usePreguntaService';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
+import { useSWRConfig } from 'swr';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 
-function RegistrarPreguntaGrupalForm({ onClose }) {
-
-    const [content, setContent] = useState('');
+function RegistrarPreguntaGrupalForm({ onClose, idPrueba }) {
+    const [pregunta, setPregunta] = useState('');
+    const [errorValidation, setErrorValidation] = useState('');
+    const { FetchUtils, registrarPregunta } = usePreguntaService()
     const { register, handleSubmit, getValues, setValue, reset, formState: { errors, isSubmitting } } = useForm();
-    const handleChange = (value) => {
-        setContent(value); // Aquí el valor es el HTML generado por Quill
-    };
-    const RegistrarDocente = handleSubmit(async (data) => {
-        console.log(content)
+    const utils = FetchUtils()
+    const { mutate } = useSWRConfig()
+    const form = handleSubmit(async (data) => {
+        const request = {
+            ...data,
+            idPrueba: idPrueba,
+            esGrupal: true,
+            pregunta: pregunta
+        }
+
+        try {
+            const response = await registrarPregunta(request)
+
+            if (response.success === true) {
+                setErrorValidation([])
+                mutate(`pruebas_preguntas_${idPrueba}`,
+                    // Aquí se actualiza la data
+                    (res) => {
+
+                        return { ...res, data: [...res.data, response.data] }
+                    }
+                    , false
+                )
+                onClose()
+                toast.success(response.messages[0])
+            } else {
+
+                if (response.errors) {
+                    const nuevosErrores = Object.values(response.errors).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+                if (response.validations) {
+                    const nuevosErrores = Object.values(response.validations).flat();
+                    setErrorValidation(nuevosErrores)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
     })
     return (
         <section>
-            <form onSubmit={RegistrarDocente}>
+            <form onSubmit={form}>
                 <ModalBody>
+                    {
+                        errorValidation.length === 0 ? null : (
+                            <section>
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
+                            </section>
+                        )
+                    }
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
-                        <div className='col-span-2'>
-                            <label htmlFor="enunciado" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enunciado</label>
-                            <select id="enunciado" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">ENUNCIADO 1</option>
-                                <option value="2">ENUNCIADO 2</option>
+                        <div className='col-span-1'>
 
-                            </select>
-                        </div>
-                        <div className='col-span-2'>
-                            <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pregunta</label>
-                            <ReactQuill value={content} onChange={handleChange} modules={toolbarSetting} />
+                            <SelectField
+                                id="idEnunciado"
+                                label="enunciado"
+                                options={utils?.data?.data?.enunciados?.map(item => ({
+                                    value: item.id,
+                                    label: ` ${item.titulo}`
+                                })) || []}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idEnunciado}
+                            />
+
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="grupo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grupo</label>
-                            <select id="grupo" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">GRUPO 01</option>
-                                <option value="2">GRUPO 02</option>
-                                <option value="3">GRUPO 03</option>
-                                <option value="4">GRUPO 04</option>
-                                <option value="5">GRUPO 05</option>
-                                <option value="6">GRUPO 06</option>
-                                <option value="7">GENERAL</option>
-                                <option value="8">GRUPO 07</option>
-
-                            </select>
+                            <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PREGUNTA <span className="text-red-500">*</span></label>
+                            <ReactQuill value={pregunta} onChange={(e) => { setPregunta(e) }} modules={toolbarSetting} />
                         </div>
                         <div className='col-span-1'>
-                            <label htmlFor="estado" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
-                            <select id="estado" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">ACTIVO</option>
-                                <option value="2">INACTIVO</option>
 
-                            </select>
+                            <SelectField
+                                id="idGrupo"
+                                label="grupo"
+                                options={utils?.data?.data?.grupos?.map(item => ({
+                                    value: item.id,
+                                    label: ` ${item.nombre}`
+                                })) || []}
+                                isLoading={utils?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idGrupo}
+                            />
+                        </div>
+                        <div className='col-span-1'>
+                            <SelectField
+                                id="estado"
+                                label="estado"
+                                options={estadoOptions}
+                                setValue={setValue}
+                                isRequired={true}
+                                register={register}
+                                error={errors.estado}
+                            />
+
                         </div>
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <ButtonSubmit label="Registrar" />
+                    <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
                     <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>

@@ -24,15 +24,9 @@ export default function RegistrarRolFuncionalModal() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className="max-w-3xl "
+                title={`REGISTRAR ROL FUNCIONAL`}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col gap-1">REGISTRAR ROL FUNCIONAL</ModalHeader>
-                            <RegistrarRolFuncionalForm onClose={onClose} />
-                        </>
-                    )}
-                </ModalContent>
+                <RegistrarRolFuncionalForm onClose={onClose} />
             </TemplateModal >
         </>
     );

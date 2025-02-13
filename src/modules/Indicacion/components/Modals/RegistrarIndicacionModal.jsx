@@ -7,7 +7,7 @@ import { useUtils } from '@/shared/Hooks/useUtils';
 import RegistrarIndicacionForm from '../Forms/RegistrarIndicacionForm';
 
 function RegistrarIndicacionModal() {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESIND', 'AGR')) return null
 
@@ -23,18 +23,9 @@ function RegistrarIndicacionModal() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={'NUEVA INDICACIÓN'}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVA INDICACIÓN</h1>
-                            </ModalHeader>
-                            <RegistrarIndicacionForm onClose={onClose} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <RegistrarIndicacionForm onClose={onClose} />
             </TemplateModal>
         </>
     )

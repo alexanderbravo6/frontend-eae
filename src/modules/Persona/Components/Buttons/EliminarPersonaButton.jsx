@@ -7,6 +7,7 @@ import { usePersonaService } from "../../Hooks/usePersonaService";
 import Swal from "sweetalert2";
 import { usePersona } from "../../Providers/PersonaProvider";
 import ButtonDelete from "@/shared/Components/Buttons/ButtonDelete";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 
 const EliminarPersonaButton = ({ row }) => {
@@ -14,6 +15,7 @@ const EliminarPersonaButton = ({ row }) => {
     const { mutate } = useSWRConfig();
     const { eliminarPersona } = usePersonaService();
     const [isLoading, setIsLoading] = useState(false)
+    const { ValidarPermisos } = useUtils()
     const handleEliminar = async () => {
         setIsLoading(true)
         try {
@@ -56,6 +58,7 @@ const EliminarPersonaButton = ({ row }) => {
         }
     }
 
+    if (!ValidarPermisos('GESPER', 'ELI')) return null
     return (
         <>
             <ButtonDelete action={handleEliminar} isLoading={isLoading} />

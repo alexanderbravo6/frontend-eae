@@ -1,11 +1,11 @@
-import { IconDelete } from '@/shared/Components/Icons'
+
 import React, { useState } from 'react'
 import { useEnunciadoService } from '../../Hooks/useEnunciadoService';
 import { useSWRConfig } from 'swr';
-import { Button } from '@nextui-org/react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useUtils } from '@/shared/Hooks/useUtils';
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
 function EliminarEnunciadoButton({ id }) {
     const { mutate } = useSWRConfig();
@@ -68,22 +68,7 @@ function EliminarEnunciadoButton({ id }) {
     }
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
         </>
     )
 }

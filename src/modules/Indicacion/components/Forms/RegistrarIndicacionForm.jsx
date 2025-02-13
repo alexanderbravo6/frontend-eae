@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 
 import 'quill/dist/quill.snow.css';
-import { toolbarSetting } from '@/shared/Constants/GlobalConstants';
+import { estadoOptions, tipoDocumentoOptions, toolbarSetting } from '@/shared/Constants/GlobalConstants';
 import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,9 @@ import { useSWRConfig } from 'swr';
 import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { toast } from 'react-toastify';
 import { useIndicacionService } from '../../Hooks/useIndicacionService';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import InputField from '@/shared/Components/Form/Fields/InputField';
+import SelectField from '@/shared/Components/Form/Fields/SelectField';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -75,52 +78,36 @@ function RegistrarIndicacionForm({ onClose }) {
           }
           <div className="grid gap-6 mb-6 md:grid-cols-2">
             <div className='col-span-2'>
-              <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre </label>
-              <input
-                {...register('nombre', {
-                  required: {
-                    value: true,
-                    message: 'El campo nombre es requerido'
-                  },
-                })}
-                type="text" id="nombre" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-              {
-                errors.nombre && (
-                  <span className="text-red-500 text-xs">{errors.nombre.message}</span>
-                )
-              }
+              <InputField
+                id="nombre"
+                label="nombre"
+                isRequired={true}
+                register={register}
+                error={errors.nombre}
+              />
+
             </div>
             <div className='col-span-1'>
-              <label htmlFor="estado" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
-              <select id="estado"
-                {...register('estado', {
-                  required: {
-                    value: true,
-                    message: 'El campo estado es requerido'
-                  },
-                })}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="">SELECCIONAR</option>
-                <option value="1">ACTIVO</option>
-                <option value="2">INACTIVO</option>
-              </select>
-              {
-                errors.estado && (
-                  <span className="text-red-500 text-xs">{errors.estado.message}</span>
-                )
-              }
+              <SelectField
+                id="estado"
+                label="estado"
+                options={estadoOptions}
+                setValue={setValue}
+                isRequired={true}
+                register={register}
+                error={errors.estado}
+              />
+
             </div>
             <div className='col-span-2'>
-              <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contenido de Enunciado</label>
+              <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTENIDO DE ENUNCIADO  <span className="text-red-500">*</span></label>
               <ReactQuill value={content} onChange={handleChange} modules={toolbarSetting} />
             </div>
           </div>
         </ModalBody>
         <ModalFooter>
           <ButtonSubmit label="Registrar" isSubmitting={isSubmitting} />
-          <Button color="danger" variant="flat" onPress={onClose}   >
-            Cerrar
-          </Button>
+          <ButtonCloseModal onClose={onClose} />
         </ModalFooter>
       </form>
     </section>

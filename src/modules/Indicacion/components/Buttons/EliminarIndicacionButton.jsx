@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useUtils } from '@/shared/Hooks/useUtils';
 import { useIndicacionService } from '../../Hooks/useIndicacionService';
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
 function EliminarIndicacionButton({ id }) {
     const { mutate } = useSWRConfig();
@@ -68,22 +69,7 @@ function EliminarIndicacionButton({ id }) {
     }
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="solid" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
         </>
     )
 }

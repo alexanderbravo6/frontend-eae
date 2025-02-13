@@ -5,12 +5,14 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarEnunciadoForm from '@/modules/Enunciados/Components/Forms/RegistrarEnunciadoForm';
 import RegistrarPreguntaForm from '../../Forms/Pregunta/RegistrarPreguntaForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 
 function RegistrarPreguntaModal({ idPrueba }) {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
-
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPRU', 'AGR')) return null
     return (
         <>
             <Button onPress={onOpen} className='mb-4' size='md' color="primary">

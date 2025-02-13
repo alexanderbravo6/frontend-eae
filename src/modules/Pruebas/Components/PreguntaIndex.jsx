@@ -4,10 +4,11 @@ import RegistrarPreguntaModal from './Modals/Pregunta/RegistrarPreguntaModal'
 import RegistrarPreguntaGrupalModal from './Modals/Pregunta/RegistrarPreguntaGrupalModal'
 import PreguntasAccordion from './PreguntasAccordion'
 import { useUtils } from '@/shared/Hooks/useUtils'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission'
 
 function PreguntaIndex({ idPrueba }) {
     const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('GESPRU', 'AGR')) return null
+    if (!ValidarPermisos('GESPRU', 'ACC')) return <TemplateDeniedPermission />
     return (
         <>
             <section className='w-full flex gap-5 my-5  justify-between flex-wrap' >

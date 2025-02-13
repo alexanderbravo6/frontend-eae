@@ -6,6 +6,10 @@ import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
 import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import { useRolFuncionalService } from '../../Hooks/useRolFuncionalService';
+import InputField from '@/shared/Components/Form/Fields/InputField';
+import SelectField from '@/shared/Components/Form/Fields/SelectField';
+import { estadoOptions } from '@/shared/Constants/GlobalConstants';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 function RegistrarRolFuncionalForm({ onClose }) {
 
     const { mutate } = useSWRConfig()
@@ -52,47 +56,24 @@ function RegistrarRolFuncionalForm({ onClose }) {
                     <div className="grid grid-cols-1 gap-4">
 
                         <div className="col-span-1">
-                            <label htmlFor="nombre" className="block  text- mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Nombre
-                            </label>
-                            <input
-                                {...register('nombre', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El campo nombre es requerido'
-                                    },
-                                })}
-                                type="text" id="nombre" className="bg-gray-50 uppercase border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-                            {
-                                errors.nombre && (
-                                    <span className="text-red-500 text-xs">{errors.nombre.message}</span>
-                                )
-                            }
+                            <InputField
+                                id="nombre"
+                                label="nombre"
+                                isRequired={true}
+                                register={register}
+                                error={errors.nombre}
+                            />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="estado" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Estado
-                            </label>
-                            <select id="estado"
-                                {...register('estado', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El estado es requerido'
-                                    },
-                                })}
-
-                                className="bg-gray-50 border border-gray-300 uppercase text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="" >Seleccionar</option>
-                                <option value="1">Activo</option>
-                                <option value="2">Inactivo</option>
-                            </select>
-                            {
-                                errors.estado && (
-                                    <span className="text-red-500 text-xs">{errors.estado.message}</span>
-                                )
-                            }
+                            <SelectField
+                                id="estado"
+                                label="estado"
+                                options={estadoOptions}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.estado}
+                            />
                         </div>
                     </div>
 
@@ -100,15 +81,10 @@ function RegistrarRolFuncionalForm({ onClose }) {
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="danger" variant="light" onPress={
-                        () => {
-                            reset()
-                            onClose()
-                        }}>
-                        Cerrar
-                    </Button>
 
-                    <ButtonSubmit isSubmitting={isSubmitting} label={'Actualizar'} />
+
+                    <ButtonSubmit isSubmitting={isSubmitting} label={'Registrar'} />
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
             </form>
         </>

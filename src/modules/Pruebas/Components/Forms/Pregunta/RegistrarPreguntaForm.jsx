@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 
 import 'quill/dist/quill.snow.css';
-import { toolbarSetting } from '@/shared/Constants/GlobalConstants';
+import { estadoOptions, toolbarSetting } from '@/shared/Constants/GlobalConstants';
 import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
@@ -12,6 +12,8 @@ import { usePreguntaService } from '@/modules/Pruebas/Hooks/usePreguntaService';
 import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
 import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
+import SelectField from '@/shared/Components/Form/Fields/SelectField';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -29,6 +31,7 @@ function RegistrarPreguntaForm({ onClose, idPrueba }) {
             ...data,
             idPrueba: idPrueba,
             enunciado: enunciado,
+            esGrupal: false,
             pregunta: pregunta
         }
 
@@ -66,36 +69,34 @@ function RegistrarPreguntaForm({ onClose, idPrueba }) {
         <section>
             <form onSubmit={form}>
                 <ModalBody>
+                    {
+                        errorValidation.length === 0 ? null : (
+                            <section>
+                                <TemplateAlert message={errorValidation} type={'errorList'} />
+                            </section>
+                        )
+                    }
                     <div className="grid gap-6 mb-6 md:grid-cols-1">
                         <div className='col-span-2'>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enunciado</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ENUNCIADO <span className="text-red-500">*</span></label>
                             <ReactQuill value={enunciado} onChange={(e) => { setEnunciado(e) }} modules={toolbarSetting} />
                         </div>
                         <div className='col-span-2'>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pregunta</label>
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PREGUNTA <span className="text-red-500">*</span></label>
                             <ReactQuill value={pregunta} onChange={(e) => { setPregunta(e) }} modules={toolbarSetting} />
                         </div>
 
                         <div className='col-span-1'>
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
-                            <select id="estado"
-                                {...register('estado', {
-                                    required: {
-                                        value: true,
-                                        message: 'El campo estado es requerido'
-                                    },
-                                })}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="">SELECCIONAR</option>
-                                <option value="1">ACTIVO</option>
-                                <option value="0">INACTIVO</option>
+                            <SelectField
+                                id="estado"
+                                label="estado"
+                                options={estadoOptions}
+                                setValue={setValue}
+                                isRequired={true}
+                                register={register}
+                                error={errors.estado}
+                            />
 
-                            </select>
-                            {
-                                errors.estado && (
-                                    <span className="text-red-500 text-xs">{errors.estado.message}</span>
-                                )
-                            }
                         </div>
                     </div>
                 </ModalBody>

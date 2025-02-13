@@ -5,12 +5,14 @@ import { useMatricula } from '../Providers/MatriculaProvider'
 import TemplateSearch from '@/shared/Components/Templates/TemplateSearch'
 import CargaMasivaMatriculaModal from './Modals/CargaMasivaMatriculaModal'
 import { useUtils } from '@/shared/Hooks/useUtils'
+import TemplateDeniedPermission from '@/shared/Components/Templates/TemplateDeniedPermission'
 
 
 const MatriculaIndex = () => {
     const { formValues, handleCleanSearch, handleSearch, handleInputChange, query, utils } = useMatricula()
     const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('GESMAT', 'CON')) return null
+
+    if (!ValidarPermisos('GESMAT', 'ACC')) return <TemplateDeniedPermission />
     return (
         <>
             <div className='mb-5'>

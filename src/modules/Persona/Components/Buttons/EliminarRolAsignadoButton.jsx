@@ -6,13 +6,15 @@ import { IconDelete } from "@/shared/Components/Icons";
 import { useState } from "react";
 import { usePersonaService } from "../../Hooks/usePersonaService";
 import Swal from "sweetalert2";
+import ButtonDelete from "@/shared/Components/Buttons/ButtonDelete";
+import { useUtils } from "@/shared/Hooks/useUtils";
 
 
 const EliminarRolAsignadoButton = ({ data }) => {
     const { mutate } = useSWRConfig();
     const { eliminarRolAsignado } = usePersonaService();
     const [isLoading, setIsLoading] = useState(false)
-
+    const { ValidarPermisos } = useUtils()
 
 
     const handleEliminar = async () => {
@@ -57,26 +59,10 @@ const EliminarRolAsignadoButton = ({ data }) => {
 
         }
     }
-
+    if (!ValidarPermisos('GESPER', 'ELI')) return null
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-                        <Button isIconOnly isLoading size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger">
-                            <IconDelete />
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="ghost" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-                    </>
-                )
-            }
-
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
 
         </>
     )

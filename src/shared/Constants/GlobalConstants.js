@@ -27,8 +27,12 @@ export const nivelDesempenio = [
     { value: 3, label: 'SATISFACTORIO' }
 ]
 export const sexoOptions = [
-    { value: 'M', label: 'MASCULINO' },
-    { value: 'F', label: 'FEMENINO' }
+    { value: 1, label: 'MASCULINO' },
+    { value: 2, label: 'FEMENINO' }
+]
+export const estadoOptions = [
+    { value: 1, label: 'ACTIVO' },
+    { value: 0, label: 'INACTIVO' }
 ]
 export const tipoDocumentoOptions = [
     { value: "1", label: "DNI" },

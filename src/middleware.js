@@ -19,6 +19,10 @@ export const config = {
         "/matricula/:path*",
         "/enunciados/:path*",
         "/pruebas/:path*",
-    
+        "/mantenimiento/:path*",
+        "/mi-perfil/:path*",
+        "/resultados/:path*",
+        "/seguimiento/:path*",
+        "/seguridad/:path*",
     ]
 }

@@ -4,14 +4,13 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import RegistrarOpcionForm from '../../Forms/Opcion/RegistrarOpcionForm';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 
-function RegistrarOpcionModal({ 
-    
-    
-    idPregunta }) {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+function RegistrarOpcionModal({ idPregunta }) {
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('GESPRU', 'AGR')) return null
 
     return (
         <>
@@ -25,18 +24,9 @@ function RegistrarOpcionModal({
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={"Nueva Opción"}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVA OPCIÓN</h1>
-                            </ModalHeader>
-                            <RegistrarOpcionForm idPregunta={idPregunta} onClose={onClose} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <RegistrarOpcionForm idPregunta={idPregunta} onClose={onClose} />
             </TemplateModal>
         </>
     )

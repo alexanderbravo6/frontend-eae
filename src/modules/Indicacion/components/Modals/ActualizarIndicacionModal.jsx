@@ -7,7 +7,7 @@ import { useUtils } from '@/shared/Hooks/useUtils';
 import ActualizarIndicacionForm from '../Forms/ActualizarIndicacionForm';
 
 function ActualizarIndicacionModal({ row }) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { ValidarPermisos } = useUtils()
   if (!ValidarPermisos('GESIND', 'MOD')) return null
 
@@ -20,18 +20,9 @@ function ActualizarIndicacionModal({ row }) {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         className={'max-w-5xl '}
+        title={'ACTUALIZAR INDICACIÓN'}
       >
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col  gap-1">
-                <h1 className=" text-blue-400 ">ACTUALIZAR INDICACIÓN</h1>
-              </ModalHeader>
-              <ActualizarIndicacionForm onClose={onClose} row={row} />
-            </>
-
-          )}
-        </ModalContent>
+        <ActualizarIndicacionForm onClose={onClose} row={row} />
       </TemplateModal>
     </>
   )

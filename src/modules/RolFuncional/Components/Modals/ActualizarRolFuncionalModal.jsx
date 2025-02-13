@@ -13,9 +13,9 @@ export default function ActualizarMenuModal({ row }) {
     if (!ValidarPermisos('GESROL', 'MOD')) return null
     return (
         <>
-            <button onClick={onOpen} className="font-medium text-blue-500  hover:underline">
+            <Button isIconOnly size="sm" title='Actualizar' className='border-none' variant="ghost" color="success" onPress={onOpen}>
                 <IconEdit />
-            </button>
+            </Button>
             <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}

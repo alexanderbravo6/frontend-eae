@@ -7,7 +7,7 @@ import RegistrarEnunciadoForm from '../Forms/RegistrarEnunciadoForm';
 import { useUtils } from '@/shared/Hooks/useUtils';
 
 function RegistrarEnunciadoModal() {
-    const { isOpen, onOpen, onOpenChange } = useDisclosure();
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
     const { ValidarPermisos } = useUtils()
     if (!ValidarPermisos('GESENU', 'AGR')) return null
 
@@ -23,18 +23,9 @@ function RegistrarEnunciadoModal() {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
+                title={'Registrar Enunciado'}
             >
-                <ModalContent>
-                    {(onClose) => (
-                        <>
-                            <ModalHeader className="flex flex-col  gap-1">
-                                <h1 className=" text-blue-400 ">NUEVO ENUNCIADO</h1>
-                            </ModalHeader>
-                            <RegistrarEnunciadoForm onClose={onClose} />
-                        </>
-
-                    )}
-                </ModalContent>
+                <RegistrarEnunciadoForm onClose={onClose} />
             </TemplateModal>
         </>
     )

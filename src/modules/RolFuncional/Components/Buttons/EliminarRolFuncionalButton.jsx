@@ -55,7 +55,10 @@ const EliminarRolFuncionalButton = ({ row }) => {
     if (!ValidarPermisos('GESROL', 'ELI')) return null
     return (
         <>
-            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+            {
+                row.tienePersonasVinculadas === true && <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+            }
+
 
 
         </>

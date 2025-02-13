@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { useUtils } from '@/shared/Hooks/useUtils';
 import { useOpcionService } from '../../Hooks/useOpcionService';
+import ButtonDelete from '@/shared/Components/Buttons/ButtonDelete';
 
 function EliminarOpcionButton({ row }) {
     const { mutate } = useSWRConfig();
@@ -69,25 +70,8 @@ function EliminarOpcionButton({ row }) {
     }
     return (
         <>
-            {
-                isLoading ? (
-                    <>
-
-                        <Button isLoading size='sm' variant="solid" color="danger">
-
-                 
-                        </Button>
-                    </>
-                ) : (
-                    <>
-                        <Button isIconOnly size="sm" title='Eliminar' className='border-none' variant="solid" color="danger" onPress={handleEliminar}>
-                            <IconDelete />
-                        </Button>
-
-
-                    </>
-                )
-            }
+            <ButtonDelete action={handleEliminar} isLoading={isLoading} />
+       
         </>
     )
 }

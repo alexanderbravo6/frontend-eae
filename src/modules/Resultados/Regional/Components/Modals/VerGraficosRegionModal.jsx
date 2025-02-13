@@ -4,10 +4,12 @@ import { Button, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosur
 import TemplateModal from '@/shared/Components/Templates/TemplateModal';
 import GraficoRegionalTab from '../Tabs/GraficoRegionalTab';
 import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import { useUtils } from '@/shared/Hooks/useUtils';
 
 function VerGraficosRegionModal({ row }) {
-    const { isOpen, onOpen, onOpenChange,onClose} = useDisclosure();
-
+    const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+    const { ValidarPermisos } = useUtils()
+    if (!ValidarPermisos('RESREG', 'CON')) return null
 
     return (
         <>

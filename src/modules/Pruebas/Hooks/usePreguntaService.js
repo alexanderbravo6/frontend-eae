@@ -40,8 +40,13 @@ export const usePreguntaService = () => {
         const { data, error, isLoading, mutate } = useSWR(`pruebas_preguntas_${id}`, fetcher, configSWR);
         return { data, error, isLoading, mutate }
     }
+    const FetchUtils = () => {
 
-    return { actualizarPregunta, eliminarPregunta, registrarPregunta, FetchPreguntasPorPrueba };
+        const fetcher = () => axios.get(`/v1/preguntas/utils`).then(response => response.data);
+        const { data, error, isLoading, mutate } = useSWR(`pruebas_utils`, fetcher, configSWR);
+        return { data, error, isLoading, mutate }
+    }
+    return { FetchUtils, actualizarPregunta, eliminarPregunta, registrarPregunta, FetchPreguntasPorPrueba };
 
 
 }

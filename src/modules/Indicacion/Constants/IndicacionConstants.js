@@ -12,7 +12,7 @@ export const indicacionColumns = [
     },
     {
         header: 'ESTADO',
-        accessorKey: 'estado',
+        accessorKey: 'descripcionEstado',
         size: 30
     },
     {
