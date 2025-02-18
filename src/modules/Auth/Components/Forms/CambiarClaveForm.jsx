@@ -10,17 +10,11 @@ import { useRouter } from 'next/navigation';
 import { PasswordField } from '@/shared/Components/Form/Fields/PasswordField';
 
 
-
 function CambiarClaveForm({ token }) {
-
-
     const { CambiarClave } = useAuthService()
     const router = useRouter()
     const [errorValidation, setErrorValidation] = useState('');
-
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
-
-
     const form = handleSubmit(async (data) => {
         const request = {
             clave: data.clave,

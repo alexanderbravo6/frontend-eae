@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NumberField = ({ min, max, maxLength, minLength, id, label, type = "number", register, value = null, isRequired, error }) => {
+const NumberField = ({ min, max, maxLength, minLength, id, label, type = "number", register, value = null, isDisabled, isRequired, error }) => {
     const validationRules = {
         ...(min !== undefined && {
             min: {
@@ -48,9 +48,10 @@ const NumberField = ({ min, max, maxLength, minLength, id, label, type = "number
             <input
                 id={id}
                 type={type}
+                disabled={isDisabled}
                 {...register(`${id}`, validationRules)}
                 defaultValue={value}
-                className="bg-gray-50 border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className={`${isDisabled ? 'bg-gray-300' : "bg-gray-50"}  border uppercase border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}
             />
             {error && <span className="text-red-500  text-xs">{error.message}</span>}
 

@@ -1,11 +1,6 @@
-
+'use client'
 import CambiarClaveForm from '@/modules/Auth/Components/Forms/CambiarClaveForm';
 import React from 'react'
-export const metadata = {
-    title: "Cambiar Clave",
-    description: "Cambiar clave de sistema de evaluación de aprendizajes de estudiantes de la educación superior pedagógica",
-
-};
 
 export default function TokenPage({ params }) {
 
