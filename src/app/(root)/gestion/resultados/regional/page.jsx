@@ -7,8 +7,8 @@ import React from 'react'
 
 const itemBreadcrumbs = [
     {
-        href: '/gestion/resultados/nacional',
-        name: 'Resultados Nacionales'
+        href: '/gestion/resultados/regional',
+        name: 'Resultados Regionales'
     }
 ]
 

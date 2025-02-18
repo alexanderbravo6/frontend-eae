@@ -100,7 +100,7 @@ function RegistrarIndicacionForm({ onClose }) {
 
             </div>
             <div className='col-span-2'>
-              <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTENIDO DE ENUNCIADO  <span className="text-red-500">*</span></label>
+              <label htmlFor="contenido" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">CONTENIDO <span className="text-red-500">*</span></label>
               <ReactQuill value={content} onChange={handleChange} modules={toolbarSetting} />
             </div>
           </div>

@@ -42,7 +42,15 @@ export const cierreAutomaticoOptions = [
     { value: "1", label: "SI" },
     { value: "0", label: "NO" },
 ]
-
+export const iconos = [
+    { value: 'home', label: 'home' },
+    { value: 'person', label: 'person' },
+    { value: 'management', label: 'management' },
+    { value: 'eyes-config', label: 'eyes-config' },
+    { value: 'checklist', label: 'checklist' },
+    { value: 'directions', label: 'directions' },
+    { value: 'config', label: 'config' },
+]
 export const toolbarSetting = {
 
     toolbar: [

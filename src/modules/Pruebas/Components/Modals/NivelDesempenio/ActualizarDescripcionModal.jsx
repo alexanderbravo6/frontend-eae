@@ -23,7 +23,7 @@ function ActualizarDescripcionModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-3xl '}
-                title={"nueva descripción"}
+                title={"actualizar descripción"}
             >
                 <ActualizarDescripcionForm row={row} onClose={onClose} />
             </TemplateModal>

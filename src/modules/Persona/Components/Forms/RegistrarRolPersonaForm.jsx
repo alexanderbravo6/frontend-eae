@@ -37,7 +37,7 @@ function RegistrarRolPersonaForm({ onClose, row }) {
             const response = await asignarRol(request)
 
             if (response.success === true) {
-                toast.success(response.messages)
+                toast.success(response.messages[0])
                 onClose()
                 reset()
                 mutate('roles_asignados_' + row.id)
@@ -71,8 +71,9 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                 }
                 <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-3">
-                        <label htmlFor="rolFuncional" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Rol Funcional
+
+                        <label htmlFor="rolFuncional" className="block mb-2 uppercase text-xs font-medium text-gray-900 dark:text-white">
+                            ROL FUNCIONAL   <span className="text-red-500">*</span>
                         </label>
 
                         <select id="rolFuncional"
@@ -103,8 +104,8 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                         }
                     </div>
                     <div className="col-span-3">
-                        <label htmlFor="tipoSede" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Tipo de Sede
+                        <label htmlFor="tipoSede" className="block mb-2 uppercase text-xs font-medium text-gray-900 dark:text-white">
+                            TIPO DE SEDE  <span className="text-red-500">*</span>
                         </label>
 
 
@@ -125,7 +126,7 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                             </option>
                             {
                                 tipoSede?.data?.data
-                                    .filter((item) => selectRolFuncional == 1 || selectRolFuncional == 4 ? item.id == 1 : selectRolFuncional == 2 ? item.id == 2 : selectRolFuncional == 3 ? item.id == 3 : null
+                                    .filter((item) => selectRolFuncional == 1 || selectRolFuncional == 2 ? item.id == 1 : selectRolFuncional == 3 ? item.id == 2 : selectRolFuncional == 4 ? item.id == 4 : selectRolFuncional == 5 ? item.id == 3 : null
                                     )
                                     .map((item) => (
                                         <option key={item.id} value={item.id}>{item.nombre}</option>
@@ -140,8 +141,8 @@ function RegistrarRolPersonaForm({ onClose, row }) {
                         }
                     </div>
                     <div className="col-span-3">
-                        <label htmlFor="sede" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Sede
+                        <label htmlFor="sede" className="block mb-2 uppercase text-xs font-medium text-gray-900 dark:text-white">
+                            SEDE  <span className="text-red-500">*</span>
                         </label>
                         <SedePorTipoSelect
                             sede={sede}
@@ -153,8 +154,8 @@ function RegistrarRolPersonaForm({ onClose, row }) {
 
                     </div>
                     <div className="col-span-3">
-                        <label htmlFor="porDefecto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Por defecto
+                        <label htmlFor="porDefecto" className="block mb-2 uppercase text-xs font-medium text-gray-900 dark:text-white">
+                            POR DEFECTO  <span className="text-red-500">*</span>
                         </label>
 
                         <select id="porDefecto"

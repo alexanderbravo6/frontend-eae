@@ -230,7 +230,7 @@ function RegistrarPruebaForm({ onClose }) {
 
                     <div className=" mb-4 ">
                         <div className="space-y-2 ">
-                            <h4 className="text-medium font-medium">Replicar Preguntas de Pruebas</h4>
+                            <h4 className="text-medium font-medium">REPLICAR PREGUNTAS DE PRUEBAS</h4>
                             <p className="text-small text-default-400">Tiene la opción de replicar la configuración de una prueba previamente registrada, con el objetivo de no iniciar de cero.</p>
                         </div>
                     </div>
@@ -245,8 +245,8 @@ function RegistrarPruebaForm({ onClose }) {
                                         orientation="horizontal"
                                         onValueChange={setShowSelects}
                                     >
-                                        <Radio value="1">Si replicar</Radio>
-                                        <Radio value="0">No</Radio>
+                                        <Radio value="1">SI REPLICAR</Radio>
+                                        <Radio value="0">NO</Radio>
                                     </RadioGroup>
 
                                 </div>
@@ -255,7 +255,8 @@ function RegistrarPruebaForm({ onClose }) {
                         {showSelects == "1" && (
                             <>
                                 <div className='col-span-1'>
-                                    <label htmlFor="replicaPeriodoAcademico" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Periodo Académico</label>
+                                    <label htmlFor="replicaPeriodoAcademico" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        PERIODO ACADÉMICO</label>
                                     <select id="replicaPeriodoAcademico"
                                         onChange={e => setPeriodoReplica(e.target.value)}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -263,7 +264,7 @@ function RegistrarPruebaForm({ onClose }) {
                                             <option value="">Cargando...</option>
                                         ) : (
                                             <>
-                                                <option value="">Seleccionar</option>
+                                                <option value="">SELECCIONAR</option>
                                                 {
                                                     utils?.data?.data.periodosAcademicos.map((item, i) => (
                                                         <option key={i} value={item.id}> {item.descripcion}</option>
@@ -275,7 +276,7 @@ function RegistrarPruebaForm({ onClose }) {
                                     </select>
                                 </div>
                                 <div className='col-span-1'>
-                                    <label htmlFor="replicaPruebas" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pruebas</label>
+                                    <label htmlFor="replicaPruebas" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">PRUEBAS</label>
                                     <select id="replicaPruebas"
                                         {...register('idPrueba', {
                                             required: {

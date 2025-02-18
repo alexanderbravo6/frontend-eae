@@ -18,7 +18,7 @@ function VerRespuestasModal({ row }) {
 
     return (
         <>
-            <Button isIconOnly size="sm" title='Respuestas' className='border-none' variant="bordered" color="primary" onPress={onOpen}>
+            <Button isIconOnly size="sm" title='Ver respuestas' className='border-none' variant="bordered" color="primary" onPress={onOpen}>
                 <IconLayout />
             </Button>
 
@@ -26,7 +26,7 @@ function VerRespuestasModal({ row }) {
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
                 className={'max-w-5xl '}
-                title={"Configuración de Niveles de Desempeño de la prueba"}
+                title={"VER RESPUESTAS"}
             >
                 <ModalBody>
                     <RespuestasTable id={row.id} />

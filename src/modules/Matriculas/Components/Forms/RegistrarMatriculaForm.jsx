@@ -172,7 +172,7 @@ function RegistrarMatriculaForm({ onClose }) {
                         <div className='col-span-1'>
                             <SelectField
                                 id="idCiclo"
-                                label="ciclos"
+                                label="ciclo"
                                 options={utils?.data?.data?.ciclos?.map(item => ({
                                     value: item.id,
                                     label: ` ${item.descripcion}`

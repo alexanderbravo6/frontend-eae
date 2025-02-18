@@ -77,6 +77,7 @@ function RegistroEstudianteForm() {
             console.log(error)
         }
     })
+
     return (
         <>
             <form onSubmit={form} className="max-w-2xl mb-[6%]  gap-5 flex flex-col md:mx-auto mx-[10%] h-[80%] md:w-full w-[50%] items-center justify-center">
@@ -118,7 +119,7 @@ function RegistroEstudianteForm() {
                     {
                         estudiante &&
 
-                            estudiante.error ? <p className='text-red-500' > El estudiante no cuenta con alguna participación en la EAE.</p> :
+                            estudiante.error ? <p className='text-red-500' >{estudiante?.error?.response?.data?.errors[0]}</p> :
                             estudiante.isLoading ? <Spinner color="default" size="sm" /> :
                                 !estudiante?.data ? null :
                                     (

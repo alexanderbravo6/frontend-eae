@@ -1,11 +1,16 @@
 import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit'
-import { Button, ModalBody, ModalFooter } from '@nextui-org/react'
+import { Button, Modal, ModalBody, ModalFooter } from '@nextui-org/react'
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useSWRConfig } from "swr";
+import { iconos } from "@/shared/Constants/GlobalConstants";
 import TemplateAlert from "@/shared/Components/Templates/TemplateAlert";
 import { useMenuService } from '../../Hooks/useMenuService';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
+import InputField from '@/shared/Components/Form/Fields/InputField';
+import SelectField from '@/shared/Components/Form/Fields/SelectField';
+import NumberField from '@/shared/Components/Form/Fields/NumberField';
 function RegistrarMenuForm({ onClose }) {
 
     const { mutate } = useSWRConfig()
@@ -52,178 +57,98 @@ function RegistrarMenuForm({ onClose }) {
                     }
                     <div className="grid grid-cols-3 gap-4">
                         <div className="col-span-1">
-                            <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Nombre
-                            </label>
-                            <input
-                                {...register('nombre', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El nombre es requerido'
-                                    },
-                                })}
-                                type="text" id="nombre" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-                            {
-                                errors.nombre && (
-                                    <span className="text-red-500 text-xs">{errors.nombre.message}</span>
-                                )
-                            }
+                            <InputField
+                                id="nombre"
+                                label="nombre"
+                                isRequired={true}
+                                register={register}
+                                error={errors.nombre}
+                            />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="rutaRelativa" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Ruta relativa
-                            </label>
-                            <input
-                                {...register('rutaRelativa', {
 
-                                    required: {
-                                        value: true,
-                                        message: 'El campo ruta relativa es requerido'
-                                    },
-                                })}
-                                type="text" id="rutaRelativa" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-                            {
-                                errors.rutaRelativa && (
-                                    <span className="text-red-500 text-xs">{errors.rutaRelativa.message}</span>
-                                )
-                            }
+                            <InputField
+                                id="rutaRelativa"
+                                label="ruta relativa"
+                                isRequired={true}
+                                register={register}
+                                error={errors.rutaRelativa}
+                            />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="descripcion" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Descripción
-                            </label>
-                            <input
-                                {...register('descripcion', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El descripcion es requerido'
-                                    },
-                                })}
-                                type="text" id="name" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-                            {
-                                errors.descripcion && (
-                                    <span className="text-red-500 text-xs">{errors.descripcion.message}</span>
-                                )
-                            }
+                            <InputField
+                                id="descripcion"
+                                label="descripción"
+                                isRequired={true}
+                                register={register}
+                                error={errors.descripcion}
+                            />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="icono" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Icono
-                            </label>
+                            <SelectField
+                                id="icono"
+                                label="Icono"
+                                options={iconos}
+                                isLoading={false}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.icono}
+                            />
 
-                            <select id="icono"
-                                {...register('icono', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El icono es requerido'
-                                    },
-                                })}
-
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="" >Seleccionar</option>
-                                <option value="home">home</option>
-                                <option value="person">person</option>
-                                <option value="management">management</option>
-                                <option value="eyes-config">eyes-config</option>
-                                <option value="checklist">checklist</option>
-                                <option value="directions">directions</option>
-                                <option value="config">config</option>
-                            </select>
-                            {
-                                errors.icono && (
-                                    <span className="text-red-500 text-xs">{errors.icono.message}</span>
-                                )
-                            }
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="estado" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Estado
-                            </label>
+                            <SelectField
+                                id="estado"
+                                label="estado"
+                                options={[
+                                    { value: "1", label: "ACTIVO" },
+                                    { value: "0", label: "INACTIVO" },
+                                ]}
+                                setValue={setValue}
+                                isRequired={true}
+                                register={register}
+                                error={errors.estado}
+                            />
 
-
-                            <select id="estado"
-                                {...register('estado', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El estado es requerido'
-                                    },
-                                })}
-
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="" >Seleccionar</option>
-                                <option value="1">Activo</option>
-                                <option value="2">Inactivo</option>
-                            </select>
-                            {
-                                errors.estado && (
-                                    <span className="text-red-500 text-xs">{errors.estado.message}</span>
-                                )
-                            }
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="codigo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Codigo Interno
-                            </label>
-                            <input
-                                {...register('codigo', {
 
-                                    required: {
-                                        value: true,
-                                        message: 'El codigo interno es requerido'
-                                    },
-                                })}
-                                type="text" id="codigo" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-                            {
-                                errors.codigo && (
-                                    <span className="text-red-500 text-xs">{errors.codigo.message}</span>
-                                )
-                            }
+                            <InputField
+                                id="codigo"
+                                label="codigo interno"
+                                isRequired={true}
+                                register={register}
+                                error={errors.codigo}
+                            />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor="orden" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Orden
-                            </label>
 
-
-                            <input
-                                {...register('orden', {
-
-                                    required: {
-                                        value: true,
-                                        message: 'El orden es requerido'
-                                    },
-                                })}
-                                type="text" id="orden" className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" />
-                            {
-                                errors.orden && (
-                                    <span className="text-red-500 text-xs">{errors.orden.message}</span>
-                                )
-                            }
+                            <NumberField
+                                id="orden"
+                                label="orden"
+                                isRequired={true}
+                                min={1}
+                                register={register}
+                                error={errors.orden}
+                            />
                         </div>
                         <div className="col-span-2">
-                            <label htmlFor="idMenuPadre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                Menú Padre
-                            </label>
 
+                            <SelectField
+                                id="idMenuPadre"
+                                label="Menú Padre"
+                                options={menus?.data?.data?.map(item => ({
+                                    value: item.id,
+                                    label: `${item.nombre}`
+                                })) || []}
+                                isLoading={menus?.isLoading}
+                                isRequired={true}
+                                setValue={setValue}
+                                register={register}
+                                error={errors.idMenuPadre}
+                            />
 
-                            <select id="idMenuPadre"
-                                {...register('idMenuPadre')}
-
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option value="0" >Seleccionar</option>
-                                {
-                                    menus &&
-                                        menus.error ? (<option value="" >No hay datos</option>) :
-                                        menus.isLoading ? (<option value="" >Cargando...</option>) : (
-                                            menus?.data?.data.map((menu) => (
-                                                <option key={menu.id} value={menu.id}>{menu.nombre}</option>
-                                            )))
-                                }
-                            </select>
 
                         </div>
                     </div>
@@ -232,17 +157,10 @@ function RegistrarMenuForm({ onClose }) {
 
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="danger" variant="light" onPress={
-                        () => {
-                            reset()
-                            onClose()
-                        }}>
-                        Cerrar
-                    </Button>
-
                     <ButtonSubmit isSubmitting={isSubmitting} label={'Registrar'} />
+                    <ButtonCloseModal onClose={onClose} />
                 </ModalFooter>
-            </form>
+            </form >
         </>
     )
 }

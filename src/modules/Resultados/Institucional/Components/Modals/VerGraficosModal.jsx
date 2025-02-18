@@ -9,7 +9,7 @@ import { useUtils } from '@/shared/Hooks/useUtils';
 function VerGraficosModal({ row }) {
     const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
     const { ValidarPermisos } = useUtils()
-    if (!ValidarPermisos('RESINS', 'CON')) return null
+    if (!ValidarPermisos('RESINS', 'ACC')) return null
 
     return (
         <>

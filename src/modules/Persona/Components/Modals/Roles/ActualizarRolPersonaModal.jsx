@@ -16,7 +16,7 @@ export default function ActualizarRolPersonaModal({ data }) {
             <TemplateModal
                 isOpen={isOpen}
                 onOpenChange={onOpenChange}
-                className="max-w-7xl "
+                className="max-w-4xl "
                 title={"actualizar rol asignado"}
             >
 

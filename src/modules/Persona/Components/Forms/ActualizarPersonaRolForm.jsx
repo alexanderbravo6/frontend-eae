@@ -8,6 +8,7 @@ import { useSWRConfig } from 'swr';
 import { toast } from 'react-toastify';
 import TemplateAlert from '@/shared/Components/Templates/TemplateAlert';
 import { ButtonSubmit } from '@/shared/Components/Buttons/ButtonSubmit';
+import ButtonCloseModal from '@/shared/Components/Buttons/ButtonCloseModal';
 
 function ActualizarPersonaRolForm({ onClose, data }) {
     const { register, handleSubmit, setValue, reset, formState: { errors, isSubmitting } } = useForm();
@@ -21,7 +22,7 @@ function ActualizarPersonaRolForm({ onClose, data }) {
         const response = await actualizarRolAsignado(data.idPersonaRol, request)
 
         if (response.success === true) {
-            toast.success(response.messages)
+            toast.success(response.messages[0])
             onClose()
             reset()
             mutate('roles_asignados_' + data.idPersona)
@@ -53,27 +54,27 @@ function ActualizarPersonaRolForm({ onClose, data }) {
                 <div className="grid grid-cols-3 gap-4">
                     <div className="col-span-3">
                         <label htmlFor="rolFuncional" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Rol Funcional
+                            ROL FUNCIONAL   <span className="text-red-500">*</span>
                         </label>
                         <input type="text" disabled defaultValue={data.rol} id="rolFuncionalForm" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
                     </div>
                     <div className="col-span-3">
                         <label htmlFor="tipoSede" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Tipo de Sede
+                            TIPO DE SEDE <span className="text-red-500">*</span>
                         </label>
                         <input type="text" disabled defaultValue={data.sede.descripcionTipoSede} id="rolFuncionalForm" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
                     </div>
                     <div className="col-span-3">
                         <label htmlFor="sede" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Sede
+                            SEDE  <span className="text-red-500">*</span>
                         </label>
                         <input type="text" disabled defaultValue={data.sede.descripcionSede} id="rolFuncionalForm" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     </div>
                     <div className="col-span-3">
                         <label htmlFor="porDefecto" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Por defecto
+                            POR DEFECTO <span className="text-red-500">*</span>
                         </label>
 
                         <select id="porDefecto"
@@ -103,10 +104,9 @@ function ActualizarPersonaRolForm({ onClose, data }) {
 
             </ModalBody>
             <ModalFooter>
-                <Button color="danger" variant="light" onPress={() => { onClose(), reset() }}>
-                    Cerrar
-                </Button>
-                <ButtonSubmit label={"Registrar"} isSubmitting={isSubmitting} />
+
+                <ButtonSubmit label={"Actualizar"} isSubmitting={isSubmitting} />
+                <ButtonCloseModal onClose={onClose} />
             </ModalFooter>
         </form>
 

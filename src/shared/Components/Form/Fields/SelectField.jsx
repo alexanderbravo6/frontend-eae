@@ -2,7 +2,7 @@ import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import React from "react";
 
 const SelectField = ({
-    type = "simple",
+    type = "simple", // simple  | nested
     id,
     label,
     options = [],

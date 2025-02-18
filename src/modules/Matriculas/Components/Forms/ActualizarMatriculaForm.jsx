@@ -190,7 +190,7 @@ function ActualizarMatriculaForm({ row, onClose }) {
                         <div className='col-span-1'>
                             <SelectField
                                 id="idCiclo"
-                                label="ciclos"
+                                label="ciclo"
                                 value={row.idCiclo}
                                 options={utils?.data?.data?.ciclos?.map(item => ({
                                     value: item.id,
